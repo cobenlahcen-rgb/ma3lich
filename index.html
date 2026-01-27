@@ -3,416 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MA3LICH | اصنع موقع IPTV خاص بك في 24 ساعة 🔥</title>
-    <!-- Fonts -->
+    <title>MA3LICH | ابدأ منصة IPTV الخاصة بك باحترافية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #8b5cf6;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
-        body { background: #0a0a0a; color: #f0f0f0; line-height: 1.6; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        body { background: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
         
         /* HEADER */
-        header { background: linear-gradient(135deg, #111 0%, #000 100%); border-bottom: 1px solid #222; position: fixed; width: 100%; z-index: 1000; }
-        .header-content { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
-        .logo { font-size: 28px; font-weight: 800; background: linear-gradient(90deg, #6366f1, #8b5cf6); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .logo span { color: #f0f0f0; }
-        .cta-button { background: linear-gradient(90deg, #6366f1, #8b5cf6); color: white; border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; font-size: 16px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; display: inline-block; }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3); }
+        header { 
+            background: rgba(15, 23, 42, 0.8); 
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            position: fixed; width: 100%; z-index: 1000; 
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+        .logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; color: var(--text-main); }
+        .logo span { color: var(--primary); }
         
+        .cta-button { 
+            background: var(--primary); 
+            color: white; border: none; padding: 10px 24px; 
+            border-radius: 8px; font-weight: 700; font-size: 15px; 
+            cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            text-decoration: none; display: inline-block; 
+        }
+        .cta-button:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
+
         /* HERO SECTION */
-        .hero { padding: 160px 0 100px; background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%); }
-        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
-        .hero h1 .highlight { background: linear-gradient(90deg, #6366f1, #8b5cf6); -webkit-background-clip: text; background-clip: text; color: transparent; position: relative; }
-        .hero h1 .highlight::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #6366f1, #8b5cf6); border-radius: 2px; }
-        .hero p { font-size: 1.3rem; color: #aaa; max-width: 800px; margin-bottom: 40px; }
-        .stats { display: flex; gap: 40px; margin-top: 60px; }
-        .stat-item { text-align: center; }
-        .stat-number { font-size: 2.5rem; font-weight: 800; background: linear-gradient(90deg, #6366f1, #8b5cf6); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .stat-label { color: #888; font-size: 0.9rem; margin-top: 5px; }
+        .hero { padding: 180px 0 100px; text-align: center; }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 24px; line-height: 1.2; letter-spacing: -1px; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; }
         
-        /* HOW IT WORKS */
-        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 60px; position: relative; }
-        .section-title::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: linear-gradient(90deg, #6366f1, #8b5cf6); border-radius: 2px; }
-        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 100px; }
-        .step-card { background: rgba(255, 255, 255, 0.03); border: 1px solid #222; border-radius: 20px; padding: 40px 30px; text-align: center; transition: transform 0.3s, border-color 0.3s; }
-        .step-card:hover { transform: translateY(-10px); border-color: #6366f1; }
-        .step-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
-        .step-number { display: inline-block; width: 40px; height: 40px; background: linear-gradient(90deg, #6366f1, #8b5cf6); color: white; border-radius: 50%; line-height: 40px; font-weight: 700; margin-bottom: 20px; }
-        
-        /* DEMO SHOWCASE */
-        .demo-showcase { background: rgba(255, 255, 255, 0.02); border-radius: 25px; padding: 60px; margin: 100px 0; border: 1px solid #222; }
-        .demo-screen { background: #111; border-radius: 15px; padding: 20px; margin-top: 40px; border: 1px solid #333; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); position: relative; overflow: hidden; }
-        .demo-screen::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 30px; background: #222; border-radius: 15px 15px 0 0; }
-        .screen-content { background: #000; padding: 40px; border-radius: 10px; margin-top: 20px; min-height: 400px; display: flex; flex-direction: column; justify-content: center; }
+        .stats { display: flex; justify-content: center; gap: 60px; margin-top: 60px; }
+        .stat-item { position: relative; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: var(--text-main); display: block; }
+        .stat-label { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* STEPS */
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.2rem; margin-bottom: 10px; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 60px 0; }
+        .step-card { 
+            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 16px; padding: 40px 30px; transition: transform 0.3s;
+        }
+        .step-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .step-num { color: var(--primary); font-weight: 800; font-size: 1.2rem; margin-bottom: 15px; display: block; }
         
         /* PRICING */
-        .pricing { margin: 100px 0; }
-        .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 50px; }
-        .pricing-card { background: rgba(255, 255, 255, 0.03); border: 1px solid #222; border-radius: 25px; padding: 40px; transition: all 0.3s; position: relative; overflow: hidden; }
-        .pricing-card.popular { border: 2px solid #6366f1; transform: scale(1.05); }
-        .popular-badge { position: absolute; top: 20px; right: 20px; background: linear-gradient(90deg, #6366f1, #8b5cf6); color: white; padding: 8px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
-        .price-amount { font-size: 3rem; font-weight: 800; margin: 20px 0; }
-        .price-amount span { font-size: 1rem; color: #888; }
-        .features-list { list-style: none; margin: 30px 0; }
-        .features-list li { padding: 10px 0; border-bottom: 1px solid #222; position: relative; padding-right: 30px; }
-        .features-list li::before { content: '✅'; position: absolute; right: 0; font-weight: bold; }
+        .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
+        .pricing-card { 
+            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 20px; padding: 40px; position: relative; 
+        }
+        .pricing-card.featured { border: 2px solid var(--primary); }
+        .badge { 
+            position: absolute; top: 20px; left: 20px; 
+            background: var(--primary); color: white; padding: 4px 12px; 
+            border-radius: 20px; font-size: 0.75rem; font-weight: 700; 
+        }
+        .price { font-size: 3.5rem; font-weight: 800; margin: 20px 0; }
+        .price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
         
-        /* CTA SECTION */
-        .final-cta { text-align: center; padding: 100px 0; background: radial-gradient(circle at center, rgba(99, 102, 241, 0.1) 0%, transparent 70%); }
-        .final-cta h2 { font-size: 2.5rem; margin-bottom: 30px; }
-        .whatsapp-button { background: #25D366; color: white; border: none; padding: 20px 50px; border-radius: 50px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; margin-top: 30px; text-decoration: none; }
-        .whatsapp-button:hover { transform: scale(1.05); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.3); }
-        
+        .features { list-style: none; margin-bottom: 30px; }
+        .features li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+        .features li::before { content: '✓'; color: var(--success); font-weight: bold; }
+
         /* FOOTER */
-        footer { border-top: 1px solid #222; padding: 60px 0 30px; text-align: center; color: #666; }
-        .copyright { margin-top: 40px; font-size: 0.9rem; }
-        
-        /* Responsive */
+        footer { padding: 80px 0 40px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 100px; text-align: center; }
+        .footer-note { color: var(--text-muted); font-size: 0.85rem; max-width: 600px; margin: 20px auto; }
+
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .stats { flex-direction: column; gap: 20px; }
-            .demo-showcase { padding: 30px; }
-            .pricing-card.popular { transform: none; }
-        }
-        
-        /* 🔥 EMOJI STYLES 🔥 */
-        .fire-emoji { animation: fire 1s infinite alternate; }
-        @keyframes fire {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
-        }
-        .pulse { animation: pulse 2s infinite; }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
-        }
-        .money-rain { position: relative; }
-        .money-rain::after { content: '💰💰💰'; position: absolute; top: -10px; left: 0; font-size: 20px; opacity: 0.5; animation: rain 3s infinite linear; }
-        @keyframes rain {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100px); }
+            .hero h1 { font-size: 2.2rem; }
+            .stats { flex-direction: column; gap: 30px; }
         }
     </style>
 </head>
 <body>
 
-<!-- HEADER 🔥 -->
 <header>
     <div class="container">
         <div class="header-content">
-            <div class="logo">🔥 MA3LICH<span>.com</span></div>
-            <a href="#pricing" class="cta-button">🚀 ابدأ الآن - 500 درهم</a>
+            <div class="logo">MA3LICH<span>.com</span></div>
+            <a href="#pricing" class="cta-button">ابدأ الآن</a>
         </div>
     </div>
 </header>
 
-<!-- HERO SECTION 💰 -->
 <section class="hero">
     <div class="container">
-        <h1>
-            🎬 اصنع موقع <span class="highlight">IPTV خاص بك</span><br>
-            ⚡ في أقل من <span class="highlight">24 ساعة</span>
-        </h1>
-        <p>
-            🎨 لوغو خاص، 🌐 دومين خاص، 💳 صفحة دفع احترافية، 💬 دعم واتساب تلقائي.<br>
-            🤝 أنت تركز على المبيعات، نحن نتعامل مع التقنية والدفع والدعم.
-        </p>
-        <a href="#pricing" class="cta-button" style="padding: 18px 50px; font-size: 1.1rem;">
-            🚀 انطلق بمشروعك - 500 درهم فقط
-        </a>
+        <h1>أنشئ موقع <span>IPTV احترافي</span><br>خلال 24 ساعة فقط</h1>
+        <p>نوفر لك البنية التحتية، بوابات الدفع، ونظام الأتمتة. ركز على التسويق واترك الجوانب التقنية المعقدة لنا.</p>
         
         <div class="stats">
             <div class="stat-item">
-                <div class="stat-number">24h</div>
-                <div class="stat-label">⏰ أقل من يوم للتأسيس</div>
+                <span class="stat-number">24h</span>
+                <span class="stat-label">سرعة التنفيذ</span>
             </div>
             <div class="stat-item">
-                <div class="stat-number">80%</div>
-                <div class="stat-label">💰 عمولة لك من كل عملية</div>
+                <span class="stat-number">85%</span>
+                <span class="stat-label">أرباح صافية لك</span>
             </div>
             <div class="stat-item">
-                <div class="stat-number">0%</div>
-                <div class="stat-label">🧠 لا حاجة لمعرفة تقنية</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">🛡️ تحكم في مبيعاتك وبياناتك</div>
+                <span class="stat-number">50+</span>
+                <span class="stat-label">بائع نشط</span>
             </div>
         </div>
     </div>
 </section>
 
-<!-- HOW IT WORKS 🛠️ -->
 <section class="container">
-    <h2 class="section-title">⚙️ كيف يعمل؟</h2>
-    
+    <div class="section-header">
+        <h2>ثلاث خطوات للانطلاق</h2>
+    </div>
     <div class="steps">
-        <!-- Step 1 -->
         <div class="step-card">
-            <div class="step-number">1</div>
-            <div class="step-icon">💸</div>
-            <h3>ادفع 500 درهم</h3>
-            <p>رسوم تأسيس لمرة واحدة. استلام موقعك خلال 24 ساعة.</p>
+            <span class="step-num">01.</span>
+            <h3>اختيار الباقة</h3>
+            <p>اختر الخطة المناسبة لحجم مشروعك وقم بتأكيد الطلب عبر الواتساب.</p>
         </div>
-        
-        <!-- Step 2 -->
         <div class="step-card">
-            <div class="step-number">2</div>
-            <div class="step-icon">🎨</div>
-            <h3>أرسل لوغوك</h3>
-            <p>أرسل شعارك وألوانك. نحن نصمم كل شيء باسمك.</p>
+            <span class="step-num">02.</span>
+            <h3>تخصيص الهوية</h3>
+            <p>أرسل شعارك وألوانك المفضلة وسنقوم ببرمجة موقعك الخاص.</p>
         </div>
-        
-        <!-- Step 3 -->
         <div class="step-card">
-            <div class="step-number">3</div>
-            <div class="step-icon">🚀</div>
-            <h3>ابدأ البيع</h3>
-            <p>رابط موقعك جاهز. ابدأ التسويق واحصل على أول عمولة.</p>
+            <span class="step-num">03.</span>
+            <h3>بدء المبيعات</h3>
+            <p>استلم لوحة التحكم وابدأ في استقبال المدفوعات بشكل تلقائي.</p>
         </div>
     </div>
 </section>
 
-<!-- DEMO SHOWCASE 🎥 -->
-<section class="container">
-    <div class="demo-showcase">
-        <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 20px;">
-            👁️ شاهد كيف سيبدو موقعك ⬇️
-        </h2>
-        <p style="text-align: center; color: #aaa; max-width: 800px; margin: 0 auto;">
-            هذا نموذج لموقع عميل. كل شيء يمكن تخصيصه: الألوان، الشعار، العروض، الأسعار
-        </p>
-        
-        <div class="demo-screen">
-            <div class="screen-content">
-                <div style="text-align: center; margin-bottom: 40px;">
-                    <div style="font-size: 2rem; font-weight: 800; color: #6366f1; margin-bottom: 10px;">
-                        📺 IPTV-PRO.ma
-                    </div>
-                    <div style="color: #888; font-size: 1.1rem;">
-                        🎨 شعارك هنا | 💬 دعم واتساب مباشر | 🔒 دفع آمن
-                    </div>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                    <div style="background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 10px; border: 1px solid #333;">
-                        <div style="font-size: 0.9rem; color: #aaa;">🟢 الباقة الشهرية</div>
-                        <div style="font-size: 2rem; font-weight: 800; margin: 10px 0;">99 <span style="font-size: 1rem;">درهم</span></div>
-                        <button style="background: #6366f1; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer;">
-                            🛒 اشترك الآن
-                        </button>
-                    </div>
-                    
-                    <div style="background: rgba(139, 92, 246, 0.1); padding: 20px; border-radius: 10px; border: 1px solid #8b5cf6;">
-                        <div style="font-size: 0.9rem; color: #aaa;">⭐ الأكثر مبيعاً</div>
-                        <div style="font-size: 2rem; font-weight: 800; margin: 10px 0;">249 <span style="font-size: 1rem;">درهم</span></div>
-                        <button style="background: #8b5cf6; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer;">
-                            🚀 احصل على العرض
-                        </button>
-                    </div>
-                    
-                    <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px; border: 1px solid #333;">
-                        <div style="font-size: 0.9rem; color: #aaa;">👑 باقة السنة</div>
-                        <div style="font-size: 2rem; font-weight: 800; margin: 10px 0;">699 <span style="font-size: 1rem;">درهم</span></div>
-                        <button style="background: #444; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer;">
-                            💰 وفر أكثر
-                        </button>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 40px; text-align: center; color: #25D366; font-weight: 700;">
-                    💬 دعم واتساب مباشر | ⚡ توصيل تلقائي | 🔒 دفع آمن
-                </div>
-            </div>
-        </div>
+<section class="container" id="pricing">
+    <div class="section-header">
+        <h2>خطط الأسعار</h2>
     </div>
-</section>
-
-<!-- PRICING 💰 -->
-<section class="container pricing" id="pricing">
-    <h2 class="section-title">💰 الأسعار</h2>
-    
     <div class="pricing-cards">
-        <!-- Basic Plan -->
         <div class="pricing-card">
-            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🟢 الاساسية</h3>
-            <div class="price-amount">500 <span>درهم</span></div>
-            <p style="color: #aaa; margin-bottom: 30px;">💸 مرة واحدة للتأسيس</p>
-            
-            <ul class="features-list">
-                <li>🌐 موقع خاص باسمك</li>
-                <li>🎨 لوغو وألوان مخصصة</li>
-                <li>💬 دعم واتساب تلقائي</li>
-                <li>💳 3 بوابات دفع (CMI, Orange, Card)</li>
-                <li>📊 لوحة تحكم لمتابعة المبيعات</li>
-                <li>⚡ توصيل تلقائي بعد الدفع</li>
+            <h3>الباقة الأساسية</h3>
+            <div class="price">500 <span>درهم</span></div>
+            <ul class="features">
+                <li>موقع مخصص بالكامل</li>
+                <li>بوابات دفع (CMI, Card)</li>
+                <li>توصيل تلقائي للطلبات</li>
+                <li>لوحة تحكم المبيعات</li>
+                <li>عمولة المنصة: 20%</li>
             </ul>
-            
-            <div style="text-align: center;">
-                <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin: 20px 0;">
-                    🤑 عمولة: 20% من كل عملية
-                </div>
-                <div style="background: #1e293b; padding: 15px; border-radius: 10px; margin: 15px 0; font-size: 1.2rem;">
-                    🎯 أنت تحصل على: <span style="color: #10b981; font-weight: bold;">80%</span>
-                </div>
-                <a href="https://wa.me/212XXXXXXXXX?text=مرحباً، أريد الباقة الأساسية" class="cta-button" style="width: 100%; text-align: center;">
-                    💬 ابدأ الآن
-                </a>
-            </div>
+            <a href="#" class="cta-button" style="width: 100%; text-align: center;">اطلب الآن</a>
         </div>
-        
-        <!-- Popular Plan -->
-        <div class="pricing-card popular">
-            <div class="popular-badge">🔥 الأكثر طلباً ⭐</div>
-            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">⭐ الاحترافية</h3>
-            <div class="price-amount">750 <span>درهم</span></div>
-            <p style="color: #aaa; margin-bottom: 30px;">💎 مرة واحدة للتأسيس</p>
-            
-            <ul class="features-list">
-                <li>✅ كل مميزات الباقة الأساسية</li>
-                <li>➕ 🌐 دومين .ma مجاني لمدة سنة</li>
-                <li>➕ 🔒 شهادة SSL للحماية</li>
-                <li>➕ 📈 تقارير مبيعات متقدمة</li>
-                <li>➕ 🛟 دعم فني مميز 24/7</li>
-                <li>➕ 💾 نسخ احتياطي يومي</li>
-                <li>➕ 📢 إشعارات على التليجرام</li>
-            </ul>
-            
-            <div style="text-align: center;">
-                <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin: 20px 0;">
-                    💰 عمولة: 15% فقط
-                </div>
-                <div style="background: linear-gradient(90deg, #f59e0b, #fbbf24); padding: 15px; border-radius: 10px; margin: 15px 0; font-size: 1.2rem; color: black; font-weight: bold;">
-                    🎯 أنت تحصل على: <span style="color: #059669;">85%</span>
-                </div>
-                <a href="https://wa.me/212XXXXXXXXX?text=مرحباً، أريد الباقة الاحترافية" class="cta-button" style="width: 100%; text-align: center; background: linear-gradient(90deg, #f59e0b, #fbbf24); color: black;">
-                    ⭐ الأفضل قيمة
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <div style="text-align: center; margin-top: 50px; color: #888; background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px;">
-        💡 <strong>ملاحظة مهمة:</strong> 🛡️ MA3LICH لا يقدم خدمة IPTV. نحن نقدم نظام دفع وتوجيه فقط.<br>
-        📊 مثال: بيع بقيمة 300 درهم → 🤑 لك: 240 درهم (80%) → 💸 لنا: 60 درهم (20%)
-    </div>
-</section>
 
-<!-- FINAL CTA 🚀 -->
-<section class="final-cta">
-    <div class="container">
-        <h2>🤔 هل أنت جاهز لبدء مشروعك الخاص؟</h2>
-        <p style="font-size: 1.2rem; color: #aaa; max-width: 700px; margin: 0 auto 40px;">
-            🎯 أكثر من 50 بائع IPTV يستخدمون منصتنا. انضم إليهم وارفع مبيعاتك بنسبة 300% 📈
-        </p>
-        
-        <a href="https://wa.me/212XXXXXXXXX?text=مرحباً من موقع MA3LICH، أريد إنشاء موقع IPTV خاص بي" 
-           class="whatsapp-button" 
-           target="_blank">
-            💬 تحدث معنا على الواتساب
-        </a>
-        
-        <div style="margin-top: 30px; font-size: 0.9rem; color: #666;">
-            ⚡ متوسط وقت الاستجابة: 5 دقائق
-        </div>
-        
-        <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; min-width: 200px;">
-                <div style="font-size: 2rem;">💰</div>
-                <div>دفع آمن</div>
-            </div>
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; min-width: 200px;">
-                <div style="font-size: 2rem;">🛡️</div>
-                <div>حماية قانونية</div>
-            </div>
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; min-width: 200px;">
-                <div style="font-size: 2rem;">⚡</div>
-                <div>توصيل تلقائي</div>
-            </div>
+        <div class="pricing-card featured">
+            <span class="badge">الأكثر طلباً</span>
+            <h3>الباقة الاحترافية</h3>
+            <div class="price">750 <span>درهم</span></div>
+            <ul class="features">
+                <li>كل مميزات الأساسية</li>
+                <li>دومين .ma مجاني</li>
+                <li>شهادة حماية SSL</li>
+                <li>دعم فني 24/7</li>
+                <li>عمولة مخفضة: 15%</li>
+            </ul>
+            <a href="#" class="cta-button" style="width: 100%; text-align: center; background: var(--text-main); color: var(--bg-dark);">اطلب الآن</a>
         </div>
     </div>
 </section>
 
-<!-- FOOTER 👣 -->
 <footer>
     <div class="container">
-        <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap;">
-            <div>
-                <div style="font-weight: 700; margin-bottom: 10px;">🚀 الخدمات</div>
-                <div style="color: #888;">🌐 موقع IPTV مخصص</div>
-                <div style="color: #888;">💳 معالجة الدفع</div>
-                <div style="color: #888;">💬 دعم واتساب تلقائي</div>
-            </div>
-            <div>
-                <div style="font-weight: 700; margin-bottom: 10px;">🛟 الدعم</div>
-                <div style="color: #888;">❓ الأسئلة الشائعة</div>
-                <div style="color: #888;">📞 تواصل معنا</div>
-                <div style="color: #888;">📝 شروط الخدمة</div>
-            </div>
-        </div>
-        
-        <div class="copyright" style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 10px;">
-            🔥 MA3LICH.com © 2024 | 🛡️ نحن نقدم منصة تقنية للدفع والتوجيه<br>
-            📢 البائعون مسؤولون عن المحتوى والدعم النهائي
+        <div class="logo">MA3LICH<span>.com</span></div>
+        <p class="footer-note">
+            نحن منصة تقنية لتقديم حلول الدفع والأتمتة. البائع هو المسؤول الأول والأخير عن جودة الخدمة المقدمة والمحتوى.
+        </p>
+        <div style="margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">
+            © 2026 جميع الحقوق محفوظة
         </div>
     </div>
 </footer>
 
 <script>
-    // Animate stats
-    function animateCounter(element, target) {
-        let current = 0;
-        const increment = target / 50;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                element.textContent = target;
-                clearInterval(timer);
-            } else {
-                element.textContent = Math.floor(current);
-            }
-        }, 40);
-    }
-    
-    // Animate on scroll
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const statNumbers = document.querySelectorAll('.stat-number');
-                statNumbers.forEach((stat, index) => {
-                    const target = index === 0 ? 24 : 
-                                  index === 1 ? 80 : 
-                                  index === 2 ? 0 : 100;
-                    animateCounter(stat, target);
-                });
-            }
+    // Simplified WhatsApp Logic
+    const whatsappNumber = "212XXXXXXXXX";
+    document.querySelectorAll('.cta-button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const plan = e.target.closest('.pricing-card')?.querySelector('h3').innerText || "تأسيس موقع";
+            const text = encodeURIComponent(`مرحباً، أود الاستفسار عن ${plan} من خلال موقعكم.`);
+            window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
         });
-    }, { threshold: 0.5 });
-    
-    observer.observe(document.querySelector('.stats'));
-    
-    // WhatsApp number - Replace with yours
-    const whatsappNumber = "212XXXXXXXXX"; // PUT YOUR NUMBER HERE BRO! 🔥
-    
-    // Update all WhatsApp links
-    document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
-        link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("🔥 مرحباً من موقع MA3LICH، أريد إنشاء موقع IPTV خاص بي")}`;
     });
-    
-    // Add fire effect to popular plan
-    const popularCard = document.querySelector('.pricing-card.popular');
-    if (popularCard) {
-        setInterval(() => {
-            popularCard.style.boxShadow = '0 0 30px rgba(99, 102, 241, 0.5)';
-            setTimeout(() => {
-                popularCard.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.5)';
-            }, 500);
-        }, 2000);
-    }
 </script>
 
 </body>
