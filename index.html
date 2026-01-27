@@ -1,727 +1,670 @@
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ma3lich — Accès Premium</title>
-  <meta name="description" content="Ma3lich — Accès premium en 2 minutes. Paiement sécurisé. Support WhatsApp." />
-  <meta name="theme-color" content="#0a0a12" />
-
-  <style>
-    :root{
-      --bg:#0a0a12;
-      --bg2:#0d1020;
-      --card:rgba(255,255,255,.06);
-      --stroke:rgba(255,255,255,.10);
-      --text:#f5f6ff;
-      --muted:rgba(245,246,255,.70);
-      --accent:#7c5cff;
-      --accent2:#4ade80;
-      --danger:#ff4d6d;
-      --shadow: 0 18px 50px rgba(0,0,0,.45);
-      --radius:18px;
-      --max:1100px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(900px 450px at 18% -8%, rgba(124,92,255,.25), transparent 60%),
-        radial-gradient(700px 380px at 85% 0%, rgba(74,222,128,.14), transparent 55%),
-        radial-gradient(700px 380px at 40% 110%, rgba(255,77,109,.10), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      color:var(--text);
-      overflow-x:hidden;
-    }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
-    .topbar{
-      position:sticky; top:0; z-index:20;
-      backdrop-filter: blur(10px);
-      background: rgba(10,10,18,.55);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .topbar .row{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:800; letter-spacing:.2px;
-    }
-    .logo{
-      width:34px; height:34px; border-radius:12px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), transparent 35%),
-        linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 10px 25px rgba(124,92,255,.25);
-      border:1px solid rgba(255,255,255,.12);
-    }
-    .brand small{
-      display:block; font-weight:600; color:var(--muted); margin-top:1px;
-      letter-spacing:0;
-    }
-    .actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color:var(--text);
-      font-weight:700;
-      cursor:pointer;
-      transition:.18s transform ease, .18s background ease, .18s border ease;
-      user-select:none;
-      white-space:nowrap;
-    }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18)}
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(74,222,128,.75));
-      border-color: rgba(255,255,255,.18);
-      box-shadow: 0 18px 45px rgba(124,92,255,.22);
-    }
-    .btn.primary:hover{transform: translateY(-2px)}
-    .btn.ghost{background: transparent}
-    .pill{
-      font-size:12px; font-weight:800;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      color: rgba(245,246,255,.85);
-    }
-    .hero{
-      padding:46px 0 22px;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:20px;
-      align-items:stretch;
-    }
-    @media (max-width: 920px){
-      .heroGrid{grid-template-columns:1fr; }
-    }
-    .card{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .heroMain{
-      padding:22px;
-      position:relative;
-      overflow:hidden;
-    }
-    .glow{
-      position:absolute; inset:-120px;
-      background:
-        radial-gradient(closest-side at 20% 30%, rgba(124,92,255,.25), transparent 60%),
-        radial-gradient(closest-side at 70% 40%, rgba(74,222,128,.18), transparent 60%),
-        radial-gradient(closest-side at 55% 80%, rgba(255,77,109,.10), transparent 60%);
-      pointer-events:none;
-      filter: blur(10px);
-    }
-    h1{
-      margin:0;
-      font-size:42px;
-      line-height:1.05;
-      letter-spacing:-.6px;
-    }
-    @media (max-width: 560px){
-      h1{font-size:34px}
-    }
-    .sub{
-      margin-top:12px;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.5;
-      max-width: 58ch;
-    }
-    .heroBadges{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:16px;
-    }
-    .heroCtas{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:18px;
-    }
-    .trustStrip{
-      margin-top:16px;
-      display:grid; gap:10px;
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @media (max-width: 720px){
-      .trustStrip{grid-template-columns:1fr}
-    }
-    .trustItem{
-      padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      display:flex; gap:10px; align-items:flex-start;
-    }
-    .dot{
-      width:10px; height:10px; border-radius:999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      margin-top:5px;
-      flex:0 0 auto;
-    }
-
-    .side{
-      padding:18px;
-      display:flex; flex-direction:column; gap:12px;
-    }
-    .sideTop{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .kpi{
-      display:grid; grid-template-columns: 1fr 1fr; gap:10px;
-    }
-    .kpi .box{
-      padding:12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-    }
-    .kpi .num{font-size:20px; font-weight:900}
-    .kpi .lab{font-size:12px; color:var(--muted); margin-top:4px}
-    .miniNote{
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.45;
-    }
-
-    .section{
-      padding:26px 0;
-    }
-    .section h2{
-      margin:0 0 10px;
-      font-size:22px;
-      letter-spacing:-.2px;
-    }
-    .muted{color:var(--muted)}
-
-    /* Pricing */
-    .pricingGrid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-      margin-top:14px;
-    }
-    @media (max-width: 920px){
-      .pricingGrid{grid-template-columns:1fr}
-    }
-    .plan{
-      padding:16px;
-      position:relative;
-      overflow:hidden;
-    }
-    .plan .tag{
-      position:absolute; top:14px; right:14px;
-      font-size:12px; font-weight:900;
-      padding:6px 10px;
-      border-radius:999px;
-      background: rgba(124,92,255,.18);
-      border:1px solid rgba(124,92,255,.30);
-      color: rgba(245,246,255,.92);
-    }
-    .plan .title{font-weight:900; font-size:16px}
-    .price{
-      margin-top:10px;
-      font-size:34px;
-      font-weight:950;
-      letter-spacing:-.6px;
-    }
-    .per{font-size:13px; color:var(--muted); font-weight:700}
-    ul{
-      margin:12px 0 0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:8px;
-      color: rgba(245,246,255,.85);
-      font-size:14px;
-    }
-    li::before{
-      content:"✓";
-      display:inline-block;
-      width:18px;
-      color: var(--accent2);
-      font-weight:900;
-    }
-    .plan .ctaRow{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap}
-    .btn.full{width:100%}
-
-    /* Steps */
-    .steps{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-      margin-top:12px;
-    }
-    @media (max-width: 920px){
-      .steps{grid-template-columns:1fr}
-    }
-    .step{
-      padding:16px;
-    }
-    .step .n{
-      width:34px; height:34px; border-radius:14px;
-      display:grid; place-items:center;
-      font-weight:950;
-      background: rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-    }
-    .step h3{margin:10px 0 6px; font-size:16px}
-    .step p{margin:0; color:var(--muted); line-height:1.5}
-
-    /* FAQ */
-    .faq{
-      display:grid; gap:10px; margin-top:12px;
-    }
-    details{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
-      border-radius: 16px;
-      padding:12px 14px;
-    }
-    summary{
-      cursor:pointer;
-      font-weight:850;
-      list-style:none;
-    }
-    summary::-webkit-details-marker{display:none}
-    details p{margin:10px 0 0; color:var(--muted); line-height:1.55}
-
-    /* Footer */
-    footer{
-      padding:22px 0 34px;
-      color: rgba(245,246,255,.65);
-      font-size:12px;
-    }
-
-    /* Modal */
-    .overlay{
-      position:fixed; inset:0; z-index:50;
-      background: rgba(0,0,0,.60);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-    }
-    .overlay.show{display:flex}
-    .modal{
-      width:min(560px, 100%);
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(14,14,26,.92);
-      box-shadow: 0 30px 90px rgba(0,0,0,.65);
-      overflow:hidden;
-    }
-    .modalHead{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 16px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-    }
-    .modalHead strong{font-weight:950}
-    .x{
-      width:36px; height:36px;
-      display:grid; place-items:center;
-      border-radius:12px;
-      cursor:pointer;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      font-weight:900;
-    }
-    .modalBody{padding:16px}
-    .row2{
-      display:grid; grid-template-columns:1fr 1fr; gap:10px;
-    }
-    @media (max-width: 560px){
-      .row2{grid-template-columns:1fr}
-    }
-    label{font-size:12px; color:rgba(245,246,255,.75); font-weight:800}
-    input{
-      width:100%;
-      margin-top:6px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.25);
-      color:var(--text);
-      outline:none;
-    }
-    input:focus{border-color: rgba(124,92,255,.55)}
-    .modalPlan{
-      margin-top:12px;
-      padding:12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-    }
-    .modalPlan b{font-weight:950}
-    .hint{
-      margin-top:10px;
-      color:rgba(245,246,255,.65);
-      font-size:12px;
-      line-height:1.45;
-    }
-    .modalActions{
-      margin-top:14px;
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA3LICH | اصنع موقع IPTV خاص بك في 24 ساعة</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #111 0%, #000 100%);
+            border-bottom: 1px solid #222;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .logo span {
+            color: #f0f0f0;
+        }
+        
+        .cta-button {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            padding: 160px 0 100px;
+            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero h1 .highlight {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+        
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border-radius: 2px;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: #aaa;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        /* HOW IT WORKS */
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border-radius: 2px;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+        
+        .step-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: #6366f1;
+        }
+        
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        /* DEMO SHOWCASE */
+        .demo-showcase {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 25px;
+            padding: 60px;
+            margin: 100px 0;
+            border: 1px solid #222;
+        }
+        
+        .demo-screen {
+            background: #111;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 40px;
+            border: 1px solid #333;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .demo-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #222;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .screen-content {
+            background: #000;
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 20px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* PRICING */
+        .pricing {
+            margin: 100px 0;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #222;
+            border-radius: 25px;
+            padding: 40px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid #6366f1;
+            transform: scale(1.05);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 20px 0;
+        }
+        
+        .price-amount span {
+            font-size: 1rem;
+            color: #888;
+        }
+        
+        .features-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .features-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #222;
+            position: relative;
+            padding-right: 30px;
+        }
+        
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        /* CTA SECTION */
+        .final-cta {
+            text-align: center;
+            padding: 100px 0;
+            background: radial-gradient(circle at center, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+        }
+        
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .whatsapp-button {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            text-decoration: none;
+        }
+        
+        .whatsapp-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* FOOTER */
+        footer {
+            border-top: 1px solid #222;
+            padding: 60px 0 30px;
+            text-align: center;
+            color: #666;
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .demo-showcase {
+                padding: 30px;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <!-- CONFIG: edit these -->
-  <script>
-    window.MA3LICH_CONFIG = {
-      whatsappNumber: "212600000000", // <-- change to your WhatsApp number (no +)
-      currency: "MAD",
-      brandName: "Ma3lich",
-      tagline: "Khelliha 3lina — we take care of the rest.",
-      plans: [
-        { id:"p1", name:"1 mois",  price:149,  period:"/ mois", tag:"Simple" },
-        { id:"p3", name:"3 mois",  price:349,  period:"/ 3 mois", tag:"Le plus choisi" },
-        { id:"p12",name:"12 mois", price:999,  period:"/ an",  tag:"Meilleur prix" }
-      ]
-    };
-  </script>
 
-  <!-- Topbar -->
-  <div class="topbar">
-    <div class="wrap">
-      <div class="row">
-        <div class="brand">
-          <div class="logo"></div>
-          <div>
-            <div id="brandName">Ma3lich</div>
-            <small id="tagline">Khelliha 3lina — we take care of the rest.</small>
-          </div>
+<!-- HEADER -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">MA3LICH<span>.pro</span></div>
+            <a href="#pricing" class="cta-button">ابدأ الآن - 500 درهم</a>
         </div>
-
-        <div class="actions">
-          <a class="btn ghost" href="#offres">Choisir une offre</a>
-          <button class="btn primary" id="btnSupportTop">Support WhatsApp</button>
-        </div>
-      </div>
     </div>
-  </div>
+</header>
 
-  <!-- Hero -->
-  <div class="hero">
-    <div class="wrap">
-      <div class="heroGrid">
-        <div class="card heroMain">
-          <div class="glow"></div>
-          <div style="position:relative">
-            <div class="heroBadges">
-              <span class="pill">Paiement sécurisé</span>
-              <span class="pill">Activation rapide</span>
-              <span class="pill">Support 7j/7</span>
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="container">
+        <h1>
+            اصنع موقع <span class="highlight">IPTV خاص بك</span><br>
+            في أقل من <span class="highlight">24 ساعة</span>
+        </h1>
+        <p>
+            لوغو خاص، دومين خاص، صفحة دفع احترافية، دعم واتساب تلقائي.<br>
+            أنت تركز على المبيعات، نحن نتعامل مع التقنية والدفع والدعم.
+        </p>
+        <a href="#pricing" class="cta-button" style="padding: 18px 50px; font-size: 1.1rem;">
+            🚀 انطلق بمشروعك - 500 درهم فقط
+        </a>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">24h</div>
+                <div class="stat-label">أقل من يوم للتأسيس</div>
             </div>
-
-            <h1 style="margin-top:14px">
-              Accès Premium en 2 minutes.<br/>
-              Support WhatsApp. <span style="color:rgba(245,246,255,.85)">Ma3lich.</span>
-            </h1>
-
-            <p class="sub">
-              Une page propre + un checkout qui convertit. Tu montres ça au client, tu lui dis :
-              <b>“Donne ton logo, demain t’as la même machine.”</b>
-            </p>
-
-            <div class="heroCtas">
-              <a class="btn primary" href="#offres">Choisir une offre</a>
-              <button class="btn" id="btnDemoCheckout">Voir le checkout</button>
+            <div class="stat-item">
+                <div class="stat-number">30%</div>
+                <div class="stat-label">عمولة لك من كل عملية</div>
             </div>
-
-            <div class="trustStrip">
-              <div class="trustItem">
-                <div class="dot"></div>
-                <div><b>Tout-en-un</b><div class="muted">Site + checkout + support</div></div>
-              </div>
-              <div class="trustItem">
-                <div class="dot"></div>
-                <div><b>Clair</b><div class="muted">Offres simples, zéro bla-bla</div></div>
-              </div>
-              <div class="trustItem">
-                <div class="dot"></div>
-                <div><b>Rapide</b><div class="muted">Activation + réponse WhatsApp</div></div>
-              </div>
+            <div class="stat-item">
+                <div class="stat-number">0%</div>
+                <div class="stat-label">لا حاجة لمعرفة تقنية</div>
             </div>
-          </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">تحكم في مبيعاتك وبياناتك</div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <!-- Side KPI -->
-        <div class="card side">
-          <div class="sideTop">
+<!-- HOW IT WORKS -->
+<section class="container">
+    <h2 class="section-title">كيف يعمل؟</h2>
+    
+    <div class="steps">
+        <!-- Step 1 -->
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-icon">💰</div>
+            <h3>ادفع 500 درهم</h3>
+            <p>رسوم تأسيس لمرة واحدة. استلام موقعك خلال 24 ساعة.</p>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-icon">🎨</div>
+            <h3>أرسل لوغوك</h3>
+            <p>أرسل شعارك وألوانك. نحن نصمم كل شيء باسمك.</p>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-icon">🚀</div>
+            <h3>ابدأ البيع</h3>
+            <p>رابط موقعك جاهز. ابدأ التسويق واحصل على أول عمولة.</p>
+        </div>
+    </div>
+</section>
+
+<!-- DEMO SHOWCASE -->
+<section class="container">
+    <div class="demo-showcase">
+        <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 20px;">
+            شاهد كيف سيبدو موقعك ⬇️
+        </h2>
+        <p style="text-align: center; color: #aaa; max-width: 800px; margin: 0 auto;">
+            هذا نموذج لموقع عميل. كل شيء يمكن تخصيصه: الألوان، الشعار، العروض، الأسعار
+        </p>
+        
+        <div class="demo-screen">
+            <div class="screen-content">
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <div style="font-size: 2rem; font-weight: 800; color: #6366f1; margin-bottom: 10px;">
+                        IPTV-PRO.ma
+                    </div>
+                    <div style="color: #888; font-size: 1.1rem;">
+                        شعارك هنا | دعم واتساب مباشر | دفع آمن
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 10px; border: 1px solid #333;">
+                        <div style="font-size: 0.9rem; color: #aaa;">الباقة الشهرية</div>
+                        <div style="font-size: 2rem; font-weight: 800; margin: 10px 0;">99 <span style="font-size: 1rem;">درهم</span></div>
+                        <button style="background: #6366f1; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer;">
+                            اشترك الآن
+                        </button>
+                    </div>
+                    
+                    <div style="background: rgba(139, 92, 246, 0.1); padding: 20px; border-radius: 10px; border: 1px solid #8b5cf6;">
+                        <div style="font-size: 0.9rem; color: #aaa;">الأكثر مبيعاً</div>
+                        <div style="font-size: 2rem; font-weight: 800; margin: 10px 0;">249 <span style="font-size: 1rem;">درهم</span></div>
+                        <button style="background: #8b5cf6; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer;">
+                            اشترك الآن
+                        </button>
+                    </div>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px; border: 1px solid #333;">
+                        <div style="font-size: 0.9rem; color: #aaa;">باقة السنة</div>
+                        <div style="font-size: 2rem; font-weight: 800; margin: 10px 0;">699 <span style="font-size: 1rem;">درهم</span></div>
+                        <button style="background: #444; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer;">
+                            اشترك الآن
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px; text-align: center; color: #25D366; font-weight: 700;">
+                    💬 دعم واتساب مباشر | ⚡ توصيل تلقائي | 🔒 دفع آمن
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="container pricing" id="pricing">
+    <h2 class="section-title">الأسعار</h2>
+    
+    <div class="pricing-cards">
+        <!-- Basic Plan -->
+        <div class="pricing-card">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">الاساسية</h3>
+            <div class="price-amount">500 <span>درهم</span></div>
+            <p style="color: #aaa; margin-bottom: 30px;">مرة واحدة للتأسيس</p>
+            
+            <ul class="features-list">
+                <li>موقع خاص باسمك</li>
+                <li>لوغو وألوان مخصصة</li>
+                <li>دعم واتساب تلقائي</li>
+                <li>3 بوابات دفع (CMI, Orange, Card)</li>
+                <li>لوحة تحكم لمتابعة المبيعات</li>
+                <li>توصيل تلقائي بعد الدفع</li>
+            </ul>
+            
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin: 20px 0;">
+                    عمولة: 30% من كل عملية
+                </div>
+                <a href="https://wa.me/212XXXXXXXXX?text=مرحباً، أريد الباقة الأساسية" class="cta-button" style="width: 100%; text-align: center;">
+                    ابدأ الآن
+                </a>
+            </div>
+        </div>
+        
+        <!-- Popular Plan -->
+        <div class="pricing-card popular">
+            <div class="popular-badge">الأكثر طلباً ⭐</div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">الاحترافية</h3>
+            <div class="price-amount">750 <span>درهم</span></div>
+            <p style="color: #aaa; margin-bottom: 30px;">مرة واحدة للتأسيس</p>
+            
+            <ul class="features-list">
+                <li>كل مميزات الباقة الأساسية</li>
+                <li>+ دومين .ma مجاني لمدة سنة</li>
+                <li>+ شهادة SSL للحماية</li>
+                <li>+ تقارير مبيعات متقدمة</li>
+                <li>+ دعم فني مميز 24/7</li>
+                <li>+ نسخ احتياطي يومي</li>
+                <li>+ إشعارات على التليجرام</li>
+            </ul>
+            
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin: 20px 0;">
+                    عمولة: 25% من كل عملية
+                </div>
+                <a href="https://wa.me/212XXXXXXXXX?text=مرحباً، أريد الباقة الاحترافية" class="cta-button" style="width: 100%; text-align: center; background: linear-gradient(90deg, #f59e0b, #fbbf24);">
+                    ⭐ الأفضل قيمة
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 50px; color: #888;">
+        💡 <strong>ملاحظة:</strong> العمولة هي نسبة من كل عملية بيع ناجحة. أنت تحتفظ بالباقي.<br>
+        مثال: بيع بقيمة 300 درهم → لك: 210 درهم (70%) → لنا: 90 درهم (30%)
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+    <div class="container">
+        <h2>هل أنت جاهز لبدء مشروعك الخاص؟</h2>
+        <p style="font-size: 1.2rem; color: #aaa; max-width: 700px; margin: 0 auto 40px;">
+            أكثر من 50 بائع IPTV يستخدمون منصتنا. انضم إليهم وارفع مبيعاتك بنسبة 300%
+        </p>
+        
+        <a href="https://wa.me/212XXXXXXXXX?text=مرحباً من موقع MA3LICH، أريد إنشاء موقع IPTV خاص بي" 
+           class="whatsapp-button" 
+           target="_blank">
+            💬 تحدث معنا على الواتساب
+        </a>
+        
+        <div style="margin-top: 30px; font-size: 0.9rem; color: #666;">
+            متوسط وقت الاستجابة: 5 دقائق ⚡
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px;">
             <div>
-              <div style="font-weight:950">Aperçu activité</div>
-              <div class="muted" style="font-size:13px;margin-top:3px">Exemple (demo)</div>
+                <div style="font-weight: 700; margin-bottom: 10px;">الخدمات</div>
+                <div style="color: #888;">موقع IPTV مخصص</div>
+                <div style="color: #888;">معالجة الدفع</div>
+                <div style="color: #888;">دعم واتساب تلقائي</div>
             </div>
-            <span class="pill" id="livePill">En ligne</span>
-          </div>
-
-          <div class="kpi">
-            <div class="box">
-              <div class="num" id="kpiToday">1,240</div>
-              <div class="lab">Ventes aujourd’hui (MAD)</div>
+            <div>
+                <div style="font-weight: 700; margin-bottom: 10px;">الدعم</div>
+                <div style="color: #888;">الأسئلة الشائعة</div>
+                <div style="color: #888;">تواصل معنا</div>
+                <div style="color: #888;">شروط الخدمة</div>
             </div>
-            <div class="box">
-              <div class="num" id="kpiMonth">18,900</div>
-              <div class="lab">Ce mois (MAD)</div>
-            </div>
-            <div class="box">
-              <div class="num" id="kpiCustomers">142</div>
-              <div class="lab">Clients actifs</div>
-            </div>
-            <div class="box">
-              <div class="num" id="kpiReply">~5 min</div>
-              <div class="lab">Temps de réponse</div>
-            </div>
-          </div>
-
-          <div class="miniNote">
-            💡 Le but: le client voit une page qui “respire la confiance”.
-            Ensuite tu lui dis: <b>“Je te clone ça sur ton domaine + j’intègre le paiement.”</b>
-          </div>
-
-          <button class="btn primary" id="btnSupportSide">Parler au support</button>
         </div>
-      </div>
+        
+        <div class="copyright">
+            MA3LICH.pro © 2024 | نحن نقدم منصة تقنية، العملاء يختارون المحتوى
+        </div>
     </div>
-  </div>
+</footer>
 
-  <!-- Pricing -->
-  <div class="section" id="offres">
-    <div class="wrap">
-      <h2>Offres</h2>
-      <div class="muted">Choisis une formule. Checkout propre + support WhatsApp.</div>
-
-      <div class="pricingGrid" id="pricingGrid"></div>
-    </div>
-  </div>
-
-  <!-- Steps -->
-  <div class="section">
-    <div class="wrap">
-      <h2>Comment ça marche</h2>
-      <div class="muted">Simple. Comme ça doit être.</div>
-
-      <div class="steps">
-        <div class="card step">
-          <div class="n">1</div>
-          <h3>Choisis une offre</h3>
-          <p>1 mois, 3 mois, ou 12 mois. (Le 3 mois convertit fort.)</p>
-        </div>
-        <div class="card step">
-          <div class="n">2</div>
-          <h3>Paye en ligne</h3>
-          <p>Checkout intégré, redirection propre, zéro friction.</p>
-        </div>
-        <div class="card step">
-          <div class="n">3</div>
-          <h3>Reçois & support</h3>
-          <p>Confirmation + WhatsApp support pour finaliser / aider.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div class="section">
-    <div class="wrap">
-      <h2>FAQ</h2>
-      <div class="faq">
-        <details>
-          <summary>Délai d’activation ?</summary>
-          <p>En général quelques minutes après confirmation. Si besoin, WhatsApp support.</p>
-        </details>
-        <details>
-          <summary>Quels moyens de paiement ?</summary>
-          <p>On peut intégrer le checkout que tu veux (selon ton setup). Le site est prêt à brancher.</p>
-        </details>
-        <details>
-          <summary>Support 7j/7 ?</summary>
-          <p>Support WhatsApp. Réponse rapide quand c’est chaud.</p>
-        </details>
-        <details>
-          <summary>Remboursement ?</summary>
-          <p>À définir selon le business du client. (On met une policy claire dans le footer.)</p>
-        </details>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="wrap">
-      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-        <div>
-          <b id="brandFoot">Ma3lich</b> — Service numérique / abonnement.<br/>
-          <span class="muted">Besoin d’aide ? WhatsApp support.</span>
-        </div>
-        <div class="muted">
-          © <span id="year"></span> Ma3lich • Terms • Refund Policy
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Modal -->
-  <div class="overlay" id="overlay">
-    <div class="modal" role="dialog" aria-modal="true" aria-label="Checkout">
-      <div class="modalHead">
-        <strong>Checkout — Ma3lich</strong>
-        <div class="x" id="closeModal">✕</div>
-      </div>
-      <div class="modalBody">
-        <div class="row2">
-          <div>
-            <label>Nom (optionnel)</label>
-            <input id="custName" placeholder="Ex: Chakir" />
-          </div>
-          <div>
-            <label>Téléphone (optionnel)</label>
-            <input id="custPhone" placeholder="Ex: 06xxxxxxx" />
-          </div>
-        </div>
-
-        <div class="modalPlan">
-          <div>
-            <div class="muted" style="font-size:12px;font-weight:800">Offre</div>
-            <b id="mPlanName">3 mois</b>
-          </div>
-          <div>
-            <div class="muted" style="font-size:12px;font-weight:800">Total</div>
-            <b id="mPlanPrice">349 MAD</b>
-          </div>
-        </div>
-
-        <div class="hint">
-          ✅ Demo: ici tu branches ton vrai checkout (Whop/Stripe/etc).<br/>
-          Pour l’instant, le bouton “Payer” ouvre WhatsApp avec un message pré-rempli.
-        </div>
-
-        <div class="modalActions">
-          <button class="btn primary full" id="payNow">Payer</button>
-          <button class="btn full" id="needHelp">Besoin d’aide</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const cfg = window.MA3LICH_CONFIG;
-
-    // Fill brand
-    document.getElementById("brandName").textContent = cfg.brandName;
-    document.getElementById("tagline").textContent = cfg.tagline;
-    document.getElementById("brandFoot").textContent = cfg.brandName;
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Render pricing
-    const grid = document.getElementById("pricingGrid");
-    cfg.plans.forEach((p, idx) => {
-      const el = document.createElement("div");
-      el.className = "card plan";
-      el.innerHTML = `
-        ${p.tag ? `<div class="tag">${p.tag}</div>` : ""}
-        <div class="title">${p.name}</div>
-        <div class="price">${formatMoney(p.price)} <span class="per">${cfg.currency} ${p.period}</span></div>
-        <ul>
-          <li>Accès premium</li>
-          <li>Support WhatsApp</li>
-          <li>Activation rapide</li>
-          <li>Renouvellement simple</li>
-        </ul>
-        <div class="ctaRow">
-          <button class="btn primary full" data-plan="${p.id}">Commander</button>
-        </div>
-      `;
-      grid.appendChild(el);
+<script>
+    // Animate stats
+    function animateCounter(element, target) {
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                element.textContent = target;
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current);
+            }
+        }, 40);
+    }
+    
+    // Animate on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statNumbers = document.querySelectorAll('.stat-number');
+                statNumbers.forEach((stat, index) => {
+                    const target = index === 0 ? 24 : 
+                                  index === 1 ? 30 : 
+                                  index === 2 ? 0 : 100;
+                    animateCounter(stat, target);
+                });
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    observer.observe(document.querySelector('.stats'));
+    
+    // WhatsApp number - Replace with yours
+    const whatsappNumber = "212XXXXXXXXX"; // PUT YOUR NUMBER HERE
+    
+    // Update all WhatsApp links
+    document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+        link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("مرحباً من موقع MA3LICH، أريد إنشاء موقع IPTV خاص بي")}`;
     });
+</script>
 
-    // KPIs (demo random small variations)
-    const bump = (base, maxAdd) => base + Math.floor(Math.random()*maxAdd);
-    document.getElementById("kpiToday").textContent = bump(1100, 300).toLocaleString("fr-FR");
-    document.getElementById("kpiMonth").textContent = bump(17500, 2500).toLocaleString("fr-FR");
-    document.getElementById("kpiCustomers").textContent = bump(120, 60).toLocaleString("fr-FR");
-
-    // Modal logic
-    const overlay = document.getElementById("overlay");
-    const closeModal = () => overlay.classList.remove("show");
-    const openModal = () => overlay.classList.add("show");
-
-    document.getElementById("closeModal").onclick = closeModal;
-    overlay.addEventListener("click", (e) => { if(e.target === overlay) closeModal(); });
-    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
-
-    let selectedPlan = cfg.plans[1]; // default 3 months
-
-    function setPlanById(id){
-      const plan = cfg.plans.find(x => x.id === id) || cfg.plans[0];
-      selectedPlan = plan;
-      document.getElementById("mPlanName").textContent = plan.name;
-      document.getElementById("mPlanPrice").textContent = `${formatMoney(plan.price)} ${cfg.currency}`;
-    }
-
-    function formatMoney(n){
-      return Number(n).toLocaleString("fr-FR");
-    }
-
-    // Buttons -> open modal
-    document.querySelectorAll("[data-plan]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        setPlanById(btn.getAttribute("data-plan"));
-        openModal();
-      });
-    });
-
-    document.getElementById("btnDemoCheckout").onclick = () => { setPlanById(cfg.plans[1].id); openModal(); };
-    document.getElementById("btnSupportTop").onclick  = () => openSupport("Support");
-    document.getElementById("btnSupportSide").onclick = () => openSupport("Support");
-
-    // WhatsApp
-    function openSupport(topic){
-      const msg = `Salam, bghit n3ref ktar 3la ${cfg.brandName}. Topic: ${topic}`;
-      openWhatsApp(msg);
-    }
-
-    function openWhatsApp(message){
-      const url = `https://wa.me/${cfg.whatsappNumber}?text=${encodeURIComponent(message)}`;
-      window.open(url, "_blank");
-    }
-
-    // Modal actions
-    document.getElementById("payNow").onclick = () => {
-      const name = (document.getElementById("custName").value || "").trim();
-      const phone = (document.getElementById("custPhone").value || "").trim();
-
-      const msg =
-`Salam, bghit ndir commande.
-• Offre: ${selectedPlan.name}
-• Prix: ${formatMoney(selectedPlan.price)} ${cfg.currency}
-${name ? "• Nom: " + name : ""}
-${phone ? "• Tél: " + phone : ""}
-
-(Checkout demo) — bghit nkml paiement / activation.`;
-
-      openWhatsApp(msg);
-      closeModal();
-    };
-
-    document.getElementById("needHelp").onclick = () => {
-      openSupport("Checkout / Aide");
-    };
-  </script>
 </body>
 </html>
