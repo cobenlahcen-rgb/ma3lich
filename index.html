@@ -1,818 +1,727 @@
-<!doctype html>  
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MA3LICH — Paiement + Activation WhatsApp</title>
-  <meta name="description" content="Accès en 2 minutes. Paiement sécurisé. Activation et support WhatsApp." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ma3lich — Accès Premium</title>
+  <meta name="description" content="Ma3lich — Accès premium en 2 minutes. Paiement sécurisé. Support WhatsApp." />
   <meta name="theme-color" content="#0a0a12" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#0a0a12;
-      --bg2:#0e0e1a;
+      --bg2:#0d1020;
       --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.09);
-      --text:#f4f4ff;
-      --muted:#a1a1c8;
-      --stroke:rgba(124,92,255,.22);
+      --stroke:rgba(255,255,255,.10);
+      --text:#f5f6ff;
+      --muted:rgba(245,246,255,.70);
       --accent:#7c5cff;
       --accent2:#4ade80;
       --danger:#ff4d6d;
-      --shadow: 0 12px 40px rgba(0,0,0,.35);
-      --radius: 18px;
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --radius:18px;
+      --max:1100px;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter,system-ui,Segoe UI,Arial;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(900px 500px at 18% -10%, rgba(124,92,255,.30), transparent 60%),
-        radial-gradient(700px 420px at 85% 0%, rgba(74,222,128,.18), transparent 55%),
-        radial-gradient(800px 520px at 50% 110%, rgba(124,92,255,.12), transparent 60%),
-        var(--bg);
+        radial-gradient(900px 450px at 18% -8%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(700px 380px at 85% 0%, rgba(74,222,128,.14), transparent 55%),
+        radial-gradient(700px 380px at 40% 110%, rgba(255,77,109,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       color:var(--text);
       overflow-x:hidden;
     }
-    a{color:inherit;text-decoration:none}
-    .container{width:min(1120px, 92vw); margin:0 auto}
-    .pill{
-      display:inline-flex; align-items:center; gap:.5rem;
-      padding:.45rem .75rem;
-      border:1px solid var(--stroke);
-      background:rgba(124,92,255,.10);
-      color:var(--text);
-      border-radius:999px;
-      font-size:.85rem;
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .topbar{
+      position:sticky; top:0; z-index:20;
       backdrop-filter: blur(10px);
+      background: rgba(10,10,18,.55);
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
-    .dot{width:8px;height:8px;border-radius:50%; background:var(--accent2); box-shadow:0 0 0 4px rgba(74,222,128,.12)}
+    .topbar .row{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), transparent 35%),
+        linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 25px rgba(124,92,255,.25);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .brand small{
+      display:block; font-weight:600; color:var(--muted); margin-top:1px;
+      letter-spacing:0;
+    }
+    .actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
-      padding:.95rem 1.05rem;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px;
       border-radius:14px;
-      border:1px solid transparent;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
       font-weight:700;
       cursor:pointer;
-      transition:.2s ease;
+      transition:.18s transform ease, .18s background ease, .18s border ease;
       user-select:none;
       white-space:nowrap;
     }
-    .btn:active{transform: translateY(1px)}
-    .btn-primary{
-      background: linear-gradient(135deg, rgba(124,92,255,1), rgba(124,92,255,.78));
-      box-shadow: 0 16px 40px rgba(124,92,255,.22);
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(74,222,128,.75));
+      border-color: rgba(255,255,255,.18);
+      box-shadow: 0 18px 45px rgba(124,92,255,.22);
     }
-    .btn-primary:hover{filter:brightness(1.05)}
-    .btn-ghost{
-      background: rgba(255,255,255,.05);
-      border-color: rgba(255,255,255,.10);
+    .btn.primary:hover{transform: translateY(-2px)}
+    .btn.ghost{background: transparent}
+    .pill{
+      font-size:12px; font-weight:800;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: rgba(245,246,255,.85);
     }
-    .btn-ghost:hover{background: rgba(255,255,255,.08)}
-    .btn-whatsapp{
-      background: rgba(74,222,128,.10);
-      border-color: rgba(74,222,128,.25);
+    .hero{
+      padding:46px 0 22px;
     }
-    .btn-whatsapp:hover{background: rgba(74,222,128,.14)}
-    .small{font-size:.92rem; color:var(--muted); line-height:1.5}
-    .h1{
-      font-size: clamp(2.2rem, 4vw, 3.3rem);
-      line-height:1.05;
-      letter-spacing:-.04em;
-      margin:.6rem 0 1rem;
-    }
-    .h2{
-      font-size: clamp(1.5rem, 2.2vw, 2rem);
-      letter-spacing:-.03em;
-      margin:0 0 .6rem;
-    }
-    .section{padding: 70px 0}
-    .grid{display:grid; gap:18px}
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.05));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .card-inner{padding:20px}
-    .muted{color:var(--muted)}
-    .kicker{font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:.75rem; color:rgba(244,244,255,.8)}
-    .split{
+    .heroGrid{
       display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:26px;
+      grid-template-columns: 1.1fr .9fr;
+      gap:20px;
       align-items:stretch;
     }
     @media (max-width: 920px){
-      .split{grid-template-columns:1fr}
+      .heroGrid{grid-template-columns:1fr; }
     }
-
-    /* Header */
-    .header{
-      position:sticky; top:0; z-index:50;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      background: rgba(10,10,18,.65);
-      backdrop-filter: blur(14px);
-    }
-    .header-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0;
-    }
-    .logo{
-      display:flex; align-items:center; gap:.7rem;
-      font-weight:900; letter-spacing:.02em;
-    }
-    .logo-mark{
-      width:34px; height:34px; border-radius:12px;
-      background: radial-gradient(12px 12px at 30% 30%, rgba(74,222,128,.9), transparent 60%),
-                  radial-gradient(18px 18px at 70% 65%, rgba(124,92,255,.9), transparent 60%),
-                  rgba(255,255,255,.06);
+    .card{
       border:1px solid rgba(255,255,255,.10);
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    .header-actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .link{
-      padding:.8rem .9rem;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      font-weight:700;
-      font-size:.92rem;
-    }
-    .link:hover{background: rgba(255,255,255,.07)}
-
-    /* Hero */
-    .hero{padding: 44px 0 28px}
-    .hero-card{
-      padding: 22px;
-      border-radius: 24px;
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(600px 220px at 15% 0%, rgba(124,92,255,.25), transparent 60%),
-        radial-gradient(420px 220px at 88% 30%, rgba(74,222,128,.16), transparent 60%),
-        rgba(255,255,255,.03);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
-    .hero-top{
-      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      margin-bottom: 10px;
-    }
-    .hero-ctas{display:flex; gap:10px; flex-wrap:wrap; margin-top: 16px}
-    .hero-right{
-      display:flex; flex-direction:column; gap:12px;
-    }
-    .stat{
-      display:flex; align-items:flex-start; gap:12px;
-      padding: 14px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-    }
-    .icon{
-      width:34px; height:34px; border-radius:12px;
-      display:grid; place-items:center;
-      background: rgba(124,92,255,.12);
-      border:1px solid rgba(124,92,255,.25);
-      flex:0 0 auto;
-    }
-    .icon svg{width:18px;height:18px}
-    .stat b{display:block; margin-bottom:.2rem}
-
-    /* Trust strip */
-    .trust{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-      margin-top: 16px;
-    }
-    @media (max-width: 820px){ .trust{grid-template-columns:1fr} }
-    .trust-item{
-      padding: 14px 16px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      display:flex; align-items:center; gap:10px;
-      font-weight:700;
-    }
-    .check{
-      width:22px; height:22px; border-radius:8px;
-      background: rgba(74,222,128,.13);
-      border:1px solid rgba(74,222,128,.30);
-      display:grid; place-items:center;
-      flex:0 0 auto;
-    }
-
-    /* Pricing */
-    .pricing-grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:16px;
-      margin-top: 16px;
-    }
-    @media (max-width: 920px){ .pricing-grid{grid-template-columns:1fr} }
-    .price-card{
+    .heroMain{
+      padding:22px;
       position:relative;
-      padding: 22px;
-      border-radius: 22px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
       overflow:hidden;
     }
-    .badge{
-      position:absolute; top:14px; right:14px;
-      padding:.45rem .7rem;
-      border-radius:999px;
-      font-size:.78rem;
-      font-weight:800;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-    }
-    .badge.best{border-color: rgba(74,222,128,.35); background: rgba(74,222,128,.10)}
-    .badge.choice{border-color: rgba(124,92,255,.35); background: rgba(124,92,255,.12)}
-    .price{
-      font-size:2.2rem;
-      font-weight:900;
-      letter-spacing:-.03em;
-      margin:.35rem 0 .4rem;
-    }
-    .per{font-size:.95rem; color:var(--muted); font-weight:700}
-    .bullets{margin: 14px 0 18px; padding:0; list-style:none; display:grid; gap:10px}
-    .bullets li{display:flex; gap:10px; align-items:flex-start; color:rgba(244,244,255,.92)}
-    .bullets li span{
-      width:20px; height:20px; border-radius:8px;
-      background: rgba(124,92,255,.12);
-      border:1px solid rgba(124,92,255,.25);
-      display:grid; place-items:center; flex:0 0 auto;
-      margin-top:2px;
-    }
-    .price-card.featured{
+    .glow{
+      position:absolute; inset:-120px;
       background:
-        radial-gradient(520px 240px at 20% 0%, rgba(124,92,255,.22), transparent 60%),
-        rgba(255,255,255,.04);
-      border-color: rgba(124,92,255,.35);
-      box-shadow: 0 18px 55px rgba(124,92,255,.18);
+        radial-gradient(closest-side at 20% 30%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(closest-side at 70% 40%, rgba(74,222,128,.18), transparent 60%),
+        radial-gradient(closest-side at 55% 80%, rgba(255,77,109,.10), transparent 60%);
+      pointer-events:none;
+      filter: blur(10px);
+    }
+    h1{
+      margin:0;
+      font-size:42px;
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    @media (max-width: 560px){
+      h1{font-size:34px}
+    }
+    .sub{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.5;
+      max-width: 58ch;
+    }
+    .heroBadges{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:16px;
+    }
+    .heroCtas{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .trustStrip{
+      margin-top:16px;
+      display:grid; gap:10px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 720px){
+      .trustStrip{grid-template-columns:1fr}
+    }
+    .trustItem{
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      display:flex; gap:10px; align-items:flex-start;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      margin-top:5px;
+      flex:0 0 auto;
     }
 
-    /* How it works */
+    .side{
+      padding:18px;
+      display:flex; flex-direction:column; gap:12px;
+    }
+    .sideTop{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .kpi{
+      display:grid; grid-template-columns: 1fr 1fr; gap:10px;
+    }
+    .kpi .box{
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+    }
+    .kpi .num{font-size:20px; font-weight:900}
+    .kpi .lab{font-size:12px; color:var(--muted); margin-top:4px}
+    .miniNote{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .section{
+      padding:26px 0;
+    }
+    .section h2{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:-.2px;
+    }
+    .muted{color:var(--muted)}
+
+    /* Pricing */
+    .pricingGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 920px){
+      .pricingGrid{grid-template-columns:1fr}
+    }
+    .plan{
+      padding:16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .plan .tag{
+      position:absolute; top:14px; right:14px;
+      font-size:12px; font-weight:900;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(124,92,255,.18);
+      border:1px solid rgba(124,92,255,.30);
+      color: rgba(245,246,255,.92);
+    }
+    .plan .title{font-weight:900; font-size:16px}
+    .price{
+      margin-top:10px;
+      font-size:34px;
+      font-weight:950;
+      letter-spacing:-.6px;
+    }
+    .per{font-size:13px; color:var(--muted); font-weight:700}
+    ul{
+      margin:12px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:8px;
+      color: rgba(245,246,255,.85);
+      font-size:14px;
+    }
+    li::before{
+      content:"✓";
+      display:inline-block;
+      width:18px;
+      color: var(--accent2);
+      font-weight:900;
+    }
+    .plan .ctaRow{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap}
+    .btn.full{width:100%}
+
+    /* Steps */
     .steps{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:14px;
-      margin-top:16px;
+      margin-top:12px;
     }
-    @media (max-width: 820px){ .steps{grid-template-columns:1fr} }
+    @media (max-width: 920px){
+      .steps{grid-template-columns:1fr}
+    }
     .step{
-      padding:18px;
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      padding:16px;
     }
     .step .n{
-      width:34px; height:34px; border-radius: 14px;
+      width:34px; height:34px; border-radius:14px;
       display:grid; place-items:center;
-      font-weight:900;
-      background: rgba(255,255,255,.06);
+      font-weight:950;
+      background: rgba(255,255,255,.08);
       border:1px solid rgba(255,255,255,.12);
-      margin-bottom:10px;
     }
+    .step h3{margin:10px 0 6px; font-size:16px}
+    .step p{margin:0; color:var(--muted); line-height:1.5}
 
     /* FAQ */
-    .faq{margin-top: 12px}
+    .faq{
+      display:grid; gap:10px; margin-top:12px;
+    }
     details{
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.06);
       border-radius: 16px;
-      padding: 14px 16px;
-      margin-bottom: 10px;
+      padding:12px 14px;
     }
     summary{
       cursor:pointer;
-      font-weight:800;
+      font-weight:850;
       list-style:none;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
     summary::-webkit-details-marker{display:none}
-    .caret{opacity:.8}
-    details[open] .caret{transform: rotate(180deg)}
-    .answer{padding-top:10px; color:var(--muted); line-height:1.6}
+    details p{margin:10px 0 0; color:var(--muted); line-height:1.55}
+
+    /* Footer */
+    footer{
+      padding:22px 0 34px;
+      color: rgba(245,246,255,.65);
+      font-size:12px;
+    }
 
     /* Modal */
     .overlay{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.62);
+      position:fixed; inset:0; z-index:50;
+      background: rgba(0,0,0,.60);
       display:none;
       align-items:center;
       justify-content:center;
-      padding: 18px;
-      z-index: 100;
+      padding:18px;
     }
     .overlay.show{display:flex}
     .modal{
-      width:min(560px, 96vw);
-      border-radius: 22px;
-      border:1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(520px 240px at 20% 0%, rgba(124,92,255,.18), transparent 60%),
-        rgba(10,10,18,.95);
-      box-shadow: 0 22px 70px rgba(0,0,0,.6);
+      width:min(560px, 100%);
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(14,14,26,.92);
+      box-shadow: 0 30px 90px rgba(0,0,0,.65);
       overflow:hidden;
     }
-    .modal-head{
+    .modalHead{
       display:flex; align-items:center; justify-content:space-between;
-      padding: 16px 16px 10px;
-      border-bottom:1px solid rgba(255,255,255,.08);
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
     }
-    .modal-title{font-weight:900}
-    .xbtn{
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color:var(--text);
-      width:38px;height:38px;
-      border-radius:14px;
+    .modalHead strong{font-weight:950}
+    .x{
+      width:36px; height:36px;
+      display:grid; place-items:center;
+      border-radius:12px;
       cursor:pointer;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      font-weight:900;
     }
-    .modal-body{padding: 16px}
-    .row{
-      display:flex; justify-content:space-between; gap:12px; align-items:center;
-      padding: 12px 12px;
-      border-radius: 16px;
+    .modalBody{padding:16px}
+    .row2{
+      display:grid; grid-template-columns:1fr 1fr; gap:10px;
+    }
+    @media (max-width: 560px){
+      .row2{grid-template-columns:1fr}
+    }
+    label{font-size:12px; color:rgba(245,246,255,.75); font-weight:800}
+    input{
+      width:100%;
+      margin-top:6px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+      color:var(--text);
+      outline:none;
+    }
+    input:focus{border-color: rgba(124,92,255,.55)}
+    .modalPlan{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      margin-bottom: 10px;
+      background: rgba(0,0,0,.18);
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
     }
-    .methods{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin: 10px 0 12px;
+    .modalPlan b{font-weight:950}
+    .hint{
+      margin-top:10px;
+      color:rgba(245,246,255,.65);
+      font-size:12px;
+      line-height:1.45;
     }
-    @media (max-width: 520px){ .methods{grid-template-columns:1fr} }
-    .method{
-      padding: 12px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      font-weight:800;
-      display:flex; gap:10px; align-items:center;
+    .modalActions{
+      margin-top:14px;
+      display:flex; gap:10px; flex-wrap:wrap;
     }
-    .method small{display:block; font-weight:600; color:var(--muted)}
-    .modal-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top: 8px}
-    .fineprint{font-size:.85rem; color:rgba(161,161,200,.92); line-height:1.45; margin-top: 10px}
-    .success{
-      display:none;
-      padding: 14px;
-      border-radius: 18px;
-      border:1px solid rgba(74,222,128,.25);
-      background: rgba(74,222,128,.10);
-      margin-top: 12px;
-    }
-    .success.show{display:block}
-    .footer{
-      border-top:1px solid rgba(255,255,255,.08);
-      padding: 26px 0 40px;
-      color: var(--muted);
-      font-size:.92rem;
-    }
-    .footer a{color:rgba(244,244,255,.9); font-weight:700}
-    .footer-grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
-      align-items:start;
-    }
-    @media (max-width: 820px){ .footer-grid{grid-template-columns:1fr} }
   </style>
 </head>
 
 <body>
+  <!-- CONFIG: edit these -->
+  <script>
+    window.MA3LICH_CONFIG = {
+      whatsappNumber: "212600000000", // <-- change to your WhatsApp number (no +)
+      currency: "MAD",
+      brandName: "Ma3lich",
+      tagline: "Khelliha 3lina — we take care of the rest.",
+      plans: [
+        { id:"p1", name:"1 mois",  price:149,  period:"/ mois", tag:"Simple" },
+        { id:"p3", name:"3 mois",  price:349,  period:"/ 3 mois", tag:"Le plus choisi" },
+        { id:"p12",name:"12 mois", price:999,  period:"/ an",  tag:"Meilleur prix" }
+      ]
+    };
+  </script>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="container header-inner">
-      <a class="logo" href="#top" aria-label="MA3LICH">
-        <span class="logo-mark" aria-hidden="true"></span>
-        <span>MA3LICH</span>
-      </a>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="row">
+        <div class="brand">
+          <div class="logo"></div>
+          <div>
+            <div id="brandName">Ma3lich</div>
+            <small id="tagline">Khelliha 3lina — we take care of the rest.</small>
+          </div>
+        </div>
 
-      <div class="header-actions">
-        <a class="btn btn-whatsapp" id="waSupportTop" href="#" aria-label="WhatsApp Support">
-          <!-- WA icon -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M20 11.5a8.5 8.5 0 0 1-12.7 7.3L4 20l1.3-3.2A8.5 8.5 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.8" opacity=".9"/>
-            <path d="M9.2 9.4c.2-.4.3-.4.6-.4h.4c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5c-.1.1-.2.3-.1.5.2.4.7 1.2 1.4 1.8.9.8 1.6 1 2 .9.2 0 .3-.2.4-.3l.6-.7c.1-.2.3-.2.5-.1l2 .9c.3.1.4.2.5.4 0 .2 0 .9-.3 1.3-.3.4-1.2.8-1.8.8-.5 0-1.3-.1-2.6-.7-1.6-.7-3-2.1-3.7-3.1-.6-.9-1.1-2-1.1-2.9 0-.8.3-1.3.5-1.6Z" fill="currentColor" opacity=".9"/>
-          </svg>
-          <span>WhatsApp Support</span>
-        </a>
-
-        <a class="link" href="#login" title="Client login (optionnel)">Client login</a>
+        <div class="actions">
+          <a class="btn ghost" href="#offres">Choisir une offre</a>
+          <button class="btn primary" id="btnSupportTop">Support WhatsApp</button>
+        </div>
       </div>
     </div>
-  </header>
+  </div>
 
   <!-- Hero -->
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-card">
-        <div class="split">
-          <div>
-            <div class="hero-top">
-              <span class="pill"><span class="dot"></span> Support en ligne • Réponse rapide</span>
-              <span class="pill">Service digital • Abonnement</span>
+  <div class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+        <div class="card heroMain">
+          <div class="glow"></div>
+          <div style="position:relative">
+            <div class="heroBadges">
+              <span class="pill">Paiement sécurisé</span>
+              <span class="pill">Activation rapide</span>
+              <span class="pill">Support 7j/7</span>
             </div>
 
-            <h1 class="h1">Payez maintenant. <br/>Activation immédiate sur WhatsApp.</h1>
-            <p class="small">
-              Accès en 2 minutes • Support 7j/7 • Abonnement flexible • Un humain vous répond (pas de tickets).
+            <h1 style="margin-top:14px">
+              Accès Premium en 2 minutes.<br/>
+              Support WhatsApp. <span style="color:rgba(245,246,255,.85)">Ma3lich.</span>
+            </h1>
+
+            <p class="sub">
+              Une page propre + un checkout qui convertit. Tu montres ça au client, tu lui dis :
+              <b>“Donne ton logo, demain t’as la même machine.”</b>
             </p>
 
-            <div class="hero-ctas">
-              <a class="btn btn-primary" href="#offres">Choisir une offre</a>
-              <button class="btn btn-ghost" id="talkSupportBtn" type="button">Parler au support</button>
+            <div class="heroCtas">
+              <a class="btn primary" href="#offres">Choisir une offre</a>
+              <button class="btn" id="btnDemoCheckout">Voir le checkout</button>
             </div>
 
-            <div class="trust">
-              <div class="trust-item"><span class="check">✓</span> Paiement protégé</div>
-              <div class="trust-item"><span class="check">✓</span> Activation manuelle par humain</div>
-              <div class="trust-item"><span class="check">✓</span> Support WhatsApp direct</div>
-            </div>
-          </div>
-
-          <div class="hero-right">
-            <div class="stat">
-              <div class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" stroke="currentColor" stroke-width="1.8"/>
-                </svg>
+            <div class="trustStrip">
+              <div class="trustItem">
+                <div class="dot"></div>
+                <div><b>Tout-en-un</b><div class="muted">Site + checkout + support</div></div>
               </div>
-              <div>
-                <b>Le “gateway” MA3LICH</b>
-                <div class="small">Une expérience de paiement qui finit sur WhatsApp: simple, humain, efficace.</div>
+              <div class="trustItem">
+                <div class="dot"></div>
+                <div><b>Clair</b><div class="muted">Offres simples, zéro bla-bla</div></div>
               </div>
-            </div>
-
-            <div class="stat">
-              <div class="icon" aria-hidden="true" style="background:rgba(74,222,128,.10);border-color:rgba(74,222,128,.22)">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M20 7L10 17l-5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <b>Activation + assistance</b>
-                <div class="small">Après paiement, vous continuez directement avec notre support WhatsApp.</div>
-              </div>
-            </div>
-
-            <div class="stat">
-              <div class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M12 21s-7-4.4-7-11a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 6.6-7 11-7 11Z" stroke="currentColor" stroke-width="1.8"/>
-                </svg>
-              </div>
-              <div>
-                <b>On évite les complications</b>
-                <div class="small">Pas de long process. Pas d’aller-retour. Vous payez → on vous écrit.</div>
+              <div class="trustItem">
+                <div class="dot"></div>
+                <div><b>Rapide</b><div class="muted">Activation + réponse WhatsApp</div></div>
               </div>
             </div>
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- Pricing -->
-    <section class="section" id="offres">
-      <div class="container">
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap">
-          <div>
-            <div class="kicker">Offres</div>
-            <h2 class="h2">Choisissez votre abonnement</h2>
-            <div class="small">Paiement en ligne, puis activation & support sur WhatsApp.</div>
+        <!-- Side KPI -->
+        <div class="card side">
+          <div class="sideTop">
+            <div>
+              <div style="font-weight:950">Aperçu activité</div>
+              <div class="muted" style="font-size:13px;margin-top:3px">Exemple (demo)</div>
+            </div>
+            <span class="pill" id="livePill">En ligne</span>
           </div>
-          <span class="pill">💬 Support: WhatsApp</span>
-        </div>
 
-        <div class="pricing-grid">
-          <!-- 1 mois -->
-          <div class="price-card card">
-            <div class="card-inner">
-              <div class="kicker">1 mois</div>
-              <div class="price">149 DH <span class="per">/ mois</span></div>
-              <div class="small">Idéal pour tester sans engagement.</div>
-
-              <ul class="bullets">
-                <li><span>✓</span> Activation rapide</li>
-                <li><span>✓</span> Support WhatsApp</li>
-                <li><span>✓</span> Accès instantané après paiement</li>
-                <li><span>✓</span> Assistance configuration</li>
-                <li><span>✓</span> Renouvelable à tout moment</li>
-              </ul>
-
-              <button class="btn btn-primary" type="button"
-                data-plan="1 mois"
-                data-amount="149 DH"
-                data-wa-text="Salam, je viens de payer l’offre 1 mois (149 DH). Merci de m’activer + support.">
-                Commander
-              </button>
+          <div class="kpi">
+            <div class="box">
+              <div class="num" id="kpiToday">1,240</div>
+              <div class="lab">Ventes aujourd’hui (MAD)</div>
+            </div>
+            <div class="box">
+              <div class="num" id="kpiMonth">18,900</div>
+              <div class="lab">Ce mois (MAD)</div>
+            </div>
+            <div class="box">
+              <div class="num" id="kpiCustomers">142</div>
+              <div class="lab">Clients actifs</div>
+            </div>
+            <div class="box">
+              <div class="num" id="kpiReply">~5 min</div>
+              <div class="lab">Temps de réponse</div>
             </div>
           </div>
 
-          <!-- 3 mois -->
-          <div class="price-card featured card">
-            <span class="badge choice">Le plus choisi</span>
-            <div class="card-inner">
-              <div class="kicker">3 mois</div>
-              <div class="price">349 DH <span class="per">/ 3 mois</span></div>
-              <div class="small">Stabilité + meilleur rapport valeur.</div>
-
-              <ul class="bullets">
-                <li><span>✓</span> Activation prioritaire</li>
-                <li><span>✓</span> Support WhatsApp 7j/7</li>
-                <li><span>✓</span> Assistance + suivi</li>
-                <li><span>✓</span> Moins cher que 1 mois</li>
-                <li><span>✓</span> Renouvellement simple</li>
-              </ul>
-
-              <button class="btn btn-primary" type="button"
-                data-plan="3 mois"
-                data-amount="349 DH"
-                data-wa-text="Salam, je viens de payer l’offre 3 mois (349 DH). Merci de m’activer + support.">
-                Commander
-              </button>
-            </div>
+          <div class="miniNote">
+            💡 Le but: le client voit une page qui “respire la confiance”.
+            Ensuite tu lui dis: <b>“Je te clone ça sur ton domaine + j’intègre le paiement.”</b>
           </div>
 
-          <!-- 12 mois -->
-          <div class="price-card card">
-            <span class="badge best">Meilleur prix</span>
-            <div class="card-inner">
-              <div class="kicker">12 mois</div>
-              <div class="price">999 DH <span class="per">/ an</span></div>
-              <div class="small">Tranquillité + économie maximum.</div>
-
-              <ul class="bullets">
-                <li><span>✓</span> Activation VIP</li>
-                <li><span>✓</span> Support WhatsApp direct</li>
-                <li><span>✓</span> Assistance configuration complète</li>
-                <li><span>✓</span> Meilleur prix annuel</li>
-                <li><span>✓</span> Priorité support</li>
-              </ul>
-
-              <button class="btn btn-primary" type="button"
-                data-plan="12 mois"
-                data-amount="999 DH"
-                data-wa-text="Salam, je viens de payer l’offre 12 mois (999 DH). Merci de m’activer + support.">
-                Commander
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mini activity (safe) -->
-        <div style="margin-top:14px" class="card">
-          <div class="card-inner" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-            <div style="display:flex;align-items:center;gap:10px">
-              <span class="pill"><span class="dot"></span> Support en ligne</span>
-              <span class="small">Réponse moyenne: <b style="color:rgba(244,244,255,.95)">~5–15 min</b> (selon affluence)</span>
-            </div>
-            <button class="btn btn-ghost" type="button" id="openSupport2">Contacter WhatsApp</button>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- How it works -->
-    <section class="section">
-      <div class="container">
-        <div class="kicker">Comment ça marche</div>
-        <h2 class="h2">Simple. Rapide. Humain.</h2>
-        <div class="steps">
-          <div class="step">
-            <div class="n">1</div>
-            <b>Choisissez une offre</b>
-            <div class="small">1 mois, 3 mois ou 12 mois — selon votre budget.</div>
-          </div>
-          <div class="step">
-            <div class="n">2</div>
-            <b>Payez en ligne</b>
-            <div class="small">Checkout clair: plan, montant, moyens de paiement.</div>
-          </div>
-          <div class="step">
-            <div class="n">3</div>
-            <b>On vous écrit sur WhatsApp</b>
-            <div class="small">Activation + support direct. Zéro ticket, zéro stress.</div>
-          </div>
+          <button class="btn primary" id="btnSupportSide">Parler au support</button>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="kicker">FAQ</div>
-        <h2 class="h2">Questions fréquentes</h2>
+  <!-- Pricing -->
+  <div class="section" id="offres">
+    <div class="wrap">
+      <h2>Offres</h2>
+      <div class="muted">Choisis une formule. Checkout propre + support WhatsApp.</div>
 
-        <div class="faq">
-          <details>
-            <summary>Délai d’activation ? <span class="caret">▾</span></summary>
-            <div class="answer">Généralement quelques minutes après confirmation du paiement. Si vous avez un souci, le support WhatsApp vous guide.</div>
-          </details>
+      <div class="pricingGrid" id="pricingGrid"></div>
+    </div>
+  </div>
 
-          <details>
-            <summary>Compatibilité ? <span class="caret">▾</span></summary>
-            <div class="answer">La compatibilité dépend de votre appareil/app. Écrivez au support WhatsApp et on vous oriente rapidement.</div>
-          </details>
+  <!-- Steps -->
+  <div class="section">
+    <div class="wrap">
+      <h2>Comment ça marche</h2>
+      <div class="muted">Simple. Comme ça doit être.</div>
 
-          <details>
-            <summary>Remboursement ? <span class="caret">▾</span></summary>
-            <div class="answer">Consultez notre politique de remboursement ci-dessous. En cas de problème, contactez WhatsApp avec votre preuve de paiement.</div>
-          </details>
-
-          <details>
-            <summary>Moyens de paiement ? <span class="caret">▾</span></summary>
-            <div class="answer">Le checkout affichera les moyens disponibles au moment de la commande (carte / etc.).</div>
-          </details>
-
-          <details>
-            <summary>Support ? <span class="caret">▾</span></summary>
-            <div class="answer">Support WhatsApp direct. Vous recevez aussi un message automatique après la commande pour continuer.</div>
-          </details>
+      <div class="steps">
+        <div class="card step">
+          <div class="n">1</div>
+          <h3>Choisis une offre</h3>
+          <p>1 mois, 3 mois, ou 12 mois. (Le 3 mois convertit fort.)</p>
+        </div>
+        <div class="card step">
+          <div class="n">2</div>
+          <h3>Paye en ligne</h3>
+          <p>Checkout intégré, redirection propre, zéro friction.</p>
+        </div>
+        <div class="card step">
+          <div class="n">3</div>
+          <h3>Reçois & support</h3>
+          <p>Confirmation + WhatsApp support pour finaliser / aider.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container footer-grid">
+  <!-- FAQ -->
+  <div class="section">
+    <div class="wrap">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <details>
+          <summary>Délai d’activation ?</summary>
+          <p>En général quelques minutes après confirmation. Si besoin, WhatsApp support.</p>
+        </details>
+        <details>
+          <summary>Quels moyens de paiement ?</summary>
+          <p>On peut intégrer le checkout que tu veux (selon ton setup). Le site est prêt à brancher.</p>
+        </details>
+        <details>
+          <summary>Support 7j/7 ?</summary>
+          <p>Support WhatsApp. Réponse rapide quand c’est chaud.</p>
+        </details>
+        <details>
+          <summary>Remboursement ?</summary>
+          <p>À définir selon le business du client. (On met une policy claire dans le footer.)</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
         <div>
-          <div class="logo" style="margin-bottom:10px">
-            <span class="logo-mark" aria-hidden="true"></span>
-            <span>MA3LICH</span>
-          </div>
-          <div class="small">
-            Service numérique / abonnement. <br/>
-            MA3LICH gère le paiement, l’activation et le support via WhatsApp.
-          </div>
+          <b id="brandFoot">Ma3lich</b> — Service numérique / abonnement.<br/>
+          <span class="muted">Besoin d’aide ? WhatsApp support.</span>
         </div>
-
-        <div style="display:grid; gap:8px; justify-items:start">
-          <a href="#refund">Politique de remboursement</a>
-          <a href="#faq">FAQ</a>
-          <a href="#" id="waFooter">Contact WhatsApp</a>
-          <div id="login" class="small" style="opacity:.9">Client login (optionnel) — à brancher plus tard.</div>
+        <div class="muted">
+          © <span id="year"></span> Ma3lich • Terms • Refund Policy
         </div>
       </div>
+    </div>
+  </footer>
 
-      <div class="container" style="margin-top:16px">
-        <div id="refund" class="small">
-          <b style="color:rgba(244,244,255,.92)">Remboursement:</b> selon l’état d’activation et la consommation du service. Contactez WhatsApp avec la preuve de paiement.
-        </div>
+  <!-- Modal -->
+  <div class="overlay" id="overlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Checkout">
+      <div class="modalHead">
+        <strong>Checkout — Ma3lich</strong>
+        <div class="x" id="closeModal">✕</div>
       </div>
-    </footer>
-  </main>
-
-  <!-- Checkout Modal -->
-  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Checkout">
-    <div class="modal" role="document">
-      <div class="modal-head">
-        <div>
-          <div class="kicker">Checkout</div>
-          <div class="modal-title" id="modalTitle">Commander</div>
-        </div>
-        <button class="xbtn" id="closeModal" aria-label="Fermer">✕</button>
-      </div>
-
-      <div class="modal-body">
-        <div class="row">
+      <div class="modalBody">
+        <div class="row2">
           <div>
-            <b>Plan</b>
-            <div class="small" id="planName">—</div>
+            <label>Nom (optionnel)</label>
+            <input id="custName" placeholder="Ex: Chakir" />
           </div>
-          <div style="text-align:right">
-            <b>Montant</b>
-            <div class="small" id="planAmount">—</div>
-          </div>
-        </div>
-
-        <div class="small" style="margin:8px 0 10px">
-          <b>Moyens de paiement</b> (exemple UX — branche ton gateway ici)
-        </div>
-
-        <div class="methods">
-          <div class="method">
-            💳 Carte
-            <small>Visa / Mastercard</small>
-          </div>
-          <div class="method">
-            🔒 Paiement protégé
-            <small>Validation instantanée</small>
+          <div>
+            <label>Téléphone (optionnel)</label>
+            <input id="custPhone" placeholder="Ex: 06xxxxxxx" />
           </div>
         </div>
 
-        <div class="modal-actions">
-          <button class="btn btn-primary" id="payNow">Payer maintenant</button>
-          <button class="btn btn-ghost" id="needHelp">Besoin d’aide</button>
-        </div>
-
-        <div class="fineprint">
-          Après paiement, vous serez redirigé vers WhatsApp pour continuer (activation + support).<br/>
-          <span class="muted">Ne mentez pas: si vos délais changent, ajustez le texte.</span>
-        </div>
-
-        <div class="success" id="successBox">
-          <b>Paiement confirmé ✅</b>
-          <div class="small" style="margin-top:4px">Cliquez ci-dessous pour continuer sur WhatsApp.</div>
-          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
-            <a class="btn btn-whatsapp" id="continueWhatsApp" href="#">Continuer sur WhatsApp</a>
-            <button class="btn btn-ghost" id="closeAfter">Fermer</button>
+        <div class="modalPlan">
+          <div>
+            <div class="muted" style="font-size:12px;font-weight:800">Offre</div>
+            <b id="mPlanName">3 mois</b>
           </div>
+          <div>
+            <div class="muted" style="font-size:12px;font-weight:800">Total</div>
+            <b id="mPlanPrice">349 MAD</b>
+          </div>
+        </div>
+
+        <div class="hint">
+          ✅ Demo: ici tu branches ton vrai checkout (Whop/Stripe/etc).<br/>
+          Pour l’instant, le bouton “Payer” ouvre WhatsApp avec un message pré-rempli.
+        </div>
+
+        <div class="modalActions">
+          <button class="btn primary full" id="payNow">Payer</button>
+          <button class="btn full" id="needHelp">Besoin d’aide</button>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    // ✅ CONFIG
-    const WHATSAPP_NUMBER = "212602872411"; // change if needed (no +)
-    const DEFAULT_SUPPORT_TEXT = "Salam, j’ai besoin d’aide / infos MA3LICH.";
+    const cfg = window.MA3LICH_CONFIG;
 
-    // Elements
+    // Fill brand
+    document.getElementById("brandName").textContent = cfg.brandName;
+    document.getElementById("tagline").textContent = cfg.tagline;
+    document.getElementById("brandFoot").textContent = cfg.brandName;
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Render pricing
+    const grid = document.getElementById("pricingGrid");
+    cfg.plans.forEach((p, idx) => {
+      const el = document.createElement("div");
+      el.className = "card plan";
+      el.innerHTML = `
+        ${p.tag ? `<div class="tag">${p.tag}</div>` : ""}
+        <div class="title">${p.name}</div>
+        <div class="price">${formatMoney(p.price)} <span class="per">${cfg.currency} ${p.period}</span></div>
+        <ul>
+          <li>Accès premium</li>
+          <li>Support WhatsApp</li>
+          <li>Activation rapide</li>
+          <li>Renouvellement simple</li>
+        </ul>
+        <div class="ctaRow">
+          <button class="btn primary full" data-plan="${p.id}">Commander</button>
+        </div>
+      `;
+      grid.appendChild(el);
+    });
+
+    // KPIs (demo random small variations)
+    const bump = (base, maxAdd) => base + Math.floor(Math.random()*maxAdd);
+    document.getElementById("kpiToday").textContent = bump(1100, 300).toLocaleString("fr-FR");
+    document.getElementById("kpiMonth").textContent = bump(17500, 2500).toLocaleString("fr-FR");
+    document.getElementById("kpiCustomers").textContent = bump(120, 60).toLocaleString("fr-FR");
+
+    // Modal logic
     const overlay = document.getElementById("overlay");
-    const closeModal = document.getElementById("closeModal");
-    const closeAfter = document.getElementById("closeAfter");
-    const planNameEl = document.getElementById("planName");
-    const planAmountEl = document.getElementById("planAmount");
-    const modalTitle = document.getElementById("modalTitle");
-    const payNowBtn = document.getElementById("payNow");
-    const needHelpBtn = document.getElementById("needHelp");
-    const successBox = document.getElementById("successBox");
-    const continueWhatsApp = document.getElementById("continueWhatsApp");
+    const closeModal = () => overlay.classList.remove("show");
+    const openModal = () => overlay.classList.add("show");
 
-    let currentWAText = DEFAULT_SUPPORT_TEXT;
+    document.getElementById("closeModal").onclick = closeModal;
+    overlay.addEventListener("click", (e) => { if(e.target === overlay) closeModal(); });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
 
-    function waLink(text){
-      const encoded = encodeURIComponent(text);
-      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+    let selectedPlan = cfg.plans[1]; // default 3 months
+
+    function setPlanById(id){
+      const plan = cfg.plans.find(x => x.id === id) || cfg.plans[0];
+      selectedPlan = plan;
+      document.getElementById("mPlanName").textContent = plan.name;
+      document.getElementById("mPlanPrice").textContent = `${formatMoney(plan.price)} ${cfg.currency}`;
     }
 
-    // Global WhatsApp buttons
-    document.getElementById("waSupportTop").href = waLink(DEFAULT_SUPPORT_TEXT);
-    document.getElementById("waFooter").href = waLink(DEFAULT_SUPPORT_TEXT);
+    function formatMoney(n){
+      return Number(n).toLocaleString("fr-FR");
+    }
 
-    document.getElementById("talkSupportBtn").addEventListener("click", () => {
-      window.open(waLink("Salam, je veux parler au support MA3LICH."), "_blank");
-    });
-
-    document.getElementById("openSupport2").addEventListener("click", () => {
-      window.open(waLink("Salam, j’ai une question avant de commander."), "_blank");
-    });
-
-    // Open modal from any Commander button
-    document.querySelectorAll('button[data-plan]').forEach(btn => {
+    // Buttons -> open modal
+    document.querySelectorAll("[data-plan]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const plan = btn.dataset.plan;
-        const amount = btn.dataset.amount;
-        currentWAText = btn.dataset.waText || DEFAULT_SUPPORT_TEXT;
-
-        modalTitle.textContent = `Commander — ${plan}`;
-        planNameEl.textContent = plan;
-        planAmountEl.textContent = amount;
-
-        successBox.classList.remove("show");
-        overlay.classList.add("show");
-        document.body.style.overflow = "hidden";
+        setPlanById(btn.getAttribute("data-plan"));
+        openModal();
       });
     });
 
-    // Close modal
-    function close(){
-      overlay.classList.remove("show");
-      document.body.style.overflow = "";
+    document.getElementById("btnDemoCheckout").onclick = () => { setPlanById(cfg.plans[1].id); openModal(); };
+    document.getElementById("btnSupportTop").onclick  = () => openSupport("Support");
+    document.getElementById("btnSupportSide").onclick = () => openSupport("Support");
+
+    // WhatsApp
+    function openSupport(topic){
+      const msg = `Salam, bghit n3ref ktar 3la ${cfg.brandName}. Topic: ${topic}`;
+      openWhatsApp(msg);
     }
-    closeModal.addEventListener("click", close);
-    overlay.addEventListener("click", (e) => { if(e.target === overlay) close(); });
-    closeAfter.addEventListener("click", close);
-    window.addEventListener("keydown", (e) => { if(e.key === "Escape") close(); });
 
-    // "Pay now" demo behavior:
-    // Replace this with real gateway/Whop embedded checkout.
-    payNowBtn.addEventListener("click", () => {
-      // Simulate success
-      continueWhatsApp.href = waLink(currentWAText);
-      successBox.classList.add("show");
-      successBox.scrollIntoView({behavior:"smooth", block:"nearest"});
-    });
+    function openWhatsApp(message){
+      const url = `https://wa.me/${cfg.whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
 
-    needHelpBtn.addEventListener("click", () => {
-      window.open(waLink("Salam, j’ai besoin d’aide pour le paiement (MA3LICH)."), "_blank");
-    });
+    // Modal actions
+    document.getElementById("payNow").onclick = () => {
+      const name = (document.getElementById("custName").value || "").trim();
+      const phone = (document.getElementById("custPhone").value || "").trim();
+
+      const msg =
+`Salam, bghit ndir commande.
+• Offre: ${selectedPlan.name}
+• Prix: ${formatMoney(selectedPlan.price)} ${cfg.currency}
+${name ? "• Nom: " + name : ""}
+${phone ? "• Tél: " + phone : ""}
+
+(Checkout demo) — bghit nkml paiement / activation.`;
+
+      openWhatsApp(msg);
+      closeModal();
+    };
+
+    document.getElementById("needHelp").onclick = () => {
+      openSupport("Checkout / Aide");
+    };
   </script>
-
 </body>
 </html>
