@@ -3,165 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MA3LICH | النظام التشغيلي لتجارة الـ IPTV</title>
+    <title>MA3LICH | ابدأ منصة IPTV الخاصة بك باحترافية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --dark-core: #050505;
-            --accent-blue: #2563eb;
-            --surface: #111111;
-            --border-glow: rgba(37, 99, 235, 0.2);
-            --text-dim: #888888;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #8b5cf6;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #10b981;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'IBM Plex Sans Arabic', sans-serif; }
-        body { background: var(--dark-core); color: #ffffff; line-height: 1.5; overflow-x: hidden; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
-
-        /* HEADER */
-        header { padding: 30px 0; border-bottom: 1px solid #1a1a1a; }
-        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-        .brand { font-weight: 700; font-size: 22px; letter-spacing: 1px; }
-        .brand span { color: var(--accent-blue); }
-
-        /* HERO - THE "PROBLEM" POSITIONING */
-        .hero { padding: 100px 0; border-bottom: 1px solid #1a1a1a; }
-        .hero h1 { font-size: 3.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 30px; }
-        .hero p { font-size: 1.3rem; color: var(--text-dim); max-width: 650px; margin-bottom: 40px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
         
-        .cta-main { 
-            background: #ffffff; color: #000; padding: 16px 32px; 
-            border-radius: 4px; text-decoration: none; font-weight: 700;
-            display: inline-block; transition: 0.3s;
+        /* HEADER */
+        header { 
+            background: rgba(15, 23, 42, 0.8); 
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            position: fixed; width: 100%; z-index: 1000; 
         }
-        .cta-main:hover { background: var(--accent-blue); color: #fff; }
-
-        /* THE BLUEPRINT GRID */
-        .logic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #1a1a1a; margin: 60px 0; border: 1px solid #1a1a1a; }
-        .logic-card { background: var(--dark-core); padding: 40px; }
-        .logic-card h3 { color: var(--accent-blue); margin-bottom: 15px; font-size: 1.1rem; text-transform: uppercase; }
-        .logic-card p { color: var(--text-dim); font-size: 1rem; }
-
-        /* SYSTEM STATUS (DASHBOARD PREVIEW) */
-        .system-preview { 
-            background: var(--surface); border: 1px solid #222; border-radius: 8px; 
-            padding: 20px; margin: 80px 0; position: relative;
+        .header-content { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+        .logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; color: var(--text-main); }
+        .logo span { color: var(--primary); }
+        
+        .cta-button { 
+            background: var(--primary); 
+            color: white; border: none; padding: 10px 24px; 
+            border-radius: 8px; font-weight: 700; font-size: 15px; 
+            cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            text-decoration: none; display: inline-block; 
         }
-        .status-line { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 0.8rem; color: #444; }
-        .status-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; }
+        .cta-button:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
 
-        .terminal-text { font-family: monospace; color: #555; font-size: 0.9rem; }
-        .terminal-highlight { color: #fff; }
+        /* HERO SECTION */
+        .hero { padding: 180px 0 100px; text-align: center; }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 24px; line-height: 1.2; letter-spacing: -1px; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; }
+        
+        .stats { display: flex; justify-content: center; gap: 60px; margin-top: 60px; }
+        .stat-item { position: relative; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: var(--text-main); display: block; }
+        .stat-label { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* PRICING - THE INFRASTRUCTURE COST */
-        .infra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
-        .infra-card { border: 1px solid #222; padding: 30px; transition: 0.3s; }
-        .infra-card:hover { border-color: var(--accent-blue); }
-        .infra-card h4 { margin-bottom: 10px; font-size: 1.5rem; }
-        .price-tag { font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; }
-        .price-tag span { font-size: 1rem; color: var(--text-dim); }
-
-        ul.specs { list-style: none; color: var(--text-dim); font-size: 0.9rem; }
-        ul.specs li { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        ul.specs li::before { content: "→"; color: var(--accent-blue); }
+        /* STEPS */
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.2rem; margin-bottom: 10px; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 60px 0; }
+        .step-card { 
+            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 16px; padding: 40px 30px; transition: transform 0.3s;
+        }
+        .step-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .step-num { color: var(--primary); font-weight: 800; font-size: 1.2rem; margin-bottom: 15px; display: block; }
+        
+        /* PRICING */
+        .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
+        .pricing-card { 
+            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 20px; padding: 40px; position: relative; 
+        }
+        .pricing-card.featured { border: 2px solid var(--primary); }
+        .badge { 
+            position: absolute; top: 20px; left: 20px; 
+            background: var(--primary); color: white; padding: 4px 12px; 
+            border-radius: 20px; font-size: 0.75rem; font-weight: 700; 
+        }
+        .price { font-size: 3.5rem; font-weight: 800; margin: 20px 0; }
+        .price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+        
+        .features { list-style: none; margin-bottom: 30px; }
+        .features li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+        .features li::before { content: '✓'; color: var(--success); font-weight: bold; }
 
         /* FOOTER */
-        footer { padding: 60px 0; border-top: 1px solid #1a1a1a; color: #444; font-size: 0.8rem; text-align: center; }
+        footer { padding: 80px 0 40px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 100px; text-align: center; }
+        .footer-note { color: var(--text-muted); font-size: 0.85rem; max-width: 600px; margin: 20px auto; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .stats { flex-direction: column; gap: 30px; }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <div class="container">
-        <div class="nav-flex">
-            <div class="brand">MA3<span>LICH</span></div>
-            <a href="#infra" class="cta-main" style="padding: 10px 20px; font-size: 0.9rem;">تفعيل النظام</a>
+        <div class="header-content">
+            <div class="logo">MA3LICH<span>.com</span></div>
+            <a href="#pricing" class="cta-button">ابدأ الآن</a>
         </div>
     </div>
 </header>
 
 <section class="hero">
     <div class="container">
-        <h1>توقف عن البيع عبر "الواتساب" العشوائي.</h1>
-        <p>قم بإنهاء فوضى التحويلات الوهمية، الحسابات المحظورة، وضياع بيانات العملاء. ماعليك (MA3LICH) هو النظام الخلفي الذي يدير مدفوعاتك وتوصيلك وبياناتك في منصة واحدة مشفرة.</p>
-        <a href="#infra" class="cta-main">امتلك بنية تحتية آمنة</a>
+        <h1>أنشئ موقع <span>IPTV احترافي</span><br>خلال 24 ساعة فقط</h1>
+        <p>نوفر لك البنية التحتية، بوابات الدفع، ونظام الأتمتة. ركز على التسويق واترك الجوانب التقنية المعقدة لنا.</p>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">24h</span>
+                <span class="stat-label">سرعة التنفيذ</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">85%</span>
+                <span class="stat-label">أرباح صافية لك</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">بائع نشط</span>
+            </div>
+        </div>
     </div>
 </section>
 
 <section class="container">
-    <div class="logic-grid">
-        <div class="logic-card">
-            <h3>تنظيم الفوضى</h3>
-            <p>حوّل رسائل الواتساب المبعثرة إلى قاعدة بيانات منظمة. تتبع كل درهم وكل اشتراك تلقائياً.</p>
+    <div class="section-header">
+        <h2>ثلاث خطوات للانطلاق</h2>
+    </div>
+    <div class="steps">
+        <div class="step-card">
+            <span class="step-num">01.</span>
+            <h3>اختيار الباقة</h3>
+            <p>اختر الخطة المناسبة لحجم مشروعك وقم بتأكيد الطلب عبر الواتساب.</p>
         </div>
-        <div class="logic-card">
-            <h3>تجاوز الحظر</h3>
-            <p>نظام دفع مرن مصمم خصيصاً للأسواق "الرمادية". استقبل أموالك دون خوف من إغلاق Stripe أو PayPal.</p>
+        <div class="step-card">
+            <span class="step-num">02.</span>
+            <h3>تخصيص الهوية</h3>
+            <p>أرسل شعارك وألوانك المفضلة وسنقوم ببرمجة موقعك الخاص.</p>
         </div>
-        <div class="logic-card">
-            <h3>أتمتة التوصيل</h3>
-            <p>بمجرد الدفع، يتم إرسال الكود للعميل. لا حاجة لانتظارك حتى تستيقظ لترسل الأكواد يدوياً.</p>
-        </div>
-        <div class="logic-card">
-            <h3>التحكم المطلق</h3>
-            <p>أنت لا تملك موقعاً فقط، أنت تملك "Shadow Backend" يضمن استمرارية عملك حتى لو تغيرت القوانين.</p>
+        <div class="step-card">
+            <span class="step-num">03.</span>
+            <h3>بدء المبيعات</h3>
+            <p>استلم لوحة التحكم وابدأ في استقبال المدفوعات بشكل تلقائي.</p>
         </div>
     </div>
 </section>
 
-<section class="container" id="infra">
-    <div class="system-preview">
-        <div class="status-line">
-            <div class="status-dot"></div>
-            SYSTEM OPERATIONAL // PORT: 443 // ENCRYPTION: AES-256
-        </div>
-        <div class="terminal-text">
-            > Initializing <span class="terminal-highlight">Ma3lich OS</span>...<br>
-            > Connecting Payment Gateways (Local & Crypto)... <span style="color: #10b981;">DONE</span><br>
-            > Auto-Delivery Protocol... <span style="color: #10b981;">ACTIVE</span><br>
-            > <span class="terminal-highlight">Waiting for Administrator...</span>
-        </div>
+<section class="container" id="pricing">
+    <div class="section-header">
+        <h2>خطط الأسعار</h2>
     </div>
+    <div class="pricing-cards">
+        <div class="pricing-card">
+            <h3>الباقة الأساسية</h3>
+            <div class="price">500 <span>درهم</span></div>
+            <ul class="features">
+                <li>موقع مخصص بالكامل</li>
+                <li>بوابات دفع (CMI, Card)</li>
+                <li>توصيل تلقائي للطلبات</li>
+                <li>لوحة تحكم المبيعات</li>
+                <li>عمولة المنصة: 20%</li>
+            </ul>
+            <a href="#" class="cta-button" style="width: 100%; text-align: center;">اطلب الآن</a>
+        </div>
 
-    <div class="infra-grid">
-        <div class="infra-card">
-            <h4>النظام الأساسي</h4>
-            <div class="price-tag">500 <span>درهم / تأسيس</span></div>
-            <ul class="specs">
-                <li>استضافة مخفية (Bulletproof)</li>
-                <li>بوابة دفع CMI + تحويل بنكي تلقائي</li>
-                <li>نظام إدارة المشتركين (CRM)</li>
-                <li>توصيل تلقائي للأكواد</li>
-                <li>عمولة تشغيل: 20%</li>
+        <div class="pricing-card featured">
+            <span class="badge">الأكثر طلباً</span>
+            <h3>الباقة الاحترافية</h3>
+            <div class="price">750 <span>درهم</span></div>
+            <ul class="features">
+                <li>كل مميزات الأساسية</li>
+                <li>دومين .ma مجاني</li>
+                <li>شهادة حماية SSL</li>
+                <li>دعم فني 24/7</li>
+                <li>عمولة مخفضة: 15%</li>
             </ul>
+            <a href="#" class="cta-button" style="width: 100%; text-align: center; background: var(--text-main); color: var(--bg-dark);">اطلب الآن</a>
         </div>
-        <div class="infra-card" style="border-color: #333;">
-            <h4>النظام الاحترافي</h4>
-            <div class="price-tag">750 <span>درهم / تأسيس</span></div>
-            <ul class="specs">
-                <li>كل مميزات النظام الأساسي</li>
-                <li>نطاق (Domain) خاص .ma / .com</li>
-                <li>تكامل مع Telegram Alerts</li>
-                <li>نظام حماية من الطلبات الوهمية</li>
-                <li>عمولة تشغيل مخفضة: 15%</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div style="text-align: center; margin-top: 50px;">
-        <a href="https://wa.me/212XXXXXXXXX" class="cta-main" style="background: var(--accent-blue); color: #fff;">تحدث مع مهندس النظام</a>
     </div>
 </section>
 
 <footer>
     <div class="container">
-        MA3LICH SYSTEM INFRASTRUCTURE © 2026<br>
-        هذا النظام موجه للمحترفين فقط. نحن نوفر التكنولوجيا، أنت تدير العمل.
+        <div class="logo">MA3LICH<span>.com</span></div>
+        <p class="footer-note">
+            نحن منصة تقنية لتقديم حلول الدفع والأتمتة. البائع هو المسؤول الأول والأخير عن جودة الخدمة المقدمة والمحتوى.
+        </p>
+        <div style="margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">
+            © 2026 جميع الحقوق محفوظة
+        </div>
     </div>
 </footer>
+
+<script>
+    // Simplified WhatsApp Logic
+    const whatsappNumber = "212XXXXXXXXX";
+    document.querySelectorAll('.cta-button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const plan = e.target.closest('.pricing-card')?.querySelector('h3').innerText || "تأسيس موقع";
+            const text = encodeURIComponent(`مرحباً، أود الاستفسار عن ${plan} من خلال موقعكم.`);
+            window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+        });
+    });
+</script>
 
 </body>
 </html>
