@@ -52,7 +52,17 @@
         
         .stats { display: flex; justify-content: center; gap: 60px; margin-top: 60px; }
         .stat-item { position: relative; }
-        .stat-number { font-size: 2rem; font-weight: 800; color: var(--text-main); display: block; }
+        .stat-number{
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--text-main);
+  display: block;
+  letter-spacing: -0.5px;
+}
+@media (max-width: 768px){
+  .stat-number{ font-size: 2.2rem; }
+}
+
         .stat-label { color: var(--text-muted); font-size: 0.95rem; }
 
         /* STEPS */
