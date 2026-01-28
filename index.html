@@ -9,8 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
-    <script async defer src="https://js.whop.com/static/checkout/loader.js"></script>
-
     <style>
         :root {
             --primary: #6366f1;
@@ -21,7 +19,6 @@
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
             --success: #10b981;
-            --stripe-blue: #635bff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
@@ -38,7 +35,6 @@
             position: fixed; width: 100%; top: 0; z-index: 1000;
         }
         .header-content { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
-        
         .logo-container { display: flex; align-items: center; min-height: 45px; }
         .logo-img { height: 45px; width: auto; max-width: 180px; object-fit: contain; display: block; }
         
@@ -86,41 +82,38 @@
         .step-card h3 { margin-bottom: 15px; font-size: 1.4rem; font-weight: 700; }
         .step-card p { color: var(--text-dim); font-size: 1rem; }
 
-        /* --- DEMO SECTION (STRIPE STYLE) --- */
-        .demo-section { padding: 100px 0; background: #0f0f12; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-        .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .demo-visual { 
-            background: #16161a; padding: 60px 40px; border-radius: 24px; 
-            border: 1px dashed var(--primary); text-align: center; position: relative;
-        }
-        .demo-visual::before {
-            content: "LIVE DEMO"; position: absolute; top: -12px; right: 20px;
-            background: var(--primary); font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 4px; color: #fff;
-        }
-        .demo-btn {
-            background: #fff; color: #000; border: none; padding: 18px 36px; 
-            border-radius: 10px; font-weight: 800; cursor: pointer;
-            display: inline-flex; align-items: center; gap: 12px; transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255,255,255,0.1); font-size: 1.1rem;
-        }
-        .demo-btn:hover { background: #f1f5f9; transform: scale(1.03); }
+        /* IMPROVED DEMO SECTION */
+        .demo-section { padding: 100px 0; background: #0a0a0c; border-top: 1px solid #1a1a1e; position: relative; }
+        .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .demo-content { text-align: right; }
+        .demo-content h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 24px; color: #fff; }
+        .demo-content h2 span { color: var(--primary); }
+        .demo-content p { color: var(--text-dim); font-size: 1.15rem; margin-bottom: 30px; line-height: 1.8; }
         
-        /* --- MODAL STYLES (THE STRIPE LOOK) --- */
-        .ng-modal { position:fixed; inset:0; display:none; z-index:9999; text-align: left; }
-        .ng-modal.is-open { display:flex; align-items:center; justify-content:center; }
-        .ng-modal__backdrop { position:absolute; inset:0; background: rgba(10, 10, 12, 0.9); backdrop-filter: blur(8px); }
-        .ng-modal__panel {
-            position:relative; width:min(940px, calc(100% - 32px)); height:min(85vh, 720px);
-            background: #fff; border-radius: 12px; overflow:hidden; display:flex; flex-direction:column;
-            animation: stripeSlide 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        .demo-visual { 
+            background: #111114; padding: 60px 40px; border-radius: 28px; 
+            border: 1px dashed rgba(99, 102, 241, 0.4); text-align: center; 
+            position: relative; box-shadow: 0 0 40px rgba(99, 102, 241, 0.05); transition: 0.4s ease;
         }
-        @keyframes stripeSlide { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .ng-modal__header { padding: 20px 24px; border-bottom: 1px solid #f0f0f5; background: #fff; display:flex; align-items:center; justify-content:space-between; }
-        .ng-modal__title { font-weight: 600; font-size: 16px; color: #1a1f36; display: flex; align-items: center; gap: 8px; }
-        .ng-modal__title::before { content: ''; width: 10px; height: 10px; background: var(--stripe-blue); border-radius: 2px; }
-        .ng-modal__close { width:32px; height:32px; border-radius:50%; border: none; background: #f7f8f9; color: #4f566b; cursor:pointer; display:flex; align-items:center; justify-content:center; }
-        #whop-embedded-checkout { flex:1; background:#fff; }
-        .ng-modal__footer-security { padding: 12px 24px; background: #f7f8f9; border-top: 1px solid #f0f0f5; display: flex; justify-content: center; align-items: center; gap: 6px; font-size: 12px; color: #697386; }
+        .demo-visual:hover { border-color: var(--primary); box-shadow: 0 0 60px rgba(99, 102, 241, 0.12); }
+        .live-badge { position: absolute; top: -12px; right: 30px; background: var(--primary); color: #fff; font-size: 11px; font-weight: 900; padding: 5px 14px; border-radius: 6px; letter-spacing: 1px; }
+
+        .demo-btn-link {
+            display: inline-flex; align-items: center; gap: 12px; background: #ffffff; color: #000000; 
+            text-decoration: none; padding: 18px 38px; border-radius: 12px; font-weight: 800; 
+            font-size: 1.1rem; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .demo-btn-link:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2); background: #f8fafc; }
+        .demo-btn-link svg { transition: transform 0.3s; }
+        .demo-btn-link:hover svg { transform: translateX(-5px); } /* Reversed for RTL logic if icon is on left, but here we move it forward */
+
+        .trust-icons { margin-top: 35px; display: flex; justify-content: center; gap: 20px; filter: grayscale(1) opacity(0.4); transition: 0.3s; }
+        .demo-visual:hover .trust-icons { filter: grayscale(0) opacity(0.8); }
+
+        .feature-list { list-style: none; margin-bottom: 40px; flex-grow: 1; }
+        .feature-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; font-size: 1rem; color: #e2e8f0; }
+        .feature-list li::before { content: "✓"; color: var(--success); font-weight: 900; }
 
         /* PRICING */
         .pricing { padding: 100px 0; background: linear-gradient(to bottom, #0a0a0c, #0f0f12); }
@@ -140,11 +133,6 @@
         .price-value { font-size: 3.5rem; font-weight: 800; margin-bottom: 5px; color: #fff; }
         .price-value span { font-size: 1rem; color: var(--text-dim); font-weight: 400; margin-right: 5px; }
         .price-desc { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 30px; }
-        
-        .feature-list { list-style: none; margin-bottom: 40px; flex-grow: 1; }
-        .feature-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; font-size: 1rem; color: #e2e8f0; }
-        .feature-list li::before { content: "✓"; color: var(--success); font-weight: 900; }
-
         .price-cta { 
             background: var(--primary); color: white; padding: 16px; text-align: center; 
             border-radius: 12px; text-decoration: none; font-weight: 700; transition: 0.3s;
@@ -159,39 +147,24 @@
         .faq-item[open] summary::after { transform: rotate(45deg); }
         .faq-content { padding: 0 22px 22px; color: var(--text-dim); font-size: 1rem; border-top: 1px solid var(--border); padding-top: 20px; }
 
-        /* FLOATING WHATSAPP */
+        /* FOOTER & WHATSAPP */
         .whatsapp-float { 
-            position: fixed; bottom: 30px; right: 30px; 
-            background: #25d366; width: 64px; height: 64px; 
-            border-radius: 50%; display: flex; justify-content: center; align-items: center; 
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); z-index: 999; 
-            text-decoration: none; transition: 0.3s;
+            position: fixed; bottom: 30px; right: 30px; background: #25d366; 
+            width: 64px; height: 64px; border-radius: 50%; display: flex; 
+            justify-content: center; align-items: center; z-index: 999; text-decoration: none; transition: 0.3s;
         }
         .whatsapp-float:hover { transform: scale(1.1); }
-        .whatsapp-float svg { width: 35px; height: 35px; fill: white; }
-        .pulse-dot { 
-            position: absolute; top: 0; right: 0; width: 18px; height: 18px; 
-            background: #ff4d4d; border-radius: 50%; border: 3px solid white; 
-            animation: pulse-anim 2s infinite; 
-        }
-
-        @keyframes pulse-anim {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 77, 77, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
-        }
-
-        /* FOOTER */
+        .pulse-dot { position: absolute; top: 0; right: 0; width: 18px; height: 18px; background: #ff4d4d; border-radius: 50%; border: 3px solid white; animation: pulse-anim 2s infinite; }
+        @keyframes pulse-anim { 0% { transform: scale(0.95); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 77, 77, 0); } 100% { transform: scale(0.95); } }
+        
         footer { padding: 80px 0 40px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); }
         .footer-logo { height: 40px; margin-bottom: 25px; filter: grayscale(1) brightness(0.8); }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .hero { padding: 130px 0 60px; }
-            .stat-item { min-width: 45%; }
-            .demo-grid { grid-template-columns: 1fr; gap: 30px; }
-            .demo-content { order: 1; }
-            .demo-visual { order: 2; }
+            .demo-grid { grid-template-columns: 1fr; gap: 40px; }
+            .demo-content { order: 1; text-align: center; }
+            .demo-visual { order: 2; padding: 40px 20px; }
         }
     </style>
 </head>
@@ -215,18 +188,9 @@
             <a href="https://wa.me/212602779075?text=مرحباً، أريد الاستفسار عن خدمة الربط مع بوابة الدفع" class="main-cta">طلب تفعيل النظام</a>
             
             <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number" data-target="24">0</span>
-                    <span class="stat-label">ساعة للتفعيل</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="100">0</span>
-                    <span class="stat-label">توجيه آلي آمن %</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="7">0</span>
-                    <span class="stat-label">أيام دعم أسبوعياً</span>
-                </div>
+                <div class="stat-item"><span class="stat-number" data-target="24">0</span><span class="stat-label">ساعة للتفعيل</span></div>
+                <div class="stat-item"><span class="stat-number" data-target="100">0</span><span class="stat-label">توجيه آلي آمن %</span></div>
+                <div class="stat-item"><span class="stat-number" data-target="7">0</span><span class="stat-label">أيام دعم أسبوعياً</span></div>
             </div>
 
             <div class="hero-image-box">
@@ -238,43 +202,35 @@
     <section class="steps container">
         <h2 class="section-title">كيف تتم العملية؟</h2>
         <div class="steps-grid">
-            <div class="step-card">
-                <span class="step-icon">💳</span>
-                <h3>الدفع المباشر</h3>
-                <p>يدخل العميل بيانات بطاقته البنكية (Visa/Mastercard) داخل موقعك بكل أمان وسهولة.</p>
-            </div>
-            <div class="step-card">
-                <span class="step-icon">⚡</span>
-                <h3>معالجة فورية</h3>
-                <p>تتم معالجة العملية فورياً وتصلك إشعارات اللحظية بنجاح الدفع في لوحة التحكم.</p>
-            </div>
-            <div class="step-card">
-                <span class="step-icon">📱</span>
-                <h3>التسليم عبر الواتساب</h3>
-                <p>يتم توجيه العميل تلقائياً إلى رقم الواتساب الخاص بك لتسليمه الخدمة وبناء علاقة دائمة.</p>
-            </div>
+            <div class="step-card"><span class="step-icon">💳</span><h3>الدفع المباشر</h3><p>يدخل العميل بيانات بطاقته البنكية (Visa/Mastercard) داخل موقعك بكل أمان وسهولة.</p></div>
+            <div class="step-card"><span class="step-icon">⚡</span><h3>معالجة فورية</h3><p>تتم معالجة العملية فورياً وتصلك إشعارات اللحظية بنجاح الدفع في لوحة التحكم.</p></div>
+            <div class="step-card"><span class="step-icon">📱</span><h3>التسليم عبر الواتساب</h3><p>يتم توجيه العميل تلقائياً إلى رقم الواتساب الخاص بك لتسليمه الخدمة وبناء علاقة دائمة.</p></div>
         </div>
     </section>
 
     <section class="demo-section">
         <div class="container">
             <div class="demo-grid">
+                
                 <div class="demo-visual">
-                    <p style="margin-bottom: 25px; color: var(--text-dim);">Test the checkout experience as your customer.</p>
-                    <button onclick="openWhopModal()" class="demo-btn">
+                    <div class="live-badge">LIVE DEMO</div>
+                    <p style="margin-bottom: 25px; color: #64748b; font-weight: 500;">Test the checkout experience as your customer</p>
+                    
+                    <a href="https://pay.ma3lich.com/" class="demo-btn-link">
                         <span>Launch Demo Checkout</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </button>
-                    <div style="margin-top: 25px; display: flex; justify-content: center; gap: 15px; opacity: 0.4;">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" height="14">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" height="18">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" height="14">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="transform: scaleX(-1);"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+
+                    <div class="trust-icons">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" height="15">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" height="22">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" height="15">
                     </div>
                 </div>
-                
+
                 <div class="demo-content">
-                    <h2 style="font-size: 2.2rem; margin-bottom: 20px;">تجربة حية <span style="color: var(--primary);">لنظام الدفع</span></h2>
-                    <p style="color: var(--text-dim); margin-bottom: 25px; font-size: 1.1rem;">
+                    <h2>تجربة حية <span>لنظام الدفع</span></h2>
+                    <p>
                         نوفر لك واجهة دفع احترافية (Checkout) يتم دمجها في موقعك بضغطة زر. 
                         اختبر الآن كيف تظهر الصفحة، كيف تتم معالجة البيانات، وكيف يتم توجيه العميل بكل سلاسة.
                     </p>
@@ -300,9 +256,7 @@
                         <li>ربط صفحة الدفع Checkout</li>
                         <li>دعم البطاقات الدولية والمحلية</li>
                         <li>التوجيه التلقائي للواتساب</li>
-                        <li>عمولة تنافسية لكل عملية</li>
                         <li>تسوية المستحقات أسبوعياً</li>
-                        <li>دفع عبر تحويل بنكي أو Cash</li>
                     </ul>
                     <a href="https://wa.me/212602779075?text=أريد تفعيل الباقة الأساسية (500 درهم)" class="price-cta">اطلب التفعيل الآن</a>
                 </div>
@@ -315,8 +269,6 @@
                         <li>كل مميزات التأسيس العادي</li>
                         <li>نطاق (.com) أو (.ma) خاص بك</li>
                         <li>شهادة حماية SSL لضمان الأمان</li>
-                        <li>تخصيص الهوية البصرية (الألوان)</li>
-                        <li>عمولة تشغيل مخفضة</li>
                         <li>أولوية في الدعم التقني</li>
                     </ul>
                     <a href="https://wa.me/212602779075?text=أريد تفعيل الباقة الاحترافية (750 درهم)" class="price-cta">اطلب النظام المتكامل</a>
@@ -327,18 +279,8 @@
 
     <section class="faq container">
         <h2 class="section-title">الأسئلة الشائعة</h2>
-        <details class="faq-item">
-            <summary>هل تقدمون خدمات IPTV؟</summary>
-            <div class="faq-content">
-                قطعاً لا. MA3LICH هي منصة تقنية برمجية توفر حلول الدفع والتوجيه فقط. العميل هو المسؤول عن نوع وجودة الخدمة التي يقدمها لزبائنه.
-            </div>
-        </details>
-        <details class="faq-item">
-            <summary>متى وكيف أستلم أرباحي؟</summary>
-            <div class="faq-content">
-                نقوم بتسوية الحسابات أسبوعياً. يمكنك استلام أرباحك عبر تحويل بنكي مغربي مباشر أو نقداً (Cash) حسب ما يتم الاتفاق عليه عند بداية العمل.
-            </div>
-        </details>
+        <details class="faq-item"><summary>هل تقدمون خدمات IPTV؟</summary><div class="faq-content">قطعاً لا. MA3LICH هي منصة تقنية برمجية توفر حلول الدفع والتوجيه فقط.</div></details>
+        <details class="faq-item"><summary>متى وكيف أستلم أرباحي؟</summary><div class="faq-content">نقوم بتسوية الحسابات أسبوعياً عبر تحويل بنكي مباشر.</div></details>
     </section>
 
     <footer>
@@ -350,60 +292,16 @@
 
     <a href="https://wa.me/212602779075?text=مرحباً، لدي استفسار بخصوص تفعيل خدمة الدفع" class="whatsapp-float">
         <div class="pulse-dot"></div>
-        <svg viewBox="0 0 32 32">
-            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.486 2.017 7.8l-2.017 7.2 7.371-1.937c2.35 1.158 5.013 1.937 7.629 1.937 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.212c-2.481 0-4.806-0.65-6.844-1.781l-0.494-0.275-4.381 1.15 1.175-4.194-0.306-0.488c-1.288-2.050-1.969-4.431-1.969-6.875 0-7.244 5.894-13.138 13.131-13.138 7.244 0 13.131 5.894 13.131 13.138s-5.888 13.463-13.131 13.463zM22.188 18.681c-0.338-0.169-2.006-0.988-2.319-1.106-0.313-0.113-0.538-0.169-0.763 0.169s-0.875 1.106-1.069 1.331c-0.194 0.225-0.394 0.25-0.731 0.081-0.338-0.169-1.425-0.525-2.713-1.675-1.006-0.894-1.681-2-1.881-2.338-0.194-0.338-0.019-0.519 0.15-0.688 0.15-0.15 0.338-0.394 0.506-0.588 0.169-0.2 0.225-0.338 0.338-0.563 0.113-0.225 0.056-0.425-0.025-0.594-0.081-0.169-0.763-1.838-1.044-2.519-0.275-0.663-0.556-0.575-0.763-0.588-0.194-0.013-0.419-0.013-0.644-0.013-0.225 0-0.588 0.081-0.9 0.425-0.313 0.338-1.194 1.169-1.194 2.85s1.225 3.306 1.4 3.531c0.169 0.225 2.413 3.681 5.838 5.156 0.819 0.35 1.456 0.556 1.956 0.719 0.825 0.263 1.575 0.225 2.169 0.138 0.656-0.094 2.006-0.819 2.288-1.613 0.281-0.781 0.281-1.463 0.194-1.606-0.081-0.15-0.3-0.244-0.638-0.413z"></path>
-        </svg>
+        <svg width="35" height="35" fill="white" viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.486 2.017 7.8l-2.017 7.2 7.371-1.937c2.35 1.158 5.013 1.937 7.629 1.937 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.212c-2.481 0-4.806-1.781-6.844-1.781l-0.494-0.275-4.381 1.15 1.175-4.194-0.306-0.488c-1.288-2.05-1.969-4.431-1.969-6.875 0-7.244 5.894-13.138 13.131-13.138 7.244 0 13.131 5.894 13.131 13.138s-5.888 13.463-13.131 13.463z"></path></svg>
     </a>
 
-    <div id="whopModal" class="ng-modal" aria-hidden="true">
-        <div class="ng-modal__backdrop" onclick="closeWhopModal()"></div>
-        <div class="ng-modal__panel" role="dialog" aria-modal="true">
-            <div class="ng-modal__header">
-                <div>
-                    <div class="ng-modal__title">MA3LICH Checkout</div>
-                    <div class="ng-modal__subtitle">Secure payment powered by Whop</div>
-                </div>
-                <button class="ng-modal__close" onclick="closeWhopModal()">✕</button>
-            </div>
-            <div id="whop-embedded-checkout"></div>
-            <div class="ng-modal__footer-security">
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L2 3v5c0 3.8 2.5 7.4 6 8 3.5-.6 6-4.2 6-8V3L8 0zm0 2.1L12.5 4.3v3.7c0 2.8-1.9 5.4-4.5 6-2.6-.6-4.5-3.2-4.5-6V4.3L8 2.1z"/></svg>
-                Guaranteed safe & secure checkout
-            </div>
-        </div>
-    </div>
-
     <script>
-        // LOGO ERROR HANDLER
         function fixLogo(imgId) {
             const img = document.getElementById(imgId);
             if (!img) return;
-            img.onerror = function() {
-                if (img.src.includes('logo.png')) { img.src = 'LOGO.png'; }
-            };
+            img.onerror = function() { if (img.src.includes('logo.png')) { img.src = 'LOGO.png'; } };
         }
-        fixLogo('mainLogo');
-        fixLogo('footerLogo');
-
-        // WHOP MODAL LOGIC
-        const WHOP_PLAN_ID = "plan_bjy3o9ZScfqmY";
-
-        function openWhopModal(){
-            const modal = document.getElementById("whopModal");
-            const checkout = document.getElementById("whop-embedded-checkout");
-            checkout.setAttribute("data-whop-checkout-plan-id", WHOP_PLAN_ID);
-            modal.classList.add("is-open");
-            document.body.style.overflow = "hidden";
-        }
-
-        function closeWhopModal(){
-            const modal = document.getElementById("whopModal");
-            modal.classList.remove("is-open");
-            document.body.style.overflow = ""; 
-        }
-
-        // Close on ESC key
-        document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeWhopModal(); });
+        fixLogo('mainLogo'); fixLogo('footerLogo');
 
         // Stats Animation
         const stats = document.querySelectorAll('.stat-number');
@@ -411,28 +309,20 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const target = parseInt(entry.target.getAttribute('data-target'));
-                    animateValue(entry.target, 0, target, 2000);
+                    let start = 0;
+                    const duration = 2000;
+                    const step = (timestamp) => {
+                        if (!start) start = timestamp;
+                        const progress = Math.min((timestamp - start) / duration, 1);
+                        entry.target.innerHTML = Math.floor(progress * target) + (target === 100 ? "%" : "");
+                        if (progress < 1) window.requestAnimationFrame(step);
+                    };
+                    window.requestAnimationFrame(step);
                     observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.5 });
-
         stats.forEach(stat => observer.observe(stat));
-
-        function animateValue(obj, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                obj.innerHTML = Math.floor(progress * (end - start) + start);
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                } else {
-                    obj.innerHTML = end + (obj.getAttribute('data-target') === "100" ? "%" : "");
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
     </script>
 </body>
 </html>
