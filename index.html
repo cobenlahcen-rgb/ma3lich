@@ -56,32 +56,43 @@
             border-radius: 12px; font-size: 1.1rem; font-weight: 800; 
             text-decoration: none; display: inline-block; transition: 0.3s;
             box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
-            cursor: pointer; border: none;
         }
         .main-cta:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3); }
-
-        /* MODAL POPUP */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); display: none; align-items: center;
-            justify-content: center; z-index: 2000; backdrop-filter: blur(8px);
-        }
-        .modal-content {
-            background: var(--card-bg); border: 1px solid var(--primary);
-            width: 90%; max-width: 800px; height: 80vh; border-radius: 20px;
-            position: relative; overflow: hidden;
-        }
-        .close-modal {
-            position: absolute; top: 15px; left: 15px; background: #ff4444;
-            color: white; border: none; width: 30px; height: 30px;
-            border-radius: 50%; cursor: pointer; font-weight: bold; z-index: 2001;
-        }
 
         /* STATS */
         .stats { display: flex; justify-content: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
         .stat-item { min-width: 160px; }
         .stat-number { font-size: 2.8rem; font-weight: 800; color: var(--primary); display: block; }
         .stat-label { color: var(--text-dim); }
+
+        /* STEPS */
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.2rem; font-weight: 800; }
+        .steps { padding: 100px 0; }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .step-card { 
+            background: var(--card-bg); border: 1px solid var(--border); 
+            border-radius: 20px; padding: 40px; transition: 0.3s;
+        }
+        .step-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .step-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+
+        /* DEMO SECTION */
+        .demo-section { padding: 100px 0; background: #0a0a0c; border-top: 1px solid #1a1a1e; }
+        .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .demo-visual { 
+            background: #111114; padding: 60px 40px; border-radius: 28px; 
+            border: 1px dashed rgba(99, 102, 241, 0.4); text-align: center; 
+            position: relative; transition: 0.4s;
+        }
+        .demo-visual:hover { border-color: var(--primary); box-shadow: 0 0 50px rgba(99, 102, 241, 0.1); }
+        .live-badge { position: absolute; top: -12px; right: 30px; background: var(--primary); color: #fff; font-size: 11px; font-weight: 900; padding: 5px 14px; border-radius: 6px; }
+        
+        .demo-btn-link {
+            display: inline-flex; align-items: center; gap: 12px; background: #fff; color: #000; 
+            text-decoration: none; padding: 18px 38px; border-radius: 12px; font-weight: 800; 
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .demo-btn-link:hover { transform: translateY(-4px); background: #f8fafc; }
 
         /* PRICING & COMMISSION */
         .pricing { padding: 100px 0; }
@@ -114,8 +125,15 @@
             width: 60px; height: 60px; border-radius: 50%; display: flex; 
             justify-content: center; align-items: center; z-index: 999; transition: 0.3s;
         }
+        .whatsapp-float:hover { transform: scale(1.1); }
         
         footer { padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); }
+
+        @media (max-width: 900px) {
+            .demo-grid { grid-template-columns: 1fr; text-align: center; }
+            .demo-content { order: 1; }
+            .demo-visual { order: 2; }
+        }
     </style>
 </head>
 <body>
@@ -132,8 +150,8 @@
     <section class="hero">
         <div class="container">
             <h1>قوة <span>Stripe Checkout</span><br>بين يديك في المغرب</h1>
-            <p>لا تشغل بالك بتعقيدات فتح الحسابات الدولية. نحن نوفر لك بوابة دفع Stripe جاهزة لمتجرك.</p>
-            <button class="main-cta" onclick="openDemo()">جرب عرض حي للدفع</button>
+            <p>لا تشغل بالك بتعقيدات فتح الحسابات الدولية. نحن نوفر لك بوابة دفع Stripe جاهزة لمتجرك مع نظام توجيه آلي لعملائك عبر الواتساب.</p>
+            <a href="https://wa.me/212602779075?text=مرحباً، أريد ربط متجري بنظام Stripe" class="main-cta">اطلب التفعيل الآن</a>
             
             <div class="stats">
                 <div class="stat-item"><span class="stat-number" data-target="24">0</span><span class="stat-label">ساعة للتفعيل</span></div>
@@ -143,35 +161,70 @@
         </div>
     </section>
 
-    <div class="modal-overlay" id="demoModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeDemo()">X</button>
-            <iframe src="https://pay.ma3lich.com/" width="100%" height="100%" frameborder="0"></iframe>
+    <section class="demo-section">
+        <div class="container">
+            <div class="demo-grid">
+                <div class="demo-visual">
+                    <div class="live-badge">LIVE DEMO</div>
+                    <p style="margin-bottom: 25px; color: #64748b;">جرب تجربة الدفع التي سيراها عميلك</p>
+                    <a href="https://pay.ma3lich.com/" class="demo-btn-link">
+                        <span>Launch Demo Checkout</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: scaleX(-1);"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <div style="margin-top:30px; opacity:0.5; display:flex; justify-content:center; gap:15px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" height="12">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" height="18">
+                    </div>
+                </div>
+                <div class="demo-content">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">لماذا <span>Stripe؟</span></h2>
+                    <p>يعتبر Stripe Checkout أفضل واجهة دفع في العالم، حيث تضمن لك أعلى نسبة إتمام عمليات (Conversion Rate) بفضل سهولتها وتوافقها التام مع الهواتف.</p>
+                    <ul class="feature-list">
+                        <li>قبول جميع البطاقات الدولية والمحلية</li>
+                        <li>دعم Apple Pay و Google Pay</li>
+                        <li>حماية متطورة ضد الاحتيال (Stripe Radar)</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
     <section class="pricing" id="pricing">
         <div class="container">
             <div class="info-box">
                 <p style="font-size: 1.1rem; font-weight: 700;">
-                    💡 نحن نتحمل المخاطرة معك: <span style="color: var(--primary);">أنت تبيع، ونحن نأخذ 20% فقط من العمليات الناجحة.</span>
+                    💡 نحن نتحمل المخاطرة معك: <span style="color: var(--primary);">أنت تبيع، ونحن نأخذ 20% فقط من العمليات الناجحة.</span> لا مبيعات؟ لا رسوم!
                 </p>
             </div>
             
-            <h2 class="section-title" style="text-align:center; margin-bottom:40px;">خطط الانطلاق</h2>
+            <h2 class="section-title">خطط الانطلاق</h2>
             <div class="pricing-grid">
                 <div class="price-card featured">
                     <div class="commission-tag">الأكثر شفافية</div>
                     <h3 class="price-title">نظام النجاح المشترك</h3>
-                    <div class="price-value">300 <span>درهم</span></div>
+                    <div class="price-value">500 <span>درهم</span></div>
                     <p class="price-desc">رسوم ربط التقنية (تدفع مرة واحدة)</p>
                     <ul class="feature-list">
                         <li><strong>عمولة 20%:</strong> على كل مبيعة</li>
                         <li><strong>Stripe Checkout:</strong> واجهة عالمية</li>
                         <li>توجيه آلي فوري للواتساب</li>
                         <li>تسوية الأرباح أسبوعياً</li>
+                        <li>دعم فني مخصص للتجار</li>
                     </ul>
                     <a href="https://wa.me/212602779075?text=أريد البدء بنظام 20% عمولة" class="price-cta">ابدأ البيع الآن</a>
+                </div>
+
+                <div class="price-card">
+                    <h3 class="price-title">باقة المتاجر الكبرى</h3>
+                    <div class="price-value">اتصل بنا</div>
+                    <p class="price-desc">للمتاجر ذات الحجم الكبير (+50k DH)</p>
+                    <ul class="feature-list">
+                        <li>عمولة مخفضة (يتم الاتفاق عليها)</li>
+                        <li>تسويات مالية سريعة (2 مرتين أسبوعياً)</li>
+                        <li>ربط نطاق مخصص Domain مجاناً</li>
+                        <li>أولوية في الدعم التقني</li>
+                    </ul>
+                    <a href="https://wa.me/212602779075?text=استفسار حول باقة المتاجر الكبرى" class="price-cta" style="background:#222;">تحدث مع الإدارة</a>
                 </div>
             </div>
         </div>
@@ -188,14 +241,6 @@
     </a>
 
     <script>
-        // Modal Logic
-        function openDemo() {
-            document.getElementById('demoModal').style.display = 'flex';
-        }
-        function closeDemo() {
-            document.getElementById('demoModal').style.display = 'none';
-        }
-
         // Stats Animation
         const stats = document.querySelectorAll('.stat-number');
         const observer = new IntersectionObserver((entries) => {
