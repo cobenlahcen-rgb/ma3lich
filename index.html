@@ -25,20 +25,22 @@
         html { scroll-behavior: smooth; }
         body { background: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; text-align: right; }
         
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
         /* HEADER */
         header { 
-            background: rgba(10, 10, 12, 0.8); 
+            background: rgba(10, 10, 12, 0.9); 
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             position: fixed; width: 100%; top: 0; z-index: 1000;
         }
-        .header-content { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
-        .logo-img { height: 45px; width: auto; display: block; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        
+        .logo-container { display: flex; align-items: center; min-height: 45px; }
+        .logo-img { height: 45px; width: auto; max-width: 180px; object-fit: contain; display: block; }
         
         .nav-cta { 
-            background: var(--primary); color: white; border: none; padding: 10px 20px; 
+            background: var(--primary); color: white; border: none; padding: 10px 24px; 
             border-radius: 8px; font-weight: 700; font-size: 14px; 
             cursor: pointer; transition: 0.3s; text-decoration: none;
         }
@@ -46,7 +48,7 @@
 
         /* HERO SECTION */
         .hero { padding: 160px 0 80px; text-align: center; border-bottom: 1px solid var(--border); }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 24px; }
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 24px; }
         .hero h1 span { color: var(--primary); }
         .hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 750px; margin: 0 auto 40px; }
         
@@ -58,17 +60,17 @@
         }
         .main-cta:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3); }
 
-        .hero-image-box { margin-top: 60px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .hero-image-box img { width: 100%; height: auto; display: block; }
+        .hero-image-box { margin-top: 60px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); background: #000; }
+        .hero-image-box img { width: 100%; height: auto; display: block; opacity: 0.9; }
 
         /* STATS */
         .stats { display: flex; justify-content: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
-        .stat-item { padding: 20px; min-width: 150px; }
-        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--primary); display: block; }
-        .stat-label { color: var(--text-dim); font-size: 0.95rem; }
+        .stat-item { padding: 10px; min-width: 160px; }
+        .stat-number { font-size: 2.8rem; font-weight: 800; color: var(--primary); display: block; }
+        .stat-label { color: var(--text-dim); font-size: 1rem; }
 
         /* STEPS SECTION */
-        .section-title { text-align: center; margin-bottom: 50px; font-size: 2rem; font-weight: 800; }
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.2rem; font-weight: 800; }
         .steps { padding: 100px 0; }
         .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .step-card { 
@@ -78,59 +80,59 @@
         }
         .step-card:hover { border-color: var(--primary); transform: translateY(-5px); }
         .step-icon { font-size: 40px; margin-bottom: 20px; display: block; }
-        .step-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
-        .step-card p { color: var(--text-dim); font-size: 0.95rem; }
+        .step-card h3 { margin-bottom: 15px; font-size: 1.4rem; font-weight: 700; }
+        .step-card p { color: var(--text-dim); font-size: 1rem; }
 
         /* PRICING */
-        .pricing { padding: 100px 0; background: rgba(255,255,255,0.01); }
+        .pricing { padding: 100px 0; background: linear-gradient(to bottom, #0a0a0c, #0f0f12); }
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
         .price-card { 
             background: var(--card-bg); border: 2px solid var(--border); 
             border-radius: 24px; padding: 50px 40px; position: relative; 
-            display: flex; flex-direction: column;
+            display: flex; flex-direction: column; transition: 0.3s;
         }
-        .price-card.featured { border-color: var(--primary); }
+        .price-card.featured { border-color: var(--primary); box-shadow: 0 10px 40px rgba(99, 102, 241, 0.1); }
         .price-card.featured::after { 
-            content: "الأكثر طلباً"; position: absolute; top: 20px; left: 20px; 
-            background: var(--primary); color: white; padding: 4px 12px; 
-            border-radius: 20px; font-size: 0.75rem; font-weight: 700;
+            content: "الأكثر طلباً"; position: absolute; top: 24px; left: 24px; 
+            background: var(--primary); color: white; padding: 5px 14px; 
+            border-radius: 20px; font-size: 0.8rem; font-weight: 700;
         }
-        .price-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
-        .price-value { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; }
-        .price-value span { font-size: 1rem; color: var(--text-dim); font-weight: 400; }
-        .price-desc { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 30px; }
+        .price-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+        .price-value { font-size: 3.5rem; font-weight: 800; margin-bottom: 5px; color: #fff; }
+        .price-value span { font-size: 1rem; color: var(--text-dim); font-weight: 400; margin-right: 5px; }
+        .price-desc { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 30px; }
         
         .feature-list { list-style: none; margin-bottom: 40px; flex-grow: 1; }
-        .feature-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; font-size: 0.95rem; }
-        .feature-list li::before { content: "✓"; color: var(--success); font-weight: 800; }
+        .feature-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; font-size: 1rem; color: #e2e8f0; }
+        .feature-list li::before { content: "✓"; color: var(--success); font-weight: 900; }
 
         .price-cta { 
-            background: var(--primary); color: white; padding: 15px; text-align: center; 
+            background: var(--primary); color: white; padding: 16px; text-align: center; 
             border-radius: 12px; text-decoration: none; font-weight: 700; transition: 0.3s;
         }
-        .price-cta:hover { opacity: 0.9; }
+        .price-cta:hover { background: var(--primary-dark); }
 
         /* FAQ */
         .faq { padding: 100px 0; border-top: 1px solid var(--border); }
-        .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 15px; }
-        .faq-item summary { padding: 20px; cursor: pointer; font-weight: 700; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-        .faq-item summary::after { content: "+"; color: var(--primary); font-size: 1.2rem; }
-        .faq-item[open] summary::after { content: "-"; }
-        .faq-content { padding: 0 20px 20px; color: var(--text-dim); font-size: 0.95rem; border-top: 1px solid var(--border); padding-top: 15px; margin-top: -1px; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 15px; overflow: hidden; }
+        .faq-item summary { padding: 22px; cursor: pointer; font-weight: 700; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; }
+        .faq-item summary::after { content: "+"; color: var(--primary); font-size: 1.5rem; transition: 0.3s; }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-content { padding: 0 22px 22px; color: var(--text-dim); font-size: 1rem; border-top: 1px solid var(--border); padding-top: 20px; }
 
         /* FLOATING WHATSAPP */
         .whatsapp-float { 
             position: fixed; bottom: 30px; right: 30px; 
-            background: #25d366; width: 60px; height: 60px; 
+            background: #25d366; width: 64px; height: 64px; 
             border-radius: 50%; display: flex; justify-content: center; align-items: center; 
             box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); z-index: 999; 
             text-decoration: none; transition: 0.3s;
         }
         .whatsapp-float:hover { transform: scale(1.1); }
-        .whatsapp-float svg { width: 32px; height: 32px; fill: white; }
+        .whatsapp-float svg { width: 35px; height: 35px; fill: white; }
         .pulse-dot { 
-            position: absolute; top: 0; right: 0; width: 15px; height: 15px; 
-            background: #ff4d4d; border-radius: 50%; border: 2px solid white; 
+            position: absolute; top: 0; right: 0; width: 18px; height: 18px; 
+            background: #ff4d4d; border-radius: 50%; border: 3px solid white; 
             animation: pulse-anim 2s infinite; 
         }
 
@@ -141,15 +143,13 @@
         }
 
         /* FOOTER */
-        footer { padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); font-size: 0.9rem; }
-        .footer-logo { height: 35px; opacity: 0.6; margin-bottom: 20px; }
+        footer { padding: 80px 0 40px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); }
+        .footer-logo { height: 40px; margin-bottom: 25px; filter: grayscale(1) brightness(0.8); }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero { padding: 120px 0 60px; }
-            .stats { gap: 20px; }
-            .step-card { padding: 30px; }
-            .price-card { padding: 35px 25px; }
+            .hero { padding: 130px 0 60px; }
+            .stat-item { min-width: 45%; }
         }
     </style>
 </head>
@@ -158,17 +158,19 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <img src="LOGO.png" alt="MA3LICH LOGO" class="logo-img">
-                <a href="#pricing" class="nav-cta">تواصل معنا</a>
+                <div class="logo-container">
+                    <img src="logo.png" alt="MA3LICH" class="logo-img" id="mainLogo">
+                </div>
+                <a href="#pricing" class="nav-cta">ابدأ الآن</a>
             </div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>استقبل مدفوعات <span>البطاقات البنكية</span><br>مباشرة في موقعك</h1>
-            <p>حل تقني متكامل يربط موقعك ببوابة دفع آمنة، مع توجيه آلي لعملائك إلى الدعم الفني عبر واتساب فور نجاح الدفع.</p>
-            <a href="https://wa.me/212602779075?text=مرحباً، أريد الاستفسار عن خدمة الربط مع بوابة الدفع" class="main-cta">ابدأ ربط موقعك الآن</a>
+            <h1>استقبل مدفوعات <span>البطاقات البنكية</span><br>مباشرة في متجرك</h1>
+            <p>حل تقني متكامل يربط متجرك ببوابة دفع آمنة، مع توجيه آلي لعملائك إلى الدعم الفني عبر واتساب فور نجاح عملية الدفع.</p>
+            <a href="https://wa.me/212602779075?text=مرحباً، أريد الاستفسار عن خدمة الربط مع بوابة الدفع" class="main-cta">طلب تفعيل النظام</a>
             
             <div class="stats">
                 <div class="stat-item">
@@ -181,69 +183,69 @@
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-target="7">0</span>
-                    <span class="stat-label">دعم فني / 7 أيام</span>
+                    <span class="stat-label">أيام دعم أسبوعياً</span>
                 </div>
             </div>
 
             <div class="hero-image-box">
-                <img src="overview.61ec7a7cfe8a8bc7a503c00c82d59509.png" alt="Dashboard Overview">
+                <img src="overview.61ec7a7cfe8a8bc7a503c00c82d59509.png" alt="Dashboard Preview">
             </div>
         </div>
     </section>
 
     <section class="steps container">
-        <h2 class="section-title">كيف تعمل الدورة؟</h2>
+        <h2 class="section-title">كيف تتم العملية؟</h2>
         <div class="steps-grid">
             <div class="step-card">
                 <span class="step-icon">💳</span>
-                <h3>الدفع بالموقع</h3>
-                <p>يدخل العميل بيانات البطاقة البنكية (Visa/Mastercard) مباشرة في متجرك دون مغادرته.</p>
+                <h3>الدفع المباشر</h3>
+                <p>يدخل العميل بيانات بطاقته البنكية (Visa/Mastercard) داخل موقعك بكل أمان وسهولة.</p>
             </div>
             <div class="step-card">
                 <span class="step-icon">⚡</span>
-                <h3>تأكيد فوري</h3>
-                <p>تتم معالجة العملية في ثوانٍ وتصلك الإشعارات فوراً بنجاح العملية.</p>
+                <h3>معالجة فورية</h3>
+                <p>تتم معالجة العملية فورياً وتصلك إشعارات اللحظية بنجاح الدفع في لوحة التحكم.</p>
             </div>
             <div class="step-card">
                 <span class="step-icon">📱</span>
-                <h3>توجيه للواتساب</h3>
-                <p>بمجرد الدفع، يتم توجيه العميل آلياً لرقم الواتساب الخاص بك لاستلام الخدمة.</p>
+                <h3>التسليم عبر الواتساب</h3>
+                <p>يتم توجيه العميل تلقائياً إلى رقم الواتساب الخاص بك لتسليمه الخدمة وبناء علاقة دائمة.</p>
             </div>
         </div>
     </section>
 
     <section class="pricing" id="pricing">
         <div class="container">
-            <h2 class="section-title">خطط التشغيل</h2>
+            <h2 class="section-title">خطط التأسيس</h2>
             <div class="pricing-grid">
                 <div class="price-card">
                     <h3 class="price-title">التأسيس العادي</h3>
                     <div class="price-value">500 <span>درهم</span></div>
-                    <p class="price-desc">رسوم تدفع لمرة واحدة للربط الفني</p>
+                    <p class="price-desc">رسوم تدفع مرة واحدة لربط النظام التقني</p>
                     <ul class="feature-list">
                         <li>ربط صفحة الدفع Checkout</li>
-                        <li>دعم جميع البطاقات الدولية</li>
+                        <li>دعم البطاقات الدولية والمحلية</li>
                         <li>التوجيه التلقائي للواتساب</li>
-                        <li>عمولة تنافسية لكل مبيعة</li>
+                        <li>عمولة تنافسية لكل عملية</li>
                         <li>تسوية المستحقات أسبوعياً</li>
-                        <li>تسليم يدوي أو بنكي (حسب الاتفاق)</li>
+                        <li>دفع عبر تحويل بنكي أو Cash</li>
                     </ul>
-                    <a href="https://wa.me/212602779075?text=أريد تفعيل الباقة الأساسية (500 درهم)" class="price-cta">اطلب التفعيل</a>
+                    <a href="https://wa.me/212602779075?text=أريد تفعيل الباقة الأساسية (500 درهم)" class="price-cta">اطلب التفعيل الآن</a>
                 </div>
 
                 <div class="price-card featured">
-                    <h3 class="price-title">الاحترافية + نطاق</h3>
+                    <h3 class="price-title">الاحترافية + النطاق</h3>
                     <div class="price-value">750 <span>درهم</span></div>
-                    <p class="price-desc">الحل المتكامل للهوية والاحترافية</p>
+                    <p class="price-desc">الحل المثالي لبناء علامة تجارية موثوقة</p>
                     <ul class="feature-list">
                         <li>كل مميزات التأسيس العادي</li>
-                        <li>نطاق (.com) أو (.ma) خاص</li>
-                        <li>شهادة حماية SSL مجانية</li>
-                        <li>تعديلات الألوان حسب شعارك</li>
+                        <li>نطاق (.com) أو (.ma) خاص بك</li>
+                        <li>شهادة حماية SSL لضمان الأمان</li>
+                        <li>تخصيص الهوية البصرية (الألوان)</li>
                         <li>عمولة تشغيل مخفضة</li>
-                        <li>أولوية الدعم الفني 24/7</li>
+                        <li>أولوية في الدعم التقني</li>
                     </ul>
-                    <a href="https://wa.me/212602779075?text=أريد تفعيل الباقة الاحترافية (750 درهم)" class="price-cta">اطلب التفعيل</a>
+                    <a href="https://wa.me/212602779075?text=أريد تفعيل الباقة الاحترافية (750 درهم)" class="price-cta">اطلب النظام المتكامل</a>
                 </div>
             </div>
         </div>
@@ -251,45 +253,28 @@
 
     <section class="faq container">
         <h2 class="section-title">الأسئلة الشائعة</h2>
-        
         <details class="faq-item">
-            <summary>هل توفرون اشتراكات IPTV؟</summary>
+            <summary>هل تقدمون خدمات IPTV؟</summary>
             <div class="faq-content">
-                لا، MA3LICH هي منصة تقنية متخصصة في حلول الدفع والتوجيه فقط. نحن نساعدك في استقبال أموال عملائك في موقعك وربطهم بدعمك الفني.
+                قطعاً لا. MA3LICH هي منصة تقنية برمجية توفر حلول الدفع والتوجيه فقط. العميل هو المسؤول عن نوع وجودة الخدمة التي يقدمها لزبائنه.
             </div>
         </details>
-
         <details class="faq-item">
-            <summary>كيف ومتى أستلم أرباحي؟</summary>
+            <summary>متى وكيف أستلم أرباحي؟</summary>
             <div class="faq-content">
-                تتم تسوية المبيعات أسبوعياً بشكل منتظم. يمكنك استلام مستحقاتك نقداً (Cash) أو عبر تحويل بنكي مغربي، ويتم تنسيق التفاصيل حسب الاتفاق عند التعاقد.
-            </div>
-        </details>
-
-        <details class="faq-item">
-            <summary>هل أحتاج لخبرة تقنية لتركيب النظام؟</summary>
-            <div class="faq-content">
-                إطلاقاً. فريقنا التقني يتكفل بكل عمليات الربط والبرمجة. ستحصل على رابط Checkout جاهز أو نقوم بدمجه في موقعك الحالي خلال أقل من 24 ساعة.
-            </div>
-        </details>
-
-        <details class="faq-item">
-            <summary>ماذا يحدث بعد أن يدفع العميل؟</summary>
-            <div class="faq-content">
-                بعد نجاح العملية بنسبة 100%، يظهر للعميل زر "تفعيل الخدمة" الذي يوجهه مباشرة إلى واتساب الخاص بك مع رسالة مجهزة تتضمن رقم الطلب لتسهيل الخدمة.
+                نقوم بتسوية الحسابات أسبوعياً. يمكنك استلام أرباحك عبر تحويل بنكي مغربي مباشر أو نقداً (Cash) حسب ما يتم الاتفاق عليه عند بداية العمل.
             </div>
         </details>
     </section>
 
     <footer>
         <div class="container">
-            <img src="LOGO.png" alt="MA3LICH" class="footer-logo"><br>
-            <p>MA3LICH.com © 2026 - نظام مدفوعات الاشتراكات الذكي</p>
-            <p style="font-size: 0.75rem; margin-top: 10px; opacity: 0.5;">نحن نوفر التقنية، العميل مسؤول عن محتوى الخدمة المقدمة.</p>
+            <img src="logo.png" alt="MA3LICH" class="footer-logo" id="footerLogo"><br>
+            <p>MA3LICH.com © 2026 - نظام حلول الدفع الذكي</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/212602779075?text=مرحباً، لدي استفسار بخصوص خدمة الدفع" class="whatsapp-float">
+    <a href="https://wa.me/212602779075?text=مرحباً، لدي استفسار بخصوص تفعيل خدمة الدفع" class="whatsapp-float">
         <div class="pulse-dot"></div>
         <svg viewBox="0 0 32 32">
             <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.486 2.017 7.8l-2.017 7.2 7.371-1.937c2.35 1.158 5.013 1.937 7.629 1.937 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.212c-2.481 0-4.806-0.65-6.844-1.781l-0.494-0.275-4.381 1.15 1.175-4.194-0.306-0.488c-1.288-2.050-1.969-4.431-1.969-6.875 0-7.244 5.894-13.138 13.131-13.138 7.244 0 13.131 5.894 13.131 13.138s-5.888 13.463-13.131 13.463zM22.188 18.681c-0.338-0.169-2.006-0.988-2.319-1.106-0.313-0.113-0.538-0.169-0.763 0.169s-0.875 1.106-1.069 1.331c-0.194 0.225-0.394 0.25-0.731 0.081-0.338-0.169-1.425-0.525-2.713-1.675-1.006-0.894-1.681-2-1.881-2.338-0.194-0.338-0.019-0.519 0.15-0.688 0.15-0.15 0.338-0.394 0.506-0.588 0.169-0.2 0.225-0.338 0.338-0.563 0.113-0.225 0.056-0.425-0.025-0.594-0.081-0.169-0.763-1.838-1.044-2.519-0.275-0.663-0.556-0.575-0.763-0.588-0.194-0.013-0.419-0.013-0.644-0.013-0.225 0-0.588 0.081-0.9 0.425-0.313 0.338-1.194 1.169-1.194 2.85s1.225 3.306 1.4 3.531c0.169 0.225 2.413 3.681 5.838 5.156 0.819 0.35 1.456 0.556 1.956 0.719 0.825 0.263 1.575 0.225 2.169 0.138 0.656-0.094 2.006-0.819 2.288-1.613 0.281-0.781 0.281-1.463 0.194-1.606-0.081-0.15-0.3-0.244-0.638-0.413z"></path>
@@ -297,19 +282,31 @@
     </a>
 
     <script>
-        // Stats Animation Logic
-        const stats = document.querySelectorAll('.stat-number');
-        const observerOptions = { threshold: 0.5 };
+        // LOGO ERROR HANDLER - Simple check to ensure logo loads
+        function fixLogo(imgId) {
+            const img = document.getElementById(imgId);
+            if (!img) return;
+            img.onerror = function() {
+                // If lowercase failed, try uppercase as a last resort
+                if (img.src.includes('logo.png')) {
+                    img.src = 'LOGO.png';
+                }
+            };
+        }
+        fixLogo('mainLogo');
+        fixLogo('footerLogo');
 
+        // Stats Animation
+        const stats = document.querySelectorAll('.stat-number');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const target = parseInt(entry.target.getAttribute('data-target'));
-                    animateValue(entry.target, 0, target, 1500);
+                    animateValue(entry.target, 0, target, 2000);
                     observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.5 });
 
         stats.forEach(stat => observer.observe(stat));
 
@@ -322,20 +319,11 @@
                 if (progress < 1) {
                     window.requestAnimationFrame(step);
                 } else {
-                    obj.innerHTML = end + (obj.parentElement.children[1].innerText.includes('%') ? '%' : '');
+                    obj.innerHTML = end + (obj.getAttribute('data-target') === "100" ? "%" : "");
                 }
             };
             window.requestAnimationFrame(step);
         }
-
-        // Handle path for images in case of GitHub subfolders
-        window.addEventListener('load', () => {
-            const logo = document.querySelector('.logo-img');
-            logo.onerror = () => {
-                console.log("Retrying logo load with lowercase...");
-                logo.src = "logo.png"; // Fallback if user renamed it
-            };
-        });
     </script>
 </body>
 </html>
