@@ -1,349 +1,341 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MA3LICH | Checkout Card داخل موقعك خلال 24 ساعة</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA3LICH | حلول الدفع الذكي لخدمات الاشتراكات</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-dark: #0a0a0c;
+            --card-bg: #111114;
+            --border: #222226;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --success: #10b981;
+        }
 
-<style>
-:root{
-  --primary:#6366f1;
-  --primary-dark:#4f46e5;
-  --bg:#0f172a;
-  --card:#1e293b;
-  --text:#f8fafc;
-  --muted:#94a3b8;
-  --success:#10b981;
-  --stroke:rgba(255,255,255,.08);
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; text-align: right; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-*{box-sizing:border-box;margin:0;padding:0;font-family:Tajawal,sans-serif}
-html{scroll-behavior:smooth}
-body{
-  background:
-    radial-gradient(900px 500px at 20% -10%, rgba(99,102,241,.18), transparent 60%),
-    radial-gradient(700px 500px at 85% 0%, rgba(139,92,246,.14), transparent 55%),
-    var(--bg);
-  color:var(--text);
-  line-height:1.7;
-}
+        /* HEADER */
+        header { 
+            background: rgba(10, 10, 12, 0.8); 
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
+        .logo-img { height: 45px; width: auto; display: block; }
+        
+        .nav-cta { 
+            background: var(--primary); color: white; border: none; padding: 10px 20px; 
+            border-radius: 8px; font-weight: 700; font-size: 14px; 
+            cursor: pointer; transition: 0.3s; text-decoration: none;
+        }
+        .nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
-.container{max-width:1100px;margin:auto;padding:0 24px}
+        /* HERO SECTION */
+        .hero { padding: 160px 0 80px; text-align: center; border-bottom: 1px solid var(--border); }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 24px; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 750px; margin: 0 auto 40px; }
+        
+        .main-cta { 
+            background: var(--primary); color: white; padding: 18px 45px; 
+            border-radius: 12px; font-size: 1.1rem; font-weight: 800; 
+            text-decoration: none; display: inline-block; transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+        .main-cta:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3); }
 
-/* HEADER */
-header{
-  position:fixed;top:0;width:100%;
-  background:rgba(15,23,42,.8);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  z-index:1000;
-}
-.header-content{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 0;
-}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{width:56px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.4))}
-.brand span{color:var(--primary)}
+        .hero-image-box { margin-top: 60px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .hero-image-box img { width: 100%; height: auto; display: block; }
 
-.btn{
-  padding:10px 18px;border-radius:12px;
-  font-weight:900;font-size:15px;
-  border:none;cursor:pointer;text-decoration:none;
-  display:inline-flex;align-items:center;justify-content:center;
-}
-.btn-primary{background:var(--primary);color:white}
-.btn-primary:hover{background:var(--primary-dark)}
+        /* STATS */
+        .stats { display: flex; justify-content: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
+        .stat-item { padding: 20px; min-width: 150px; }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--primary); display: block; }
+        .stat-label { color: var(--text-dim); font-size: 0.95rem; }
 
-/* HERO */
-.hero{padding:160px 0 90px;text-align:center}
-.hero h1{font-size:3rem;font-weight:900;line-height:1.15}
-.hero h1 span{color:var(--primary)}
-.hero p{color:var(--muted);max-width:850px;margin:16px auto 28px}
+        /* STEPS SECTION */
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2rem; font-weight: 800; }
+        .steps { padding: 100px 0; }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .step-card { 
+            background: var(--card-bg); border: 1px solid var(--border); 
+            border-radius: 20px; padding: 40px; position: relative;
+            transition: 0.3s ease;
+        }
+        .step-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .step-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+        .step-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+        .step-card p { color: var(--text-dim); font-size: 0.95rem; }
 
-.stats{
-  display:flex;justify-content:center;gap:60px;flex-wrap:wrap;
-}
-.stat-item{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:16px;padding:16px 20px;
-}
-.stat-number{font-size:2.6rem;font-weight:900}
-.stat-label{color:var(--muted);font-size:.95rem}
+        /* PRICING */
+        .pricing { padding: 100px 0; background: rgba(255,255,255,0.01); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
+        .price-card { 
+            background: var(--card-bg); border: 2px solid var(--border); 
+            border-radius: 24px; padding: 50px 40px; position: relative; 
+            display: flex; flex-direction: column;
+        }
+        .price-card.featured { border-color: var(--primary); }
+        .price-card.featured::after { 
+            content: "الأكثر طلباً"; position: absolute; top: 20px; left: 20px; 
+            background: var(--primary); color: white; padding: 4px 12px; 
+            border-radius: 20px; font-size: 0.75rem; font-weight: 700;
+        }
+        .price-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+        .price-value { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; }
+        .price-value span { font-size: 1rem; color: var(--text-dim); font-weight: 400; }
+        .price-desc { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 30px; }
+        
+        .feature-list { list-style: none; margin-bottom: 40px; flex-grow: 1; }
+        .feature-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; font-size: 0.95rem; }
+        .feature-list li::before { content: "✓"; color: var(--success); font-weight: 800; }
 
-/* SECTION */
-.section{margin-top:90px}
-.section-header{text-align:center;margin-bottom:40px}
-.section-header h2{font-size:2.2rem;font-weight:900}
-.section-header p{color:var(--muted);max-width:800px;margin:auto}
+        .price-cta { 
+            background: var(--primary); color: white; padding: 15px; text-align: center; 
+            border-radius: 12px; text-decoration: none; font-weight: 700; transition: 0.3s;
+        }
+        .price-cta:hover { opacity: 0.9; }
 
-/* STEPS */
-.steps{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:22px;
-}
-.card{
-  background:var(--card);
-  border:1px solid var(--stroke);
-  border-radius:18px;
-  padding:30px;
-}
-.step-num{color:var(--primary);font-weight:900;margin-bottom:8px}
+        /* FAQ */
+        .faq { padding: 100px 0; border-top: 1px solid var(--border); }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 15px; }
+        .faq-item summary { padding: 20px; cursor: pointer; font-weight: 700; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::after { content: "+"; color: var(--primary); font-size: 1.2rem; }
+        .faq-item[open] summary::after { content: "-"; }
+        .faq-content { padding: 0 20px 20px; color: var(--text-dim); font-size: 0.95rem; border-top: 1px solid var(--border); padding-top: 15px; margin-top: -1px; }
 
-/* FAQ */
-.faq{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:16px;
-}
-.faq details{
-  background:var(--card);
-  border:1px solid var(--stroke);
-  border-radius:16px;
-  padding:18px;
-}
-.faq summary{
-  cursor:pointer;
-  list-style:none;
-  font-weight:900;
-  display:flex;
-  justify-content:space-between;
-}
-.faq p{color:var(--muted);margin-top:10px}
+        /* FLOATING WHATSAPP */
+        .whatsapp-float { 
+            position: fixed; bottom: 30px; right: 30px; 
+            background: #25d366; width: 60px; height: 60px; 
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; 
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); z-index: 999; 
+            text-decoration: none; transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-float svg { width: 32px; height: 32px; fill: white; }
+        .pulse-dot { 
+            position: absolute; top: 0; right: 0; width: 15px; height: 15px; 
+            background: #ff4d4d; border-radius: 50%; border: 2px solid white; 
+            animation: pulse-anim 2s infinite; 
+        }
 
-/* PRICING */
-.pricing{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:26px;
-}
-.price-card{
-  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:20px;
-  padding:34px;
-}
-.price{font-size:3.2rem;font-weight:900}
-.features{list-style:none;margin:18px 0}
-.features li::before{content:"✓ ";color:var(--success);font-weight:900}
+        @keyframes pulse-anim {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 77, 77, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
+        }
 
-/* PAYOUT */
-.payout{
-  margin-top:18px;
-  background:rgba(16,185,129,.12);
-  border:1px solid rgba(16,185,129,.25);
-  padding:14px;
-  border-radius:14px;
-  text-align:center;
-  font-weight:900;
-}
+        /* FOOTER */
+        footer { padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); font-size: 0.9rem; }
+        .footer-logo { height: 35px; opacity: 0.6; margin-bottom: 20px; }
 
-/* FOOTER */
-footer{
-  margin-top:100px;
-  padding:60px 0 40px;
-  border-top:1px solid rgba(255,255,255,.06);
-  text-align:center;
-}
-
-/* SUPPORT BUTTON */
-.support{
-  position:fixed;bottom:18px;right:18px;
-  background:rgba(15,23,42,.85);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:999px;
-  padding:12px 16px;
-  display:flex;gap:10px;
-  cursor:pointer;
-}
-.dot{
-  width:10px;height:10px;border-radius:50%;
-  background:#22c55e;
-  box-shadow:0 0 0 0 rgba(34,197,94,.6);
-  animation:pulse 1.4s infinite;
-}
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}
-  70%{box-shadow:0 0 0 12px rgba(34,197,94,0)}
-  100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
-}
-
-@media(max-width:768px){
-  .hero h1{font-size:2.2rem}
-}
-</style>
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero { padding: 120px 0 60px; }
+            .stats { gap: 20px; }
+            .step-card { padding: 30px; }
+            .price-card { padding: 35px 25px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<div class="container header-content">
-  <div class="brand">
-    <img src="LOGO.png" alt="MA3LICH">
-    <strong>MA3LICH<span>.com</span></strong>
-  </div>
-  <a href="#pricing" class="btn btn-primary">ابدأ الآن</a>
-</div>
-</header>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="LOGO.png" alt="MA3LICH LOGO" class="logo-img">
+                <a href="#pricing" class="nav-cta">تواصل معنا</a>
+            </div>
+        </div>
+    </header>
 
-<section class="hero">
-<div class="container">
-  <h1>ركّب <span>Checkout Card</span><br>داخل موقعك خلال 24 ساعة</h1>
-  <p>ندمج لك الدفع بالبطاقة داخل موقعك، وبعد نجاح الدفع يتحول العميل مباشرة لواتساب الدعم لإكمال الطلب.</p>
+    <section class="hero">
+        <div class="container">
+            <h1>استقبل مدفوعات <span>البطاقات البنكية</span><br>مباشرة في موقعك</h1>
+            <p>حل تقني متكامل يربط موقعك ببوابة دفع آمنة، مع توجيه آلي لعملائك إلى الدعم الفني عبر واتساب فور نجاح الدفع.</p>
+            <a href="https://wa.me/212602779075?text=مرحباً، أريد الاستفسار عن خدمة الربط مع بوابة الدفع" class="main-cta">ابدأ ربط موقعك الآن</a>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="24">0</span>
+                    <span class="stat-label">ساعة للتفعيل</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="100">0</span>
+                    <span class="stat-label">توجيه آلي آمن %</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="7">0</span>
+                    <span class="stat-label">دعم فني / 7 أيام</span>
+                </div>
+            </div>
 
-  <div class="stats">
-    <div class="stat-item">
-      <span class="stat-number" data-target="24">0</span>
-      <span class="stat-label">ساعة تنفيذ</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number" data-target="7">0</span>
-      <span class="stat-label">سحب أسبوعي</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number" data-target="50">0+</span>
-      <span class="stat-label">بائع نشط</span>
-    </div>
-  </div>
-</div>
-</section>
+            <div class="hero-image-box">
+                <img src="overview.61ec7a7cfe8a8bc7a503c00c82d59509.png" alt="Dashboard Overview">
+            </div>
+        </div>
+    </section>
 
-<section class="section">
-<div class="container">
-<div class="section-header">
-  <h2>كيفاش كتخدم الخدمة؟</h2>
-</div>
+    <section class="steps container">
+        <h2 class="section-title">كيف تعمل الدورة؟</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <span class="step-icon">💳</span>
+                <h3>الدفع بالموقع</h3>
+                <p>يدخل العميل بيانات البطاقة البنكية (Visa/Mastercard) مباشرة في متجرك دون مغادرته.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-icon">⚡</span>
+                <h3>تأكيد فوري</h3>
+                <p>تتم معالجة العملية في ثوانٍ وتصلك الإشعارات فوراً بنجاح العملية.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-icon">📱</span>
+                <h3>توجيه للواتساب</h3>
+                <p>بمجرد الدفع، يتم توجيه العميل آلياً لرقم الواتساب الخاص بك لاستلام الخدمة.</p>
+            </div>
+        </div>
+    </section>
 
-<div class="steps">
-  <div class="card">
-    <span class="step-num">01</span>
-    <h3>اختيار الباقة</h3>
-    <p>كتعطينا الثمن + واتساب الدعم ديالك.</p>
-  </div>
-  <div class="card">
-    <span class="step-num">02</span>
-    <h3>تركيب Checkout</h3>
-    <p>ندمج الدفع بالبطاقة داخل موقعك.</p>
-  </div>
-  <div class="card">
-    <span class="step-num">03</span>
-    <h3>دفع ثم Redirect</h3>
-    <p>العميل يدفع → يتحول لواتساب الدعم.</p>
-  </div>
-</div>
-</div>
-</section>
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">خطط التشغيل</h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3 class="price-title">التأسيس العادي</h3>
+                    <div class="price-value">500 <span>درهم</span></div>
+                    <p class="price-desc">رسوم تدفع لمرة واحدة للربط الفني</p>
+                    <ul class="feature-list">
+                        <li>ربط صفحة الدفع Checkout</li>
+                        <li>دعم جميع البطاقات الدولية</li>
+                        <li>التوجيه التلقائي للواتساب</li>
+                        <li>عمولة تنافسية لكل مبيعة</li>
+                        <li>تسوية المستحقات أسبوعياً</li>
+                        <li>تسليم يدوي أو بنكي (حسب الاتفاق)</li>
+                    </ul>
+                    <a href="https://wa.me/212602779075?text=أريد تفعيل الباقة الأساسية (500 درهم)" class="price-cta">اطلب التفعيل</a>
+                </div>
 
-<!-- FAQ -->
-<section class="section">
-<div class="container">
-<div class="section-header">
-  <h2>أسئلة وأجوبة</h2>
-</div>
+                <div class="price-card featured">
+                    <h3 class="price-title">الاحترافية + نطاق</h3>
+                    <div class="price-value">750 <span>درهم</span></div>
+                    <p class="price-desc">الحل المتكامل للهوية والاحترافية</p>
+                    <ul class="feature-list">
+                        <li>كل مميزات التأسيس العادي</li>
+                        <li>نطاق (.com) أو (.ma) خاص</li>
+                        <li>شهادة حماية SSL مجانية</li>
+                        <li>تعديلات الألوان حسب شعارك</li>
+                        <li>عمولة تشغيل مخفضة</li>
+                        <li>أولوية الدعم الفني 24/7</li>
+                    </ul>
+                    <a href="https://wa.me/212602779075?text=أريد تفعيل الباقة الاحترافية (750 درهم)" class="price-cta">اطلب التفعيل</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="faq">
-  <details>
-    <summary>فين كيدفع العميل؟</summary>
-    <p>الدفع كيكون مباشرة داخل موقعك عبر Checkout بالبطاقة.</p>
-  </details>
+    <section class="faq container">
+        <h2 class="section-title">الأسئلة الشائعة</h2>
+        
+        <details class="faq-item">
+            <summary>هل توفرون اشتراكات IPTV؟</summary>
+            <div class="faq-content">
+                لا، MA3LICH هي منصة تقنية متخصصة في حلول الدفع والتوجيه فقط. نحن نساعدك في استقبال أموال عملائك في موقعك وربطهم بدعمك الفني.
+            </div>
+        </details>
 
-  <details>
-    <summary>شنو كيوقع من بعد الدفع؟</summary>
-    <p>من بعد نجاح الدفع، العميل كيتحول تلقائياً لواتساب الدعم ديالك.</p>
-  </details>
+        <details class="faq-item">
+            <summary>كيف ومتى أستلم أرباحي؟</summary>
+            <div class="faq-content">
+                تتم تسوية المبيعات أسبوعياً بشكل منتظم. يمكنك استلام مستحقاتك نقداً (Cash) أو عبر تحويل بنكي مغربي، ويتم تنسيق التفاصيل حسب الاتفاق عند التعاقد.
+            </div>
+        </details>
 
-  <details>
-    <summary>واش MA3LICH كتوفر IPTV؟</summary>
-    <p>لا. MA3LICH كتوفّر غير نظام الدفع والتحويل للدعم.</p>
-  </details>
+        <details class="faq-item">
+            <summary>هل أحتاج لخبرة تقنية لتركيب النظام؟</summary>
+            <div class="faq-content">
+                إطلاقاً. فريقنا التقني يتكفل بكل عمليات الربط والبرمجة. ستحصل على رابط Checkout جاهز أو نقوم بدمجه في موقعك الحالي خلال أقل من 24 ساعة.
+            </div>
+        </details>
 
-  <details>
-    <summary>كيفاش كنستلم الأرباح؟</summary>
-    <p>سحب أسبوعي: Cash أو تحويل بنكي لحساب مغربي.</p>
-  </details>
+        <details class="faq-item">
+            <summary>ماذا يحدث بعد أن يدفع العميل؟</summary>
+            <div class="faq-content">
+                بعد نجاح العملية بنسبة 100%، يظهر للعميل زر "تفعيل الخدمة" الذي يوجهه مباشرة إلى واتساب الخاص بك مع رسالة مجهزة تتضمن رقم الطلب لتسهيل الخدمة.
+            </div>
+        </details>
+    </section>
 
-  <details>
-    <summary>شحال كتاخد الخدمة فالتركيب؟</summary>
-    <p>بين 24 و 48 ساعة حسب الجاهزية.</p>
-  </details>
-</div>
-</div>
-</section>
+    <footer>
+        <div class="container">
+            <img src="LOGO.png" alt="MA3LICH" class="footer-logo"><br>
+            <p>MA3LICH.com © 2026 - نظام مدفوعات الاشتراكات الذكي</p>
+            <p style="font-size: 0.75rem; margin-top: 10px; opacity: 0.5;">نحن نوفر التقنية، العميل مسؤول عن محتوى الخدمة المقدمة.</p>
+        </div>
+    </footer>
 
-<section class="section" id="pricing">
-<div class="container">
-<div class="section-header">
-  <h2>الأسعار</h2>
-</div>
+    <a href="https://wa.me/212602779075?text=مرحباً، لدي استفسار بخصوص خدمة الدفع" class="whatsapp-float">
+        <div class="pulse-dot"></div>
+        <svg viewBox="0 0 32 32">
+            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.486 2.017 7.8l-2.017 7.2 7.371-1.937c2.35 1.158 5.013 1.937 7.629 1.937 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.212c-2.481 0-4.806-0.65-6.844-1.781l-0.494-0.275-4.381 1.15 1.175-4.194-0.306-0.488c-1.288-2.050-1.969-4.431-1.969-6.875 0-7.244 5.894-13.138 13.131-13.138 7.244 0 13.131 5.894 13.131 13.138s-5.888 13.463-13.131 13.463zM22.188 18.681c-0.338-0.169-2.006-0.988-2.319-1.106-0.313-0.113-0.538-0.169-0.763 0.169s-0.875 1.106-1.069 1.331c-0.194 0.225-0.394 0.25-0.731 0.081-0.338-0.169-1.425-0.525-2.713-1.675-1.006-0.894-1.681-2-1.881-2.338-0.194-0.338-0.019-0.519 0.15-0.688 0.15-0.15 0.338-0.394 0.506-0.588 0.169-0.2 0.225-0.338 0.338-0.563 0.113-0.225 0.056-0.425-0.025-0.594-0.081-0.169-0.763-1.838-1.044-2.519-0.275-0.663-0.556-0.575-0.763-0.588-0.194-0.013-0.419-0.013-0.644-0.013-0.225 0-0.588 0.081-0.9 0.425-0.313 0.338-1.194 1.169-1.194 2.85s1.225 3.306 1.4 3.531c0.169 0.225 2.413 3.681 5.838 5.156 0.819 0.35 1.456 0.556 1.956 0.719 0.825 0.263 1.575 0.225 2.169 0.138 0.656-0.094 2.006-0.819 2.288-1.613 0.281-0.781 0.281-1.463 0.194-1.606-0.081-0.15-0.3-0.244-0.638-0.413z"></path>
+        </svg>
+    </a>
 
-<div class="pricing">
-  <div class="price-card">
-    <h3>الباقة الأساسية</h3>
-    <div class="price">500 درهم</div>
-    <ul class="features">
-      <li>Checkout بالبطاقة</li>
-      <li>Redirect لواتساب</li>
-      <li>عمولة 20%</li>
-    </ul>
-    <button class="btn btn-primary wa">اطلب الآن</button>
-  </div>
+    <script>
+        // Stats Animation Logic
+        const stats = document.querySelectorAll('.stat-number');
+        const observerOptions = { threshold: 0.5 };
 
-  <div class="price-card">
-    <h3>الباقة الاحترافية</h3>
-    <div class="price">750 درهم</div>
-    <ul class="features">
-      <li>كل مميزات الأساسية</li>
-      <li>رسالة واتساب جاهزة</li>
-      <li>عمولة 15%</li>
-    </ul>
-    <button class="btn btn-primary wa">اطلب الآن</button>
-  </div>
-</div>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    animateValue(entry.target, 0, target, 1500);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
 
-<div class="payout">
-  السحب كل أسبوع: Cash أو تحويل بنكي مغربي
-</div>
-</div>
-</section>
+        stats.forEach(stat => observer.observe(stat));
 
-<footer>
-<div class="container">
-  <img src="LOGO.png" width="70"><br>
-  © 2026 MA3LICH
-</div>
-</footer>
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.innerHTML = end + (obj.parentElement.children[1].innerText.includes('%') ? '%' : '');
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
 
-<div class="support" id="support">
-  <div class="dot"></div>
-  <strong>Support</strong>
-</div>
-
-<script>
-const wa = "+212602779075";
-
-document.querySelectorAll('.wa').forEach(b=>{
-  b.onclick=()=>window.open(`https://wa.me/${wa}?text=سلام، بغيت نركب Checkout بالبطاقة فموقعي`,'_blank');
-});
-
-document.getElementById('support').onclick=()=>{
-  window.open(`https://wa.me/${wa}?text=سلام MA3LICH، عندي سؤال على الخدمة`,'_blank');
-};
-
-function animate(el){
-  let t=+el.dataset.target,c=0;
-  let i=setInterval(()=>{
-    c++; el.innerText=c;
-    if(c>=t) clearInterval(i);
-  },30);
-}
-document.querySelectorAll('.stat-number').forEach(animate);
-</script>
-
+        // Handle path for images in case of GitHub subfolders
+        window.addEventListener('load', () => {
+            const logo = document.querySelector('.logo-img');
+            logo.onerror = () => {
+                console.log("Retrying logo load with lowercase...");
+                logo.src = "logo.png"; // Fallback if user renamed it
+            };
+        });
+    </script>
 </body>
 </html>
