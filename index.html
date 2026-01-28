@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MA3LICH | الحل رقم #1 لبائعي IPTV والاشتراكات في المغرب</title>
+    <title>MA3LICH | بوابة دفع Stripe لنيش IPTV والاشتراكات</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,6 @@
         :root {
             --primary: #6366f1;
             --primary-dark: #4f46e5;
-            --stripe: #635bff;
             --bg-dark: #0a0a0c;
             --card-bg: #111114;
             --border: #222226;
@@ -28,6 +27,7 @@
         
         .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
+        /* HEADER */
         header { 
             background: rgba(10, 10, 12, 0.9); 
             backdrop-filter: blur(12px);
@@ -35,87 +35,56 @@
             position: fixed; width: 100%; top: 0; z-index: 1000;
         }
         .header-content { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
-        .logo-img { height: 45px; width: auto; display: block; }
+        .logo-img { height: 45px; width: auto; }
         
-        .nav-cta { 
-            background: var(--primary); color: white; padding: 10px 24px; 
-            border-radius: 8px; font-weight: 700; font-size: 14px; 
-            text-decoration: none; transition: 0.3s;
-        }
-        .nav-cta:hover { background: var(--primary-dark); }
+        .nav-cta { background: var(--primary); color: white; padding: 10px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; }
 
-        .hero { padding: 160px 0 80px; text-align: center; }
-        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 24px; }
+        /* HERO SECTION */
+        .hero { padding: 160px 0 60px; text-align: center; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
         .hero h1 span { color: var(--primary); }
-        .hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 750px; margin: 0 auto 40px; }
+        .hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 800px; margin: 0 auto 40px; }
 
         .hero-image-box { 
-            margin-top: 50px; 
-            border-radius: 20px; 
-            overflow: hidden; 
-            border: 1px solid var(--border); 
-            background: #fff;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 50px auto; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); 
+            background: #fff; box-shadow: 0 20px 50px rgba(0,0,0,0.5); max-width: 900px;
         }
         .hero-image-box img { width: 100%; height: auto; display: block; }
+
+        /* LIVE DEMO SECTION */
+        .demo-box { 
+            background: linear-gradient(145deg, #111114 0%, #0a0a0c 100%);
+            padding: 60px 40px; border-radius: 30px; border: 1px solid var(--border);
+            text-align: center; margin: 60px 0;
+        }
+        .live-tag { background: #ef4444; color: white; padding: 4px 12px; border-radius: 5px; font-size: 12px; font-weight: 900; margin-bottom: 15px; display: inline-block; }
+        .demo-link { 
+            display: inline-flex; align-items: center; gap: 15px; background: #fff; color: #000; 
+            padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 800; font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        .demo-link:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(99,102,241,0.3); }
+
+        /* PRICING */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin: 50px 0; }
+        .price-card { background: var(--card-bg); border: 2px solid var(--border); border-radius: 24px; padding: 40px; position: relative; }
+        .price-card.featured { border-color: var(--primary); }
+        .price-val { font-size: 3.5rem; font-weight: 900; margin: 15px 0; }
+        .price-val span { font-size: 1rem; color: var(--text-dim); }
+        .badge { background: var(--success); color: black; padding: 4px 10px; border-radius: 5px; font-size: 12px; font-weight: 800; }
+
+        /* Q&A SECTION */
+        .faq-section { padding: 80px 0; }
+        .faq-grid { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 15px; padding: 25px; margin-bottom: 15px; }
+        .faq-item h3 { font-size: 1.1rem; color: var(--primary); margin-bottom: 10px; }
+        .faq-item p { color: var(--text-dim); font-size: 0.95rem; }
+
+        .main-cta { background: var(--primary); color: white; padding: 18px 45px; border-radius: 12px; text-decoration: none; font-weight: 800; display: inline-block; }
+
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 999; }
         
-        .main-cta { 
-            background: var(--primary); color: white; padding: 18px 45px; 
-            border-radius: 12px; font-size: 1.1rem; font-weight: 800; 
-            text-decoration: none; display: inline-block; transition: 0.3s;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
-        }
-
-        .stats { display: flex; justify-content: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
-        .stat-item { min-width: 160px; }
-        .stat-number { font-size: 2.8rem; font-weight: 800; color: var(--primary); display: block; }
-        .stat-label { color: var(--text-dim); }
-
-        .pricing { padding: 100px 0; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
-        .price-card { 
-            background: var(--card-bg); border: 2px solid var(--border); 
-            border-radius: 24px; padding: 50px 40px; display: flex; flex-direction: column; transition: 0.3s;
-        }
-        .price-card.featured { border-color: var(--primary); background: linear-gradient(145deg, #111114 0%, #16161d 100%); position: relative; }
-        .price-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
-        .price-value { font-size: 3.8rem; font-weight: 800; color: #fff; }
-        .price-value span { font-size: 1.2rem; color: var(--text-dim); }
-        .commission-tag { background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 4px 12px; border-radius: 6px; font-weight: 700; display: inline-block; margin-bottom: 20px; }
-        
-        .feature-list { list-style: none; margin: 25px 0; flex-grow: 1; }
-        .feature-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #e2e8f0; text-align: right; }
-        .feature-list li::before { content: "✓"; color: var(--success); font-weight: 900; }
-
-        .price-cta { 
-            background: var(--primary); color: white; padding: 16px; text-align: center; 
-            border-radius: 12px; text-decoration: none; font-weight: 700; transition: 0.3s;
-        }
-        .price-cta:hover { background: var(--primary-dark); transform: scale(1.02); }
-
-        .hot-deal {
-            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-            background: #ef4444; color: white; padding: 5px 20px; border-radius: 20px;
-            font-size: 14px; font-weight: 800; animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-
-        .whatsapp-float { 
-            position: fixed; bottom: 30px; right: 30px; background: #25d366; 
-            width: 60px; height: 60px; border-radius: 50%; display: flex; 
-            justify-content: center; align-items: center; z-index: 999;
-        }
-        
-        footer { padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); }
-
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-dim); }
     </style>
 </head>
 <body>
@@ -124,98 +93,91 @@
         <div class="container">
             <div class="header-content">
                 <img src="logo.png" alt="MA3LICH" class="logo-img">
-                <a href="#pricing" class="nav-cta">ابدأ بـ 140 درهم</a>
+                <a href="https://wa.me/212602779075" class="nav-cta">تحدث معنا</a>
             </div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>أقوى بوابة دفع لـ <span>IPTV</span> في المغرب</h1>
-            <p>ابدأ اليوم بـ 140 درهم فقط. نظام Stripe Checkout مستقر، إرسال آلي للأكواد، ولوحة تحكم لمتابعة أرباحك لحظة بلحظة.</p>
-            <a href="https://wa.me/212602779075?text=أريد تفعيل بوابة الدفع بـ 140 درهم" class="main-cta">تفعيل حسابي الآن</a>
-            
-            <div class="hero-image-box">
-                <img src="overview.61ec7a7cfe8a8bc7a503c00c82d59509.png" alt="Dashboard Success Rate">
-            </div>
+            <h1>بوابة دفع <span>Stripe</span> احترافية لنيش IPTV</h1>
+            <p>هل تعبت من قفل حسابات Stripe؟ نوفر لك الربط التقني بـ 140 درهم فقط، مع ضمان استقرار الدفع وتسليم الأكواد لعملائك آلياً.</p>
+            <a href="#pricing" class="main-cta">ابدأ بـ 140 درهم فقط</a>
 
-            <div class="stats">
-                <div class="stat-item"><span class="stat-number" data-target="93.5">0</span><span class="stat-label">نسبة نجاح الدفع</span></div>
-                <div class="stat-item"><span class="stat-number" data-target="20">0</span><span class="stat-label">عمولة المبيعات</span></div>
-                <div class="stat-item"><span class="stat-number" data-target="140">0</span><span class="stat-label">رسوم الربط (DH)</span></div>
+            <div class="hero-image-box">
+                <img src="overview.61ec7a7cfe8a8bc7a503c00c82d59509.png" alt="لوحة تحكم ماليش الحقيقية">
             </div>
         </div>
     </section>
 
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px;">باقات بائعي الاشتراكات</h2>
-            
-            <div class="pricing-grid">
-                <div class="price-card featured">
-                    <div class="hot-deal">عرض محدود</div>
-                    <div class="commission-tag">باقة الموزع الصغير</div>
-                    <h3 class="price-title">بدء التشغيل السريع</h3>
-                    <div class="price-value">140 <span>درهم</span></div>
-                    <p class="price-desc">رسوم ربط التقنية لمرة واحدة فقط</p>
-                    <ul class="feature-list">
-                        <li><strong>Stripe Checkout:</strong> واجهة دفع عالمية</li>
-                        <li><strong>عمولة 20%:</strong> عند كل مبيعة ناجحة</li>
-                        <li>إرسال الأكواد آلياً (WhatsApp)</li>
-                        <li>لوحة تحكم كاملة للمبيعات</li>
-                        <li>تفعيل الحساب في أقل من 24 ساعة</li>
-                    </ul>
-                    <a href="https://wa.me/212602779075?text=أريد عرض الـ 140 درهم" class="price-cta">اطلب العرض الآن</a>
-                </div>
+    <section class="container">
+        <div class="demo-box">
+            <div class="live-tag">LIVE TEST</div>
+            <h2 style="margin-bottom: 20px;">جرب تجربة الدفع بنفسك</h2>
+            <p style="color: var(--text-dim); margin-bottom: 30px;">اضغط على الزر أدناه لتجربة واجهة Stripe Checkout التي سيراها عملاؤك عند الشراء منك.</p>
+            <a href="https://pay.ma3lich.com/" class="demo-link" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" width="80" alt="Stripe">
+                <span>تجرية الـ Checkout</span>
+            </a>
+        </div>
+    </section>
 
-                <div class="price-card">
-                    <div class="commission-tag">للمحترفين</div>
-                    <h3 class="price-title">باقة كبار الموزعين</h3>
-                    <div class="price-value">اتصل بنا</div>
-                    <p class="price-desc">للمبيعات التي تتخطى 50,000 DH</p>
-                    <ul class="feature-list">
-                        <li><strong>عمولة مخفضة:</strong> أقل من 20%</li>
-                        <li>دعم فني خاص (VIP Support)</li>
-                        <li>تسويات مالية مرتين أسبوعياً</li>
-                        <li>إدارة النزاعات Chargebacks مجاناً</li>
-                    </ul>
-                    <a href="https://wa.me/212602779075?text=أريد استشارة لكبار الموزعين" class="price-cta" style="background:#222;">تواصل مع الإدارة</a>
+    <section class="container" id="pricing">
+        <h2 style="text-align: center; margin-bottom: 40px;">خطط الأسعار</h2>
+        <div class="pricing-grid">
+            <div class="price-card featured">
+                <span class="badge">الأكثر طلباً</span>
+                <h3 style="margin-top: 10px;">باقة الموزع السريع</h3>
+                <div class="price-val">140 <span>درهم / لمرة واحدة</span></div>
+                <ul style="list-style: none; color: var(--text-dim); text-align: right; margin-bottom: 30px;">
+                    <li style="margin-bottom: 10px;">✅ عمولة 20% على العمليات الناجحة</li>
+                    <li style="margin-bottom: 10px;">✅ ربط Stripe Checkout بمتجرك</li>
+                    <li style="margin-bottom: 10px;">✅ تسليم الأكواد عبر WhatsApp آلياً</li>
+                    <li style="margin-bottom: 10px;">✅ لوحة تحكم لمتابعة مبيعاتك</li>
+                </ul>
+                <a href="https://wa.me/212602779075?text=أريد تفعيل عرض الـ 140 درهم" class="main-cta" style="width: 100%; text-align: center;">اطلب التفعيل الآن</a>
+            </div>
+
+            <div class="price-card">
+                <h3>باقة كبار الموزعين</h3>
+                <div class="price-val">اتصل بنا</div>
+                <p style="color: var(--text-dim); margin-bottom: 30px;">للمتاجر التي تتجاوز مبيعاتها 50,000 درهم شهرياً مع عمولة مخفضة ودعم خاص.</p>
+                <a href="https://wa.me/212602779075" class="main-cta" style="width: 100%; text-align: center; background: #222;">تواصل مع الإدارة</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 50px;">الأسئلة الشائعة (Q&A)</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>كيف أضمن عدم قفل حسابي؟</h3>
+                    <p>نحن نستخدم تقنيات متقدمة في الربط (Proxy & Stealth) تجعل Stripe يرى العمليات كخدمات رقمية عادية، مما يرفع نسبة الأمان إلى أقصى حد.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>متى أستلم أرباحي؟</h3>
+                    <p>يتم تحويل الأرباح بشكل أسبوعي إلى حسابك البنكي في المغرب أو عبر وسائل الدفع التي نتفق عليها، بعد خصم عمولتنا.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>هل أحتاج لامتلاك حساب Stripe؟</h3>
+                    <p>لا، نحن نوفر لك البنية التحتية والربط. أنت تركز فقط على البيع وجلب الزوار لموقعك.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>ماذا يحدث في حال وجود Chargeback؟</h3>
+                    <p>فريقنا التقني يتعامل مع النزاعات بشكل احترافي لتقليل الخسائر وحماية البوابة لضمان استمرارية عملك.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container">
-            <p>MA3LICH.com © 2026 - شريكك التقني للنمو العالمي</p>
-        </div>
+        <p>MA3LICH.com © 2026 - الحل الأول لبائعي IPTV في المغرب</p>
     </footer>
 
     <a href="https://wa.me/212602779075" class="whatsapp-float">
         <svg width="30" height="30" fill="white" viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.486 2.017 7.8l-2.017 7.2 7.371-1.937c2.35 1.158 5.013 1.937 7.629 1.937 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.212c-2.481 0-4.806-0.65-6.844-1.781l-0.494-0.275-4.381 1.15 1.175-4.194-0.306-0.488c-1.288-2.05-1.969-4.431-1.969-6.875 0-7.244 5.894-13.138 13.131-13.138 7.244 0 13.131 5.894 13.131 13.138s-5.888 13.463-13.131 13.463z"></path></svg>
     </a>
 
-    <script>
-        const stats = document.querySelectorAll('.stat-number');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = parseFloat(entry.target.getAttribute('data-target'));
-                    let start = 0;
-                    const duration = 2000;
-                    const step = (timestamp) => {
-                        if (!start) start = timestamp;
-                        const progress = Math.min((timestamp - start) / duration, 1);
-                        let val = (progress * target).toFixed(target % 1 === 0 ? 0 : 1);
-                        entry.target.innerHTML = val + (target === 93.5 || target === 20 ? "%" : "");
-                        if (progress < 1) window.requestAnimationFrame(step);
-                    };
-                    window.requestAnimationFrame(step);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        stats.forEach(stat => observer.observe(stat));
-    </script>
 </body>
 </html>
