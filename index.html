@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
+    <script async defer src="https://js.whop.com/static/checkout/loader.js"></script>
+
     <style>
         :root {
             --primary: #6366f1;
@@ -35,7 +37,7 @@
             position: fixed; width: 100%; top: 0; z-index: 1000;
         }
         .header-content { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
-        .logo-img { height: 45px; width: auto; }
+        .logo-img { height: 45px; width: auto; filter: brightness(0) invert(1); } /* Assumed white logo */
         .nav-cta { background: var(--primary); color: white; padding: 10px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; }
 
         /* HERO SECTION */
@@ -46,63 +48,40 @@
 
         /* PRICING */
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin: 50px 0; }
-        .price-card { background: var(--card-bg); border: 2px solid var(--border); border-radius: 24px; padding: 40px; position: relative; }
-        .price-card.featured { border-color: var(--primary); }
-        .price-val { font-size: 3.5rem; font-weight: 900; margin: 15px 0; }
+        .price-card { background: var(--card-bg); border: 2px solid var(--border); border-radius: 24px; padding: 40px; position: relative; transition: transform 0.3s; }
+        .price-card:hover { transform: translateY(-5px); }
+        .price-card.featured { border-color: var(--primary); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1); }
+        .price-val { font-size: 3.5rem; font-weight: 900; margin: 15px 0; color: #fff; }
         .price-val span { font-size: 1rem; color: var(--text-dim); }
         .badge { background: var(--success); color: black; padding: 4px 10px; border-radius: 5px; font-size: 12px; font-weight: 800; }
 
-        .main-cta { background: var(--primary); color: white; padding: 18px 45px; border-radius: 12px; text-decoration: none; font-weight: 800; display: inline-block; cursor: pointer; border: none; width: 100%; text-align: center; }
-
-        /* MODAL POPUP STYLES */
-        #paymentModal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
+        /* BUTTONS */
+        /* This button now acts as the Whop trigger */
+        .whop-button { 
+            background: var(--primary); 
+            color: white; 
+            padding: 18px 45px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            font-weight: 800; 
+            display: inline-block; 
+            cursor: pointer; 
+            border: none; 
+            width: 100%; 
+            text-align: center; 
+            font-size: 1.1rem;
+            transition: background 0.2s;
         }
+        .whop-button:hover { background: var(--primary-dark); }
 
-        .modal-content {
-            background-color: #fff;
-            margin: 5% auto;
-            width: 90%;
-            max-width: 500px;
-            height: 80vh;
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            animation: modalFadeIn 0.3s;
-        }
+        .secondary-cta { background: #222; color: white; padding: 18px 45px; border-radius: 12px; text-decoration: none; font-weight: 800; display: inline-block; width: 100%; text-align: center; }
 
-        @keyframes modalFadeIn {
-            from {transform: translateY(30px); opacity: 0;}
-            to {transform: translateY(0); opacity: 1;}
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: #000;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 10001;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 999; }
         footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-dim); }
+
+        /* Customizing Whop Modal Backdrop to match your site */
+        :content-type(whop-checkout) {
+            --whop-checkout-border-radius: 20px;
+        }
     </style>
 </head>
 <body>
@@ -120,13 +99,19 @@
         <div class="container">
             <h1>بوابة دفع <span>Stripe</span> احترافية لنيش IPTV</h1>
             <p>هل تعبت من قفل حسابات Stripe؟ نوفر لك الربط التقني بـ 300 درهم فقط، مع ضمان استقرار الدفع وتسليم الأكواد لعملائك آلياً.</p>
-            <button onclick="openPayment()" class="main-cta" style="width: auto;">ابدأ بـ 300 درهم فقط</button>
+            
+            <div style="max-width: 300px; margin: 0 auto;">
+                <div data-whop-checkout-plan-id="plan_vOIOTpOrr9RmH">
+                    <button class="whop-button">ابدأ بـ 300 درهم فقط</button>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="container" id="pricing">
         <h2 style="text-align: center; margin-bottom: 40px;">خطط الأسعار</h2>
         <div class="pricing-grid">
+            
             <div class="price-card featured">
                 <span class="badge">الأكثر طلباً</span>
                 <h3 style="margin-top: 10px;">باقة الموزع السريع</h3>
@@ -137,48 +122,25 @@
                     <li style="margin-bottom: 10px;">✅ تسليم الأكواد عبر WhatsApp آلياً</li>
                     <li style="margin-bottom: 10px;">✅ لوحة تحكم لمتابعة مبيعاتك</li>
                 </ul>
-                <button onclick="openPayment()" class="main-cta">اشترك الآن وفعل حسابك</button>
+                
+                <div data-whop-checkout-plan-id="plan_vOIOTpOrr9RmH">
+                    <button class="whop-button">اشترك الآن وفعل حسابك</button>
+                </div>
             </div>
 
             <div class="price-card">
                 <h3>باقة كبار الموزعين</h3>
                 <div class="price-val">اتصل بنا</div>
                 <p style="color: var(--text-dim); margin-bottom: 30px;">للمتاجر التي تتجاوز مبيعاتها 50,000 درهم شهرياً مع عمولة مخفضة ودعم خاص.</p>
-                <a href="https://wa.me/212602779075" class="main-cta" style="background: #222;">تواصل مع الإدارة</a>
+                <a href="https://wa.me/212602779075" class="secondary-cta">تواصل مع الإدارة</a>
             </div>
+
         </div>
     </section>
-
-    <div id="paymentModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closePayment()">&times;</span>
-            <iframe src="https://pay.ma3lich.com/" id="paymentFrame"></iframe>
-        </div>
-    </div>
 
     <footer>
         <p>MA3LICH.com © 2026 - الحل الأول لبائعي IPTV في المغرب</p>
     </footer>
 
-    <script>
-        function openPayment() {
-            document.getElementById('paymentModal').style.display = "block";
-            document.body.style.overflow = "hidden"; // Prevent scrolling
-        }
-
-        function closePayment() {
-            document.getElementById('paymentModal').style.display = "none";
-            document.body.style.overflow = "auto"; // Restore scrolling
-        }
-
-        // Close modal if user clicks outside of the box
-        window.onclick = function(event) {
-            let modal = document.getElementById('paymentModal');
-            if (event.target == modal) {
-                closePayment();
-            }
-        }
-    </script>
-
-</body>
+    </body>
 </html>
