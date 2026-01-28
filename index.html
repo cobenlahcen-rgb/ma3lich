@@ -36,34 +36,13 @@
         }
         .header-content { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
         .logo-img { height: 45px; width: auto; }
-        
-        .nav-cta { background: var(--primary); color: white; padding: 10px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; }
+        .nav-cta { background: var(--primary); color: white; padding: 10px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; }
 
         /* HERO SECTION */
         .hero { padding: 160px 0 60px; text-align: center; }
         .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
         .hero h1 span { color: var(--primary); }
         .hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 800px; margin: 0 auto 40px; }
-
-        .hero-image-box { 
-            margin: 50px auto; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); 
-            background: #fff; box-shadow: 0 20px 50px rgba(0,0,0,0.5); max-width: 900px;
-        }
-        .hero-image-box img { width: 100%; height: auto; display: block; }
-
-        /* LIVE DEMO SECTION */
-        .demo-box { 
-            background: linear-gradient(145deg, #111114 0%, #0a0a0c 100%);
-            padding: 60px 40px; border-radius: 30px; border: 1px solid var(--border);
-            text-align: center; margin: 60px 0;
-        }
-        .live-tag { background: #ef4444; color: white; padding: 4px 12px; border-radius: 5px; font-size: 12px; font-weight: 900; margin-bottom: 15px; display: inline-block; }
-        .demo-link { 
-            display: inline-flex; align-items: center; gap: 15px; background: #fff; color: #000; 
-            padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 800; font-size: 1.2rem;
-            transition: 0.3s;
-        }
-        .demo-link:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(99,102,241,0.3); }
 
         /* PRICING */
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin: 50px 0; }
@@ -73,17 +52,56 @@
         .price-val span { font-size: 1rem; color: var(--text-dim); }
         .badge { background: var(--success); color: black; padding: 4px 10px; border-radius: 5px; font-size: 12px; font-weight: 800; }
 
-        /* Q&A SECTION */
-        .faq-section { padding: 80px 0; }
-        .faq-grid { max-width: 800px; margin: 0 auto; }
-        .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 15px; padding: 25px; margin-bottom: 15px; }
-        .faq-item h3 { font-size: 1.1rem; color: var(--primary); margin-bottom: 10px; }
-        .faq-item p { color: var(--text-dim); font-size: 0.95rem; }
+        .main-cta { background: var(--primary); color: white; padding: 18px 45px; border-radius: 12px; text-decoration: none; font-weight: 800; display: inline-block; cursor: pointer; border: none; width: 100%; text-align: center; }
 
-        .main-cta { background: var(--primary); color: white; padding: 18px 45px; border-radius: 12px; text-decoration: none; font-weight: 800; display: inline-block; }
+        /* MODAL POPUP STYLES */
+        #paymentModal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 500px;
+            height: 80vh;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from {transform: translateY(30px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #000;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 999; }
-        
         footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-dim); }
     </style>
 </head>
@@ -102,23 +120,7 @@
         <div class="container">
             <h1>بوابة دفع <span>Stripe</span> احترافية لنيش IPTV</h1>
             <p>هل تعبت من قفل حسابات Stripe؟ نوفر لك الربط التقني بـ 300 درهم فقط، مع ضمان استقرار الدفع وتسليم الأكواد لعملائك آلياً.</p>
-            <a href="#pricing" class="main-cta">ابدأ بـ 300 درهم فقط</a>
-
-            <div class="hero-image-box">
-                <img src="overview.61ec7a7cfe8a8bc7a503c00c82d59509.png" alt="لوحة تحكم ماليش الحقيقية">
-            </div>
-        </div>
-    </section>
-
-    <section class="container">
-        <div class="demo-box">
-            <div class="live-tag">LIVE TEST</div>
-            <h2 style="margin-bottom: 20px;">جرب تجربة الدفع بنفسك</h2>
-            <p style="color: var(--text-dim); margin-bottom: 30px;">اضغط على الزر أدناه لتجربة واجهة Stripe Checkout التي سيراها عملاؤك عند الشراء منك.</p>
-            <a href="https://pay.ma3lich.com/" class="demo-link" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" width="80" alt="Stripe">
-                <span>تجربة الـ Checkout</span>
-            </a>
+            <button onclick="openPayment()" class="main-cta" style="width: auto;">ابدأ بـ 300 درهم فقط</button>
         </div>
     </section>
 
@@ -135,49 +137,48 @@
                     <li style="margin-bottom: 10px;">✅ تسليم الأكواد عبر WhatsApp آلياً</li>
                     <li style="margin-bottom: 10px;">✅ لوحة تحكم لمتابعة مبيعاتك</li>
                 </ul>
-                <a href="https://pay.ma3lich.com/" class="main-cta" style="width: 100%; text-align: center;">اشترك الآن وفعل حسابك</a>
+                <button onclick="openPayment()" class="main-cta">اشترك الآن وفعل حسابك</button>
             </div>
 
             <div class="price-card">
                 <h3>باقة كبار الموزعين</h3>
                 <div class="price-val">اتصل بنا</div>
                 <p style="color: var(--text-dim); margin-bottom: 30px;">للمتاجر التي تتجاوز مبيعاتها 50,000 درهم شهرياً مع عمولة مخفضة ودعم خاص.</p>
-                <a href="https://wa.me/212602779075" class="main-cta" style="width: 100%; text-align: center; background: #222;">تواصل مع الإدارة</a>
+                <a href="https://wa.me/212602779075" class="main-cta" style="background: #222;">تواصل مع الإدارة</a>
             </div>
         </div>
     </section>
 
-    <section class="faq-section">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 50px;">الأسئلة الشائعة (Q&A)</h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>كيف أضمن عدم قفل حسابي؟</h3>
-                    <p>نحن نستخدم تقنيات متقدمة في الربط (Proxy & Stealth) تجعل Stripe يرى العمليات كخدمات رقمية عادية، مما يرفع نسبة الأمان إلى أقصى حد.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>متى أستلم أرباحي؟</h3>
-                    <p>يتم تحويل الأرباح بشكل أسبوعي إلى حسابك البنكي في المغرب أو عبر وسائل الدفع التي نتفق عليها، بعد خصم عمولتنا.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>هل أحتاج لامتلاك حساب Stripe؟</h3>
-                    <p>لا، نحن نوفر لك البنية التحتية والربط. أنت تركز فقط على البيع وجلب الزوار لموقعك.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>ماذا يحدث في حال وجود Chargeback؟</h3>
-                    <p>فريقنا التقني يتعامل مع النزاعات بشكل احترافي لتقليل الخسائر وحماية البوابة لضمان استمرارية عملك.</p>
-                </div>
-            </div>
+    <div id="paymentModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closePayment()">&times;</span>
+            <iframe src="https://pay.ma3lich.com/" id="paymentFrame"></iframe>
         </div>
-    </section>
+    </div>
 
     <footer>
         <p>MA3LICH.com © 2026 - الحل الأول لبائعي IPTV في المغرب</p>
     </footer>
 
-    <a href="https://wa.me/212602779075" class="whatsapp-float">
-        <svg width="30" height="30" fill="white" viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.486 2.017 7.8l-2.017 7.2 7.371-1.937c2.35 1.158 5.013 1.937 7.629 1.937 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.212c-2.481 0-4.806-0.65-6.844-1.781l-0.494-0.275-4.381 1.15 1.175-4.194-0.306-0.488c-1.288-2.05-1.969-4.431-1.969-6.875 0-7.244 5.894-13.138 13.131-13.138 7.244 0 13.131 5.894 13.131 13.138s-5.888 13.463-13.131 13.463z"></path></svg>
-    </a>
+    <script>
+        function openPayment() {
+            document.getElementById('paymentModal').style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent scrolling
+        }
+
+        function closePayment() {
+            document.getElementById('paymentModal').style.display = "none";
+            document.body.style.overflow = "auto"; // Restore scrolling
+        }
+
+        // Close modal if user clicks outside of the box
+        window.onclick = function(event) {
+            let modal = document.getElementById('paymentModal');
+            if (event.target == modal) {
+                closePayment();
+            }
+        }
+    </script>
 
 </body>
 </html>
