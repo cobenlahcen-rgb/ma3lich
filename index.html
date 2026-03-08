@@ -1,266 +1,100 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MA3LICH | نظام الدفع العالمي Stripe لمتجرك</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --primary-blue: #38bdf8;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+}
 
-    <style>
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --stripe: #635bff;
-            --bg-dark: #0a0a0c;
-            --card-bg: #111114;
-            --border: #222226;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --success: #10b981;
-        }
+body {
+    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: var(--text-main);
+}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; text-align: right; }
-        
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.checkout-container {
+    background: var(--card-bg);
+    width: 90%;
+    max-width: 420px;
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid #334155;
+}
 
-        /* HEADER */
-        header { 
-            background: rgba(10, 10, 12, 0.9); 
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            position: fixed; width: 100%; top: 0; z-index: 1000;
-        }
-        .header-content { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
-        .logo-img { height: 45px; width: auto; display: block; }
-        
-        .nav-cta { 
-            background: var(--primary); color: white; padding: 10px 24px; 
-            border-radius: 8px; font-weight: 700; font-size: 14px; 
-            text-decoration: none; transition: 0.3s;
-        }
-        .nav-cta:hover { background: var(--primary-dark); }
+.brand-header h2 {
+    margin: 0;
+    color: var(--primary-blue);
+    letter-spacing: -0.025em;
+}
 
-        /* HERO SECTION */
-        .hero { padding: 160px 0 80px; text-align: center; }
-        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 24px; }
-        .hero h1 span { color: var(--primary); }
-        .hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 750px; margin: 0 auto 40px; }
-        
-        .main-cta { 
-            background: var(--primary); color: white; padding: 18px 45px; 
-            border-radius: 12px; font-size: 1.1rem; font-weight: 800; 
-            text-decoration: none; display: inline-block; transition: 0.3s;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
-        }
-        .main-cta:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3); }
+.brand-header p {
+    font-size: 0.75rem;
+    color: #10b981; /* Success Green */
+    margin-top: 4px;
+    font-weight: 600;
+}
 
-        /* STATS */
-        .stats { display: flex; justify-content: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
-        .stat-item { min-width: 160px; }
-        .stat-number { font-size: 2.8rem; font-weight: 800; color: var(--primary); display: block; }
-        .stat-label { color: var(--text-dim); }
+.product-info {
+    margin: 2rem 0;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #334155;
+}
 
-        /* STEPS */
-        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.2rem; font-weight: 800; }
-        .steps { padding: 100px 0; }
-        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .step-card { 
-            background: var(--card-bg); border: 1px solid var(--border); 
-            border-radius: 20px; padding: 40px; transition: 0.3s;
-        }
-        .step-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .step-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+.badge {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--primary-blue);
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 99px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
 
-        /* DEMO SECTION */
-        .demo-section { padding: 100px 0; background: #0a0a0c; border-top: 1px solid #1a1a1e; }
-        .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-        .demo-visual { 
-            background: #111114; padding: 60px 40px; border-radius: 28px; 
-            border: 1px dashed rgba(99, 102, 241, 0.4); text-align: center; 
-            position: relative; transition: 0.4s;
-        }
-        .demo-visual:hover { border-color: var(--primary); box-shadow: 0 0 50px rgba(99, 102, 241, 0.1); }
-        .live-badge { position: absolute; top: -12px; right: 30px; background: var(--primary); color: #fff; font-size: 11px; font-weight: 900; padding: 5px 14px; border-radius: 6px; }
-        
-        .demo-btn-link {
-            display: inline-flex; align-items: center; gap: 12px; background: #fff; color: #000; 
-            text-decoration: none; padding: 18px 38px; border-radius: 12px; font-weight: 800; 
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .demo-btn-link:hover { transform: translateY(-4px); background: #f8fafc; }
+.price-display {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-top: 10px;
+}
 
-        /* PRICING & COMMISSION */
-        .pricing { padding: 100px 0; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
-        .price-card { 
-            background: var(--card-bg); border: 2px solid var(--border); 
-            border-radius: 24px; padding: 50px 40px; display: flex; flex-direction: column; transition: 0.3s;
-        }
-        .price-card.featured { border-color: var(--primary); background: linear-gradient(145deg, #111114 0%, #16161d 100%); }
-        .price-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
-        .price-value { font-size: 3.5rem; font-weight: 800; color: #fff; }
-        .price-value span { font-size: 1rem; color: var(--text-dim); }
-        .commission-tag { background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 4px 12px; border-radius: 6px; font-weight: 700; display: inline-block; margin-bottom: 20px; }
-        
-        .feature-list { list-style: none; margin: 25px 0; flex-grow: 1; }
-        .feature-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #e2e8f0; }
-        .feature-list li::before { content: "✓"; color: var(--success); font-weight: 900; }
+.price-display .currency { font-size: 1.5rem; vertical-align: top; margin-right: 2px; }
+.price-display .period { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
 
-        .price-cta { 
-            background: var(--primary); color: white; padding: 16px; text-align: center; 
-            border-radius: 12px; text-decoration: none; font-weight: 700; transition: 0.3s;
-        }
-        .price-cta:hover { background: var(--primary-dark); }
+.checkout-btn {
+    display: block;
+    background: var(--primary-blue);
+    color: #0f172a;
+    text-align: center;
+    text-decoration: none;
+    padding: 1.2rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: transform 0.2s, background 0.2s;
+}
 
-        .info-box { background: rgba(99, 102, 241, 0.05); border: 1px solid rgba(99, 102, 241, 0.2); padding: 25px; border-radius: 15px; text-align: center; margin-bottom: 40px; }
+.checkout-btn:hover {
+    background: #7dd3fc;
+    transform: translateY(-2px);
+}
 
-        /* WHATSAPP FLOAT */
-        .whatsapp-float { 
-            position: fixed; bottom: 30px; right: 30px; background: #25d366; 
-            width: 60px; height: 60px; border-radius: 50%; display: flex; 
-            justify-content: center; align-items: center; z-index: 999; transition: 0.3s;
-        }
-        .whatsapp-float:hover { transform: scale(1.1); }
-        
-        footer { padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); }
+.payment-methods {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 1.5rem;
+    opacity: 0.6;
+}
 
-        @media (max-width: 900px) {
-            .demo-grid { grid-template-columns: 1fr; text-align: center; }
-            .demo-content { order: 1; }
-            .demo-visual { order: 2; }
-        }
-    </style>
-</head>
-<body>
+.payment-methods img { height: 18px; }
 
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <img src="logo.png" alt="MA3LICH" class="logo-img">
-                <a href="#pricing" class="nav-cta">ابدأ الآن</a>
-            </div>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h1>قوة <span>Stripe Checkout</span><br>بين يديك في المغرب</h1>
-            <p>لا تشغل بالك بتعقيدات فتح الحسابات الدولية. نحن نوفر لك بوابة دفع Stripe جاهزة لمتجرك مع نظام توجيه آلي لعملائك عبر الواتساب.</p>
-            <a href="https://wa.me/212602779075?text=مرحباً، أريد ربط متجري بنظام Stripe" class="main-cta">اطلب التفعيل الآن</a>
-            
-            <div class="stats">
-                <div class="stat-item"><span class="stat-number" data-target="24">0</span><span class="stat-label">ساعة للتفعيل</span></div>
-                <div class="stat-item"><span class="stat-number" data-target="20">0</span><span class="stat-label">عمولة فقط %</span></div>
-                <div class="stat-item"><span class="stat-number" data-target="100">0</span><span class="stat-label">أمان وتشفير %</span></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="demo-section">
-        <div class="container">
-            <div class="demo-grid">
-                <div class="demo-visual">
-                    <div class="live-badge">LIVE DEMO</div>
-                    <p style="margin-bottom: 25px; color: #64748b;">جرب تجربة الدفع التي سيراها عميلك</p>
-                    <a href="https://pay.ma3lich.com/" class="demo-btn-link">
-                        <span>Launch Demo Checkout</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: scaleX(-1);"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </a>
-                    <div style="margin-top:30px; opacity:0.5; display:flex; justify-content:center; gap:15px;">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" height="12">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" height="18">
-                    </div>
-                </div>
-                <div class="demo-content">
-                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">لماذا <span>Stripe؟</span></h2>
-                    <p>يعتبر Stripe Checkout أفضل واجهة دفع في العالم، حيث تضمن لك أعلى نسبة إتمام عمليات (Conversion Rate) بفضل سهولتها وتوافقها التام مع الهواتف.</p>
-                    <ul class="feature-list">
-                        <li>قبول جميع البطاقات الدولية والمحلية</li>
-                        <li>دعم Apple Pay و Google Pay</li>
-                        <li>حماية متطورة ضد الاحتيال (Stripe Radar)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="info-box">
-                <p style="font-size: 1.1rem; font-weight: 700;">
-                    💡 نحن نتحمل المخاطرة معك: <span style="color: var(--primary);">أنت تبيع، ونحن نأخذ 20% فقط من العمليات الناجحة.</span> لا مبيعات؟ لا رسوم!
-                </p>
-            </div>
-            
-            <h2 class="section-title">خطط الانطلاق</h2>
-            <div class="pricing-grid">
-                <div class="price-card featured">
-                    <div class="commission-tag">الأكثر شفافية</div>
-                    <h3 class="price-title">نظام النجاح المشترك</h3>
-                    <div class="price-value">500 <span>درهم</span></div>
-                    <p class="price-desc">رسوم ربط التقنية (تدفع مرة واحدة)</p>
-                    <ul class="feature-list">
-                        <li><strong>عمولة 20%:</strong> على كل مبيعة</li>
-                        <li><strong>Stripe Checkout:</strong> واجهة عالمية</li>
-                        <li>توجيه آلي فوري للواتساب</li>
-                        <li>تسوية الأرباح أسبوعياً</li>
-                        <li>دعم فني مخصص للتجار</li>
-                    </ul>
-                    <a href="https://wa.me/212602779075?text=أريد البدء بنظام 20% عمولة" class="price-cta">ابدأ البيع الآن</a>
-                </div>
-
-                <div class="price-card">
-                    <h3 class="price-title">باقة المتاجر الكبرى</h3>
-                    <div class="price-value">اتصل بنا</div>
-                    <p class="price-desc">للمتاجر ذات الحجم الكبير (+50k DH)</p>
-                    <ul class="feature-list">
-                        <li>عمولة مخفضة (يتم الاتفاق عليها)</li>
-                        <li>تسويات مالية سريعة (2 مرتين أسبوعياً)</li>
-                        <li>ربط نطاق مخصص Domain مجاناً</li>
-                        <li>أولوية في الدعم التقني</li>
-                    </ul>
-                    <a href="https://wa.me/212602779075?text=استفسار حول باقة المتاجر الكبرى" class="price-cta" style="background:#222;">تحدث مع الإدارة</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>MA3LICH.com © 2026 - شريكك التقني للنمو العالمي</p>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/212602779075" class="whatsapp-float">
-        <svg width="30" height="30" fill="white" viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.486 2.017 7.8l-2.017 7.2 7.371-1.937c2.35 1.158 5.013 1.937 7.629 1.937 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.212c-2.481 0-4.806-0.65-6.844-1.781l-0.494-0.275-4.381 1.15 1.175-4.194-0.306-0.488c-1.288-2.05-1.969-4.431-1.969-6.875 0-7.244 5.894-13.138 13.131-13.138 7.244 0 13.131 5.894 13.131 13.138s-5.888 13.463-13.131 13.463z"></path></svg>
-    </a>
-
-    <script>
-        // Stats Animation
-        const stats = document.querySelectorAll('.stat-number');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.getAttribute('data-target'));
-                    let start = 0;
-                    const duration = 2000;
-                    const step = (timestamp) => {
-                        if (!start) start = timestamp;
-                        const progress = Math.min((timestamp - start) / duration, 1);
-                        entry.target.innerHTML = Math.floor(progress * target) + (target === 100 || target === 20 ? "%" : "");
-                        if (progress < 1) window.requestAnimationFrame(step);
-                    };
-                    window.requestAnimationFrame(step);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        stats.forEach(stat => observer.observe(stat));
-    </script>
-</body>
-</html>
+.checkout-footer {
+    margin-top: 2rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
