@@ -3,160 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma3lich Pay — Secure Checkout</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <title>Premium Digital Pass | USA #1 Streaming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0f1a;
-            --card-bg: #161b2c;
-            --primary-blue: #3b82f6;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #2d3748;
+            --bg: #0f172a; --card: #1e293b; --primary: #38bdf8; --text: #f8fafc; --muted: #94a3b8;
         }
-
-        body {
-            background-color: var(--bg-color);
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            color: var(--text-main);
-        }
-
-        .checkout-container {
-            background: var(--card-bg);
-            width: 90%;
-            max-width: 440px;
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-color);
-        }
-
-        .brand-header {
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-
-        .brand-header h2 {
-            margin: 0;
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-
-        .brand-header p {
-            font-size: 0.85rem;
-            color: #10b981; /* Success Green */
-            margin-top: 5px;
-        }
-
-        .product-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .product-card h3 {
-            margin: 0;
-            font-size: 1.1rem;
-        }
-
-        .product-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin: 0.5rem 0 1rem;
-        }
-
-        .price-section {
-            font-size: 2.25rem;
-            font-weight: 700;
-        }
-
-        .price-section span {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        .start-btn {
-            display: block;
-            background: var(--primary-blue);
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            padding: 1.1rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-        }
-
-        .start-btn:hover {
-            background: #2563eb;
-            transform: translateY(-1px);
-        }
-
-        .trust-footer {
-            margin-top: 2rem;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1.5rem;
-        }
-
-        .payment-icons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            opacity: 0.6;
-            margin-bottom: 1rem;
-        }
-
-        .payment-icons img {
-            height: 18px;
-        }
-
-        .secured-by {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; scroll-behavior: smooth; }
+        
+        /* Navigation */
+        nav { padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: auto; }
+        .logo { font-weight: 800; font-size: 1.5rem; color: var(--primary); }
+        
+        /* Hero Section */
+        .hero { text-align: center; padding: 6rem 1rem; max-width: 800px; margin: auto; }
+        .hero h1 { font-size: 3.5rem; margin: 0; line-height: 1.1; letter-spacing: -2px; }
+        .hero p { color: var(--muted); font-size: 1.2rem; margin: 1.5rem 0; }
+        
+        /* Pricing Grid */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1000px; margin: 4rem auto; padding: 0 1rem; }
+        .price-card { background: var(--card); padding: 2rem; border-radius: 16px; border: 1px solid #334155; text-align: center; transition: 0.3s; }
+        .price-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .price-card h3 { margin: 0; color: var(--primary); }
+        .price { font-size: 2.5rem; font-weight: 800; margin: 1rem 0; }
+        .features { list-style: none; padding: 0; text-align: left; margin: 2rem 0; }
+        .features li { margin-bottom: 0.8rem; font-size: 0.9rem; }
+        
+        /* Ma3lich Pay Checkout Area */
+        .checkout-box { background: #161b2c; max-width: 400px; margin: 4rem auto; padding: 2.5rem; border-radius: 12px; border: 1px solid var(--primary); }
+        .checkout-btn { display: block; background: var(--primary); color: #0f172a; text-decoration: none; padding: 1.2rem; border-radius: 8px; font-weight: 700; text-align: center; }
+        
+        /* Footer */
+        footer { text-align: center; padding: 4rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid #334155; }
     </style>
 </head>
 <body>
 
-    <div class="checkout-container">
-        <div class="brand-header">
-            <h2>Ma3lich Pay — Secure Checkout</h2>
-            <p>Encrypted SSL Payment • Official Support</p>
+    <nav><div class="logo">DigitalPass USA</div></nav>
+
+    <section class="hero">
+        <h1>Stop Paying for 5 Different Apps.</h1>
+        <p>Get 15,000+ Channels, Every NFL Game, and All 2026 Movies in 4K Quality.</p>
+        <a href="#pricing" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Plans ↓</a>
+    </section>
+
+    <section id="pricing" class="pricing-grid">
+        <div class="price-card">
+            <h3>Trial Pass</h3>
+            <div class="price">$2.00</div>
+            <ul class="features">
+                <li>✅ 24 Hours Access</li>
+                <li>✅ All 4K Channels</li>
+                <li>✅ Instant Delivery</li>
+            </ul>
+            <a href="https://whop.com/checkout/YOUR_TRIAL_ID" class="checkout-btn">Get Trial</a>
         </div>
 
-        <div class="product-card">
-            <h3>Premium USA Pass</h3>
-            <p>Instant activation for all channels & VOD</p>
-            <div class="price-section">
-                $2.00 <span>/ month after trial</span>
-            </div>
+        <div class="price-card" style="border-color: var(--primary);">
+            <h3>Annual Pass</h3>
+            <div class="price">$59.00</div>
+            <ul class="features">
+                <li>✅ 12 Months Access</li>
+                <li>✅ 5 Devices Support</li>
+                <li>✅ 24/7 Priority Support</li>
+            </ul>
+            <a href="https://whop.com/checkout/YOUR_ANNUAL_ID" class="checkout-btn">Best Value</a>
         </div>
+    </section>
 
-        <a href="https://whop.com/checkout/plan_XXXX" class="start-btn">
-            Start free trial
-        </a>
-
-        <div class="trust-footer">
-            <div class="payment-icons">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Crypto">
-            </div>
-            <p class="secured-by">Secured by <strong>Whop</strong></p>
+    <div class="checkout-box">
+        <h3 style="margin-top: 0;">Ma3lich Pay — Secure</h3>
+        <p style="font-size: 0.8rem; color: #10b981;">Encrypted SSL Transaction Verified</p>
+        <p style="font-size: 0.85rem; color: var(--muted);">Click above to complete your purchase via our secure Whop gateway.</p>
+        <div style="display: flex; gap: 10px; opacity: 0.5; margin-top: 1rem;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" height="15">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" height="15">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" height="15">
         </div>
     </div>
+
+    <footer>
+        <p>© 2026 DigitalPass USA. Secured by Whop.</p>
+    </footer>
 
 </body>
 </html>
